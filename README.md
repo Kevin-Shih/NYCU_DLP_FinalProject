@@ -1,8 +1,7 @@
-
-
 # DLP Project
-This is a forked version of TransMVSNet with some changing & testing for our final project
-
+This is a modified version of TransMVSNet we add some changing & testing for our final project
+Heavily borrowed from [TransMVSNet](https://github.com/megvii-research/TransMVSNet) and [BoxeR](https://github.com/kienduynguyen/BoxeR). Huge thanks to them!
+---
 
 ## (CVPR2022) TransMVSNet: Global Context-aware Multi-view Stereo Network with Transformers
 
