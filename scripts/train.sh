@@ -6,7 +6,7 @@ if [ ! -d $LOG_DIR ]; then
 	mkdir -p $LOG_DIR
 fi
 
-NGPUS=8
+NGPUS=2
 BATCH_SIZE=1
 python -m torch.distributed.launch --nproc_per_node=$NGPUS train.py \
 	--logdir=$LOG_DIR \

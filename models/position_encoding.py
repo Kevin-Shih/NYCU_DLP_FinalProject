@@ -96,3 +96,70 @@ class KeypointEncoder(nn.Module):
         inputs = kpts.transpose(1, 2)
         return self.encoder(inputs)
 
+
+def get_proposal_pos_embed(proposals, hidden_dim):
+    assert hidden_dim % proposals.shape[-1] == 0
+    num_pos_feats = int(hidden_dim / proposals.shape[-1])
+    temperature = 10000
+    scale = 2 * math.pi
+
+    dim_t = torch.arange(num_pos_feats, dtype=proposals.dtype, device=proposals.device)
+    dim_t = temperature ** (2 * (dim_t.div(2, rounding_mode="floor")) / num_pos_feats)
+    proposals = proposals * scale
+    proposals = proposals.unbind(-1)
+
+    pos = []
+    for proposal in proposals:
+        proposal = proposal[..., None] / dim_t
+        proposal = torch.stack(
+            (proposal[..., 0::2].sin(), proposal[..., 1::2].cos()), dim=-1
+        ).flatten(-2)
+        pos.append(proposal)
+    pos = torch.cat(pos, dim=-1)
+
+    return pos
+
+class FixedBoxEmbedding(nn.Module): 
+    def __init__(self, hidden_dim, temperature=10000, normalize=False):
+        super(FixedBoxEmbedding, self).__init__()
+        self.hidden_dim = hidden_dim
+        self.temperature = temperature
+        self.normalize = normalize
+
+    def forward(self, x, mask=None, ref_size=4) -> torch.Tensor:
+        eps = 1e-6
+        if mask is not None:
+            not_mask = ~mask
+            y_embed = not_mask.cumsum(1, dtype=x.dtype)
+            x_embed = not_mask.cumsum(2, dtype=x.dtype)
+
+            size_h = not_mask[:, :, 0].sum(dim=-1, dtype=x.dtype)
+            size_w = not_mask[:, 0, :].sum(dim=-1, dtype=x.dtype)
+        else:
+            size_h, size_w = x.shape[-2:]
+            y_embed = torch.arange(1, size_h + 1, dtype=x.dtype, device=x.device)
+            x_embed = torch.arange(1, size_w + 1, dtype=x.dtype, device=x.device)
+            y_embed, x_embed = torch.meshgrid(y_embed, x_embed, indexing="ij")
+            x_embed = x_embed.unsqueeze(0).repeat(x.shape[0], 1, 1)
+            y_embed = y_embed.unsqueeze(0).repeat(x.shape[0], 1, 1)
+
+            size_h = torch.tensor([size_h] * x.shape[0], dtype=x.dtype, device=x.device)
+            size_w = torch.tensor([size_w] * x.shape[0], dtype=x.dtype, device=x.device)
+
+        if self.normalize:
+            y_embed = (y_embed - 0.5) / (y_embed[:, -1:, :] + eps)
+            x_embed = (x_embed - 0.5) / (x_embed[:, :, -1:] + eps)
+
+        h_embed = ref_size / size_h
+        w_embed = ref_size / size_w
+
+        h_embed = h_embed.unsqueeze(1).unsqueeze(2).expand_as(x_embed)
+        w_embed = w_embed.unsqueeze(1).unsqueeze(2).expand_as(x_embed)
+
+        center_embed = torch.stack([x_embed, y_embed], dim=-1)
+        size_embed = torch.stack([w_embed, h_embed], dim=-1)
+        center = get_proposal_pos_embed(center_embed, self.hidden_dim)
+        size = get_proposal_pos_embed(size_embed, self.hidden_dim)
+        box = center + size
+
+        return box.permute(0, 3, 1, 2)

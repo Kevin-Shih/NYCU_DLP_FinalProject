@@ -4,14 +4,15 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import einops
+from ..utils import flatten_with_shape
 
 '''
 - We provide two different positional encoding methods as shown below.
 - You can easily switch different pos-enc in the __init__() function of FMT.
 - In our experiments, PositionEncodingSuperGule usually cost more GPU memory.
 '''
-from .position_encoding import PositionEncodingSuperGule, PositionEncodingSine
-
+from .position_encoding import PositionEncodingSuperGule, PositionEncodingSine, FixedBoxEmbedding
+from models.ops import BoxAttnFunction, InstanceAttnFunction
 
 class LinearAttention(nn.Module):
     def __init__(self, eps=1e-6):
@@ -36,6 +37,106 @@ class LinearAttention(nn.Module):
 
         return V.contiguous()
 
+class BoxAttentionLayer(nn.Module):
+    def __init__(self, d_model, num_level, num_head, kernel_size=2):
+        super(BoxAttentionLayer, self).__init__()
+        assert d_model % num_head == 0, "d_model should be divided by num_head"
+
+        self.im2col_step = 64
+        self.d_model = d_model
+        self.num_head = num_head
+        self.num_level = num_level
+        self.head_dim = d_model // num_head
+        self.kernel_size = kernel_size
+        self.num_point = kernel_size ** 2
+
+        self.linear_box_weight = nn.Parameter(
+            torch.zeros(num_level * num_head * 4, d_model)
+        )
+        self.linear_box_bias = nn.Parameter(torch.zeros(num_head * num_level * 4))
+
+        self.linear_attn_weight = nn.Parameter(
+            torch.zeros(num_head * num_level * self.num_point, d_model)
+        )
+        self.linear_attn_bias = nn.Parameter(
+            torch.zeros(num_head * num_level * self.num_point)
+        )
+
+        self.value_proj = nn.Linear(d_model, d_model)
+        self.out_proj = nn.Linear(d_model, d_model)
+
+        self._create_kernel_indices(kernel_size, "kernel_indices")
+        self._reset_parameters()
+
+    def _create_kernel_indices(self, kernel_size, module_name):
+        if kernel_size % 2 == 0:
+            start_idx = -kernel_size // 2
+            end_idx = kernel_size // 2
+
+            indices = torch.linspace(start_idx + 0.5, end_idx - 0.5, kernel_size)
+        else:
+            start_idx = -(kernel_size - 1) // 2
+            end_idx = (kernel_size - 1) // 2
+
+            indices = torch.linspace(start_idx, end_idx, kernel_size)
+        i, j = torch.meshgrid(indices, indices, indexing="ij")
+        kernel_indices = torch.stack([j, i], dim=-1).view(-1, 2) / self.kernel_size
+        self.register_buffer(module_name, kernel_indices)
+
+    def _reset_parameters(self):
+        nn.init.xavier_uniform_(self.out_proj.weight)
+        nn.init.constant_(self.out_proj.bias, 0.0)
+        nn.init.xavier_uniform_(self.value_proj.weight)
+        nn.init.constant_(self.value_proj.bias, 0.0)
+        nn.init.constant_(self.linear_attn_weight, 0.0)
+        nn.init.constant_(self.linear_attn_bias, 0.0)
+        nn.init.constant_(self.linear_box_weight, 0.0)
+        nn.init.uniform_(self.linear_box_bias)
+
+    def _where_to_attend(self, query, v_valid_ratios, ref_windows):
+        b, l = ref_windows.shape[:2]
+
+        offset_boxes = F.linear(query, self.linear_box_weight, self.linear_box_bias)
+        offset_boxes = offset_boxes.view(b, l, self.num_head, self.num_level, 4)
+
+        if ref_windows.dim() == 3:
+            ref_windows = ref_windows.unsqueeze(2).unsqueeze(3)
+        else:
+            ref_windows = ref_windows.unsqueeze(3)
+
+        boxes = ref_windows + offset_boxes / 8 * ref_windows[..., [2, 3, 2, 3]]
+        center, size = boxes.unsqueeze(-2).split(2, dim=-1)
+
+        grid = center + self.kernel_indices * torch.relu(size)
+        if v_valid_ratios is not None:
+            grid = grid * v_valid_ratios
+
+        return grid.contiguous()
+
+    def forward(
+        self, query, value, v_shape, v_mask, v_start_index, v_valid_ratios, ref_windows
+    ):
+        b, l1 = query.shape[:2]
+        l2 = value.shape[1]
+
+        value = self.value_proj(value)
+        if v_mask is not None:
+            value = value.masked_fill(v_mask[..., None], float(0))
+        value = value.view(b, l2, self.num_head, self.head_dim)
+
+        attn_weights = F.linear(query, self.linear_attn_weight, self.linear_attn_bias)
+        attn_weights = F.softmax(attn_weights.view(b, l1, self.num_head, -1), dim=-1)
+        attn_weights = attn_weights.view(
+            b, l1, self.num_head, self.num_level, self.kernel_size, self.kernel_size
+        )
+
+        sampled_grid = self._where_to_attend(query, v_valid_ratios, ref_windows)
+        output = BoxAttnFunction.apply(
+            value, v_shape, v_start_index, sampled_grid, attn_weights, self.im2col_step
+        )
+        output = self.out_proj(output)
+
+        return output, attn_weights
 
 class AttentionLayer(nn.Module):
     def __init__(self, attention, d_model, n_heads, d_keys=None,
@@ -110,6 +211,39 @@ class EncoderLayer(nn.Module):
 
         return self.norm2(x+y)
 
+class BoxEncoderLayer(nn.Module):
+    def __init__(self, d_model, n_heads, d_keys=None, d_values=None, d_ff=None, dropout=0.0,
+                 activation="relu"):
+        super(BoxEncoderLayer, self).__init__()
+        attention = BoxAttentionLayer(d_model, num_level= 3, num_head= n_heads)
+
+        d_ff = d_ff or 2 * d_model
+        self.attention = attention
+        self.linear1 = nn.Linear(d_model, d_ff)
+        self.linear2 = nn.Linear(d_ff, d_model)
+        self.norm1 = nn.LayerNorm(d_model)
+        self.norm2 = nn.LayerNorm(d_model)
+        self.dropout = nn.Dropout(dropout)
+        self.activation = getattr(F, activation)
+
+    # x: include pos encoding
+    def forward(self, x, source, src_shape, src_start_index, ref_windows):
+        # Normalize the masks
+        N = x.shape[0]
+        L = x.shape[1]
+
+        # Run self attention and add it to the input
+        # query, value, v_shape, v_mask, v_start_index, v_valid_ratios, ref_windows
+        x = x + self.dropout(self.attention(
+            x, source, src_shape, None, src_start_index, None, ref_windows
+        ))
+
+        # Run the fully connected part of the layer
+        y = x = self.norm1(x)
+        y = self.dropout(self.activation(self.linear1(y)))
+        y = self.dropout(self.linear2(y))
+
+        return self.norm2(x+y)
 
 class FMT(nn.Module):
     def __init__(self, config):
@@ -173,7 +307,139 @@ class FMT(nn.Module):
         else:
             raise ValueError("Wrong feature name")
 
+class BoxFMT(nn.Module):
+    def __init__(self, config):
+        super(BoxFMT, self).__init__()
 
+        self.d_model = config['d_model']
+        self.nhead = config['nhead']
+        self.layer_names = config['layer_names']
+        encoder_layer = BoxEncoderLayer(config['d_model'], config['nhead'])
+        self.layers = nn.ModuleList([copy.deepcopy(encoder_layer) for _ in range(len(self.layer_names))])
+        self._reset_parameters()
+
+        # self.pos_encoding = PositionEncodingSuperGule(config['d_model'])
+        # self.pos_encoding = PositionEncodingSine(config['d_model'])
+
+    def _reset_parameters(self):
+        for p in self.parameters():
+            if p.dim() > 1:
+                nn.init.xavier_uniform_(p)
+
+    def _create_ref_windows(self, tensor_list, mask_list):
+        ref_windows = []
+
+        eps = 1e-6
+        for i, tensor in enumerate(tensor_list):
+            if mask_list is not None:
+                not_mask = ~(mask_list[i])
+                y_embed = not_mask.cumsum(1, dtype=tensor.dtype)
+                x_embed = not_mask.cumsum(2, dtype=tensor.dtype)
+
+                size_h = not_mask[:, :, 0].sum(dim=-1, dtype=tensor.dtype)
+                size_w = not_mask[:, 0, :].sum(dim=-1, dtype=tensor.dtype)
+            else:
+                size_h, size_w = tensor.shape[-2:]
+                y_embed = torch.arange(
+                    1, size_h + 1, dtype=tensor.dtype, device=tensor.device
+                )
+                x_embed = torch.arange(
+                    1, size_w + 1, dtype=tensor.dtype, device=tensor.device
+                )
+                y_embed, x_embed = torch.meshgrid(y_embed, x_embed, indexing="ij")
+                x_embed = x_embed.unsqueeze(0).repeat(tensor.shape[0], 1, 1)
+                y_embed = y_embed.unsqueeze(0).repeat(tensor.shape[0], 1, 1)
+
+                size_h = torch.tensor(
+                    [size_h] * tensor.shape[0], dtype=tensor.dtype, device=tensor.device
+                )
+                size_w = torch.tensor(
+                    [size_w] * tensor.shape[0], dtype=tensor.dtype, device=tensor.device
+                )
+
+            y_embed = (y_embed - 0.5) / (y_embed[:, -1:, :] + eps)
+            x_embed = (x_embed - 0.5) / (x_embed[:, :, -1:] + eps)
+            center = torch.stack([x_embed, y_embed], dim=-1).flatten(1, 2)
+
+            h_embed = self.ref_size / size_h
+            w_embed = self.ref_size / size_w
+
+            size = torch.stack([w_embed, h_embed], dim=-1)
+            size = size.unsqueeze(1).expand_as(center)
+
+            ref_box = torch.cat([center, size], dim=-1)
+            ref_windows.append(ref_box)
+
+        ref_windows = torch.cat(ref_windows, dim=1)
+
+        return ref_windows
+
+    def forward(self, ref_feature=None, src_feature=None, feat="ref"):
+        """
+        Args:
+            ref_feature(torch.Tensor): [N, C, H, W]
+            src_feature(torch.Tensor): [N, C, H, W]
+        """
+        # input: multi_stage_features: should be [stages, C, H, W]
+        
+        assert ref_feature is not None       
+        
+        # the shape of ref. and src. views images should be same, so ref_windows can share
+        ref_windows = self._create_ref_windows(ref_feature, None)
+
+        # pre-processing for ref. image in box-attention
+        ref, _, ref_shape = flatten_with_shape(ref_feature, None)
+        ref_start_index = torch.cat([ref_shape.new_zeros(1), ref_shape.prod(1).cumsum(0)[:-1]])
+
+        if feat == "ref": # only self attention layer
+            assert self.d_model == ref_feature.size(1)
+            # _, _, H, _ = ref_feature.shape
+            # ref_feature = einops.rearrange(ref_feature, 'n c h w -> n (h w) c')
+
+            ref_feature_list = []
+            for layer, name in zip(self.layers, self.layer_names): # every self attention layer
+                if name == 'self':
+                    ref_feature = layer( ref,               # flatten feature
+                                         ref,
+                                         ref_shape,
+                                         ref_start_index,
+                                         ref_windows,
+                                         ) # (x, source, src_shape, src_start_index, ref_windows)
+                    ref_feature_list.append(ref_feature)
+                    # ref_feature_list.append(einops.rearrange(ref_feature, 'n (h w) c -> n c h w', h=H))
+            return ref_feature_list
+
+        elif feat == "src":
+            # pre-processing for box-attention
+            #### not sure how to define q, k, v ####
+            src, _, _ = flatten_with_shape(src_feature, None)
+
+            assert self.d_model == ref_feature[0].size(1)
+            _, _, H, _ = ref_feature[0].shape
+
+            # ref_feature = [einops.rearrange(_, 'n c h w -> n (h w) c') for _ in ref_feature]
+            # src_feature = einops.rearrange(self.pos_encoding(src_feature), 'n c h w -> n (h w) c')
+
+            for i, (layer, name) in enumerate(zip(self.layers, self.layer_names)):
+                if name == 'self':
+                    src_feature = layer(src, 
+                                        src,
+                                        ref_shape,
+                                        ref_start_index,
+                                        ref_windows
+                                        ) # (x, source, src_shape, src_start_index, ref_windows)
+                elif name == 'cross':
+                    src_feature = layer(src, 
+                                        ref[i // 2],
+                                        ref_shape,
+                                        ref_start_index,
+                                        ref_windows
+                                        ) # (x, source, src_shape, src_start_index, ref_windows
+                else:
+                    raise KeyError
+            return src_feature
+        else:
+            raise ValueError("Wrong feature name")
 
 class FMT_with_pathway(nn.Module):
     def __init__(self,
@@ -221,5 +487,74 @@ class FMT_with_pathway(nn.Module):
                 feature_multi_stages["stage1"] = self.FMT([_.clone() for _ in ref_fea_t_list], feature_multi_stages["stage1"].clone(), feat="src")
                 feature_multi_stages["stage2"] = self.smooth_1(self._upsample_add(self.dim_reduction_1(feature_multi_stages["stage1"]), feature_multi_stages["stage2"]))
                 feature_multi_stages["stage3"] = self.smooth_2(self._upsample_add(self.dim_reduction_2(feature_multi_stages["stage2"]), feature_multi_stages["stage3"]))
+
+        return features
+
+
+class BoxFMT_with_pathway(nn.Module):
+    def __init__(self,
+            base_channels=8,
+            FMT_config={
+                'd_model': 32,
+                'nhead': 8,
+                'layer_names': ['self', 'cross'] * 4,}, 
+            ref_size = 4):
+
+        super(BoxFMT_with_pathway, self).__init__()
+
+        self.FMT = BoxFMT(FMT_config)
+
+        self.dim_reduction_1 = nn.Conv2d(base_channels * 4, base_channels * 2, 1, bias=False)
+        self.dim_reduction_2 = nn.Conv2d(base_channels * 2, base_channels * 1, 1, bias=False)
+
+        self.smooth_1 = nn.Conv2d(base_channels * 2, base_channels * 2, 3, padding=1, bias=False)
+        self.smooth_2 = nn.Conv2d(base_channels * 1, base_channels * 1, 3, padding=1, bias=False)
+        self.pos_encoding = FixedBoxEmbedding(FMT_config['d_model'], normalize=True)
+        self.ref_size = ref_size
+
+    def _upsample_add(self, x, y):
+        """_upsample_add. Upsample and add two feature maps.
+
+        :param x: top feature map to be upsampled.
+        :param y: lateral feature map.
+        """
+
+        _, _, H, W = y.size()
+        return F.interpolate(x, size=(H, W), mode='bilinear') + y
+
+
+    def forward(self, features):
+        """forward.
+
+        :param features: multiple views and multiple stages features
+        """
+        for nview_idx, feature_multi_stages in enumerate(features):
+            """
+            Append every stage feature to multi_stage_features
+            Mask will be ignored
+            """
+            multi_stage_features = []
+            # masks = []
+            # pos_encodings = []
+            for _, (_, feature) in enumerate(feature_multi_stages.items()):
+                # directly add pos_encoding to each stage feature
+                multi_stage_features.append(feature.clone() + self.pos_encoding(feature.clone(), None, self.ref_size).type_as(feature))
+                # pos_encodings.append(self.pos_encoding(feature, None, self.ref_size).type_as(feature))
+                # masks.append(None)
+
+            # multi_stage_features: should be [stages, ...]
+            # multi_stage_ref_feat_list: should be [4 layers attention, stages, ...]
+            if nview_idx == 0: # ref view
+                multi_stage_ref_feat_list = self.FMT(multi_stage_features, feat="ref") # expect output is multi stage
+                feature_multi_stages["stage1"] = multi_stage_ref_feat_list[-1, 0] # get last layer, stage1
+                feature_multi_stages["stage2"] = self.smooth_1(self._upsample_add(self.dim_reduction_1(feature_multi_stages["stage1"]), multi_stage_ref_feat_list[-1, 1])) # upsample get last layer, stage2
+                feature_multi_stages["stage3"] = self.smooth_2(self._upsample_add(self.dim_reduction_2(feature_multi_stages["stage2"]), multi_stage_ref_feat_list[-1, 2])) # upsample get last layer, stage3
+
+            else: # src view
+                # _ enumerate through 4 layers i.e. _: [stages, ...]
+                # [_.clone() for _ in multi_stage_ref_feat_list]: [(layer1)[stages, ...], (layer2)[stages, ...], (layer3)[stages, ...], (layer4)[stages, ...]]
+                feature_multi_stages["stage1"] = self.FMT([_.clone() for _ in multi_stage_ref_feat_list], multi_stage_features, feat="src")
+                feature_multi_stages["stage2"] = self.smooth_1(self._upsample_add(self.dim_reduction_1(feature_multi_stages["stage1"]), multi_stage_ref_feat_list[-1, 1])) # upsample get last layer, stage2
+                feature_multi_stages["stage3"] = self.smooth_2(self._upsample_add(self.dim_reduction_2(feature_multi_stages["stage2"]), multi_stage_ref_feat_list[-1, 2])) # upsample get last layer, stage3
 
         return features
