@@ -1,6 +1,10 @@
 
 
-# (CVPR2022) TransMVSNet: Global Context-aware Multi-view Stereo Network with Transformers
+# DLP Project
+This is a forked version of TransMVSNet with some changing & testing for our final project
+
+
+## (CVPR2022) TransMVSNet: Global Context-aware Multi-view Stereo Network with Transformers
 
 
 ## [Paper](https://openaccess.thecvf.com/content/CVPR2022/papers/Ding_TransMVSNet_Global_Context-Aware_Multi-View_Stereo_Network_With_Transformers_CVPR_2022_paper.pdf) | [Project Page](https://dingyikang.github.io/transmvsnet.github.io/) | [Arxiv](https://arxiv.org/abs/2111.14600/) | [Models](https://drive.google.com/drive/folders/1ZJ9bx9qZENEoXv5i5izKCNszlaCNBMkJ?usp=sharing/)
