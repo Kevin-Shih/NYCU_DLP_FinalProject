@@ -1,7 +1,0 @@
-Metadata-Version: 2.1
-Name: TransMVSNet
-Version: 0.1
-Summary: Implementation for end-to-end architectures.
-Author: VisLab
-Requires-Python: >=3.6
-License-File: LICENSE

@@ -1,1102 +1,5 @@
-current time 20240616_143748
+current time 20240616_222640
 creating new summary file
-**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
-argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--testpath=./data/DTU/dtu_test', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0']
-################################  args  ################################
-mode      	train                         	<class 'str'>       
-model     	mvsnet                        	<class 'str'>       
-device    	cuda                          	<class 'str'>       
-dataset   	dtu_yao                       	<class 'str'>       
-trainpath 	./data/DTU/dtu_training       	<class 'str'>       
-testpath  	./data/DTU/dtu_test           	<class 'str'>       
-trainlist 	lists/dtu/train.txt           	<class 'str'>       
-testlist  	lists/dtu/val.txt             	<class 'str'>       
-epochs    	16                            	<class 'int'>       
-lr        	0.001                         	<class 'float'>     
-lrepochs  	6,8,12:2                      	<class 'str'>       
-wd        	0.0001                        	<class 'float'>     
-nviews    	5                             	<class 'int'>       
-batch_size	1                             	<class 'int'>       
-numdepth  	192                           	<class 'int'>       
-interval_scale	1.06                          	<class 'float'>     
-loadckpt  	None                          	<class 'NoneType'>  
-logdir    	./outputs/dtu_training        	<class 'str'>       
-resume    	False                         	<class 'bool'>      
-summary_freq	10                            	<class 'int'>       
-save_freq 	1                             	<class 'int'>       
-eval_freq 	1                             	<class 'int'>       
-seed      	1                             	<class 'int'>       
-pin_m     	False                         	<class 'bool'>      
-local_rank	0                             	<class 'int'>       
-share_cr  	False                         	<class 'bool'>      
-ndepths   	48,32,8                       	<class 'str'>       
-depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
-dlossw    	1.0,1.0,1.0                   	<class 'str'>       
-cr_base_chs	8,8,8                         	<class 'str'>       
-grad_method	detach                        	<class 'str'>       
-using_apex	False                         	<class 'bool'>      
-sync_bn   	False                         	<class 'bool'>      
-opt_level 	O0                            	<class 'str'>       
-keep_batchnorm_fp32	None                          	<class 'NoneType'>  
-loss_scale	None                          	<class 'NoneType'>  
-use_box   	False                         	<class 'bool'>      
-########################################################################
-**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
-start at epoch 0
-Number of model parameters: 995153
-Let's use 2 GPUs!
-mvsdataset kwargs {}
-Let's use 2 GPUs!
-mvsdataset kwargs {}
-dataset train metas: 27097
-mvsdataset kwargs {}
-dataset train metas: 27097
-mvsdataset kwargs {}
-current time 20240616_143811
-creating new summary file
-**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
-argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/', '--testpath=./data/DTU/dtu_test', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0']
-################################  args  ################################
-mode      	train                         	<class 'str'>       
-model     	mvsnet                        	<class 'str'>       
-device    	cuda                          	<class 'str'>       
-dataset   	dtu_yao                       	<class 'str'>       
-trainpath 	./data/DTU/                   	<class 'str'>       
-testpath  	./data/DTU/dtu_test           	<class 'str'>       
-trainlist 	lists/dtu/train.txt           	<class 'str'>       
-testlist  	lists/dtu/val.txt             	<class 'str'>       
-epochs    	16                            	<class 'int'>       
-lr        	0.001                         	<class 'float'>     
-lrepochs  	6,8,12:2                      	<class 'str'>       
-wd        	0.0001                        	<class 'float'>     
-nviews    	5                             	<class 'int'>       
-batch_size	1                             	<class 'int'>       
-numdepth  	192                           	<class 'int'>       
-interval_scale	1.06                          	<class 'float'>     
-loadckpt  	None                          	<class 'NoneType'>  
-logdir    	./outputs/dtu_training        	<class 'str'>       
-resume    	False                         	<class 'bool'>      
-summary_freq	10                            	<class 'int'>       
-save_freq 	1                             	<class 'int'>       
-eval_freq 	1                             	<class 'int'>       
-seed      	1                             	<class 'int'>       
-pin_m     	False                         	<class 'bool'>      
-local_rank	0                             	<class 'int'>       
-share_cr  	False                         	<class 'bool'>      
-ndepths   	48,32,8                       	<class 'str'>       
-depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
-dlossw    	1.0,1.0,1.0                   	<class 'str'>       
-cr_base_chs	8,8,8                         	<class 'str'>       
-grad_method	detach                        	<class 'str'>       
-using_apex	False                         	<class 'bool'>      
-sync_bn   	False                         	<class 'bool'>      
-opt_level 	O0                            	<class 'str'>       
-keep_batchnorm_fp32	None                          	<class 'NoneType'>  
-loss_scale	None                          	<class 'NoneType'>  
-use_box   	False                         	<class 'bool'>      
-########################################################################
-**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
-start at epoch 0
-Number of model parameters: 995153
-Let's use 2 GPUs!
-mvsdataset kwargs {}
-Let's use 2 GPUs!
-mvsdataset kwargs {}
-current time 20240616_143903
-creating new summary file
-**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
-argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0']
-################################  args  ################################
-mode      	train                         	<class 'str'>       
-model     	mvsnet                        	<class 'str'>       
-device    	cuda                          	<class 'str'>       
-dataset   	dtu_yao                       	<class 'str'>       
-trainpath 	./data/DTU/dtu_training       	<class 'str'>       
-testpath  	./data/DTU/dtu_training       	<class 'str'>       
-trainlist 	lists/dtu/train.txt           	<class 'str'>       
-testlist  	lists/dtu/val.txt             	<class 'str'>       
-epochs    	16                            	<class 'int'>       
-lr        	0.001                         	<class 'float'>     
-lrepochs  	6,8,12:2                      	<class 'str'>       
-wd        	0.0001                        	<class 'float'>     
-nviews    	5                             	<class 'int'>       
-batch_size	1                             	<class 'int'>       
-numdepth  	192                           	<class 'int'>       
-interval_scale	1.06                          	<class 'float'>     
-loadckpt  	None                          	<class 'NoneType'>  
-logdir    	./outputs/dtu_training        	<class 'str'>       
-resume    	False                         	<class 'bool'>      
-summary_freq	10                            	<class 'int'>       
-save_freq 	1                             	<class 'int'>       
-eval_freq 	1                             	<class 'int'>       
-seed      	1                             	<class 'int'>       
-pin_m     	False                         	<class 'bool'>      
-local_rank	0                             	<class 'int'>       
-share_cr  	False                         	<class 'bool'>      
-ndepths   	48,32,8                       	<class 'str'>       
-depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
-dlossw    	1.0,1.0,1.0                   	<class 'str'>       
-cr_base_chs	8,8,8                         	<class 'str'>       
-grad_method	detach                        	<class 'str'>       
-using_apex	False                         	<class 'bool'>      
-sync_bn   	False                         	<class 'bool'>      
-opt_level 	O0                            	<class 'str'>       
-keep_batchnorm_fp32	None                          	<class 'NoneType'>  
-loss_scale	None                          	<class 'NoneType'>  
-use_box   	False                         	<class 'bool'>      
-########################################################################
-**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
-start at epoch 0
-Number of model parameters: 995153
-Let's use 2 GPUs!
-mvsdataset kwargs {}
-Let's use 2 GPUs!
-dataset train metas: 27097
-mvsdataset kwargs {}
-dataset test metas: 6174
-mvsdataset kwargs {}
-dataset train metas: 27097
-mvsdataset kwargs {}
-dataset test metas: 6174
-current time 20240616_144108
-creating new summary file
-**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
-argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0']
-################################  args  ################################
-mode      	train                         	<class 'str'>       
-model     	mvsnet                        	<class 'str'>       
-device    	cuda                          	<class 'str'>       
-dataset   	dtu_yao                       	<class 'str'>       
-trainpath 	./data/DTU/dtu_training       	<class 'str'>       
-testpath  	./data/DTU/dtu_training       	<class 'str'>       
-trainlist 	lists/dtu/train.txt           	<class 'str'>       
-testlist  	lists/dtu/val.txt             	<class 'str'>       
-epochs    	16                            	<class 'int'>       
-lr        	0.001                         	<class 'float'>     
-lrepochs  	6,8,12:2                      	<class 'str'>       
-wd        	0.0001                        	<class 'float'>     
-nviews    	5                             	<class 'int'>       
-batch_size	1                             	<class 'int'>       
-numdepth  	192                           	<class 'int'>       
-interval_scale	1.06                          	<class 'float'>     
-loadckpt  	None                          	<class 'NoneType'>  
-logdir    	./outputs/dtu_training        	<class 'str'>       
-resume    	False                         	<class 'bool'>      
-summary_freq	10                            	<class 'int'>       
-save_freq 	1                             	<class 'int'>       
-eval_freq 	1                             	<class 'int'>       
-seed      	1                             	<class 'int'>       
-pin_m     	False                         	<class 'bool'>      
-local_rank	0                             	<class 'int'>       
-share_cr  	False                         	<class 'bool'>      
-ndepths   	48,32,8                       	<class 'str'>       
-depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
-dlossw    	1.0,1.0,1.0                   	<class 'str'>       
-cr_base_chs	8,8,8                         	<class 'str'>       
-grad_method	detach                        	<class 'str'>       
-using_apex	False                         	<class 'bool'>      
-sync_bn   	False                         	<class 'bool'>      
-opt_level 	O0                            	<class 'str'>       
-keep_batchnorm_fp32	None                          	<class 'NoneType'>  
-loss_scale	None                          	<class 'NoneType'>  
-use_box   	False                         	<class 'bool'>      
-########################################################################
-**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
-start at epoch 0
-Number of model parameters: 995153
-Let's use 2 GPUs!
-mvsdataset kwargs {}
-Let's use 2 GPUs!
-dataset train metas: 27097
-mvsdataset kwargs {}
-dataset test metas: 6174
-mvsdataset kwargs {}
-dataset train metas: 27097
-mvsdataset kwargs {}
-dataset test metas: 6174
-Epoch 0/16, Iter 0/13549, lr 0.000335, train loss = 19.570, depth loss = 172.886, entropy loss = 19.570, time = 16.161
-Epoch 0/16, Iter 10/13549, lr 0.000348, train loss = 17.457, depth loss = 118.731, entropy loss = 17.457, time = 1.319
-Epoch 0/16, Iter 20/13549, lr 0.000361, train loss = 15.945, depth loss = 156.485, entropy loss = 15.945, time = 1.291
-Epoch 0/16, Iter 30/13549, lr 0.000375, train loss = 14.919, depth loss = 129.609, entropy loss = 14.919, time = 1.251
-Epoch 0/16, Iter 40/13549, lr 0.000388, train loss = 14.552, depth loss = 73.960, entropy loss = 14.552, time = 1.227
-Epoch 0/16, Iter 50/13549, lr 0.000401, train loss = 13.835, depth loss = 113.032, entropy loss = 13.835, time = 1.227
-Epoch 0/16, Iter 60/13549, lr 0.000415, train loss = 14.434, depth loss = 52.655, entropy loss = 14.434, time = 1.226
-Epoch 0/16, Iter 70/13549, lr 0.000428, train loss = 13.850, depth loss = 65.273, entropy loss = 13.850, time = 1.235
-Epoch 0/16, Iter 80/13549, lr 0.000441, train loss = 14.057, depth loss = 40.785, entropy loss = 14.057, time = 1.226
-Epoch 0/16, Iter 90/13549, lr 0.000455, train loss = 14.193, depth loss = 94.398, entropy loss = 14.193, time = 1.240
-Epoch 0/16, Iter 100/13549, lr 0.000468, train loss = 12.428, depth loss = 47.789, entropy loss = 12.428, time = 1.224
-Epoch 0/16, Iter 110/13549, lr 0.000481, train loss = 11.355, depth loss = 49.581, entropy loss = 11.355, time = 1.228
-Epoch 0/16, Iter 120/13549, lr 0.000495, train loss = 12.270, depth loss = 60.058, entropy loss = 12.270, time = 1.223
-Epoch 0/16, Iter 130/13549, lr 0.000508, train loss = 12.791, depth loss = 46.041, entropy loss = 12.791, time = 1.235
-Epoch 0/16, Iter 140/13549, lr 0.000521, train loss = 11.111, depth loss = 43.673, entropy loss = 11.111, time = 1.234
-Epoch 0/16, Iter 150/13549, lr 0.000535, train loss = 11.300, depth loss = 58.449, entropy loss = 11.300, time = 1.233
-Epoch 0/16, Iter 160/13549, lr 0.000548, train loss = 9.693, depth loss = 13.373, entropy loss = 9.693, time = 1.224
-Epoch 0/16, Iter 170/13549, lr 0.000561, train loss = 12.197, depth loss = 57.417, entropy loss = 12.197, time = 1.226
-Epoch 0/16, Iter 180/13549, lr 0.000575, train loss = 8.582, depth loss = 13.495, entropy loss = 8.582, time = 1.221
-Epoch 0/16, Iter 190/13549, lr 0.000588, train loss = 9.872, depth loss = 17.276, entropy loss = 9.872, time = 1.223
-Epoch 0/16, Iter 200/13549, lr 0.000601, train loss = 9.966, depth loss = 60.221, entropy loss = 9.966, time = 1.233
-Epoch 0/16, Iter 210/13549, lr 0.000615, train loss = 10.626, depth loss = 37.850, entropy loss = 10.626, time = 1.234
-Epoch 0/16, Iter 220/13549, lr 0.000628, train loss = 8.647, depth loss = 13.510, entropy loss = 8.647, time = 1.217
-Epoch 0/16, Iter 230/13549, lr 0.000641, train loss = 9.361, depth loss = 40.659, entropy loss = 9.361, time = 1.242
-Epoch 0/16, Iter 240/13549, lr 0.000655, train loss = 6.938, depth loss = 5.181, entropy loss = 6.938, time = 1.221
-Epoch 0/16, Iter 250/13549, lr 0.000668, train loss = 9.263, depth loss = 36.036, entropy loss = 9.263, time = 1.227
-Epoch 0/16, Iter 260/13549, lr 0.000681, train loss = 7.003, depth loss = 7.717, entropy loss = 7.003, time = 1.223
-Epoch 0/16, Iter 270/13549, lr 0.000695, train loss = 10.496, depth loss = 40.204, entropy loss = 10.496, time = 1.227
-Epoch 0/16, Iter 280/13549, lr 0.000708, train loss = 8.811, depth loss = 30.145, entropy loss = 8.811, time = 1.221
-Epoch 0/16, Iter 290/13549, lr 0.000721, train loss = 8.263, depth loss = 25.929, entropy loss = 8.263, time = 1.237
-Epoch 0/16, Iter 300/13549, lr 0.000735, train loss = 7.264, depth loss = 7.902, entropy loss = 7.264, time = 1.227
-Epoch 0/16, Iter 310/13549, lr 0.000748, train loss = 7.494, depth loss = 8.065, entropy loss = 7.494, time = 1.219
-Epoch 0/16, Iter 320/13549, lr 0.000761, train loss = 9.132, depth loss = 18.733, entropy loss = 9.132, time = 1.221
-Epoch 0/16, Iter 330/13549, lr 0.000775, train loss = 5.863, depth loss = 2.507, entropy loss = 5.863, time = 1.224
-Epoch 0/16, Iter 340/13549, lr 0.000788, train loss = 11.594, depth loss = 16.406, entropy loss = 11.594, time = 1.227
-Epoch 0/16, Iter 350/13549, lr 0.000801, train loss = 10.849, depth loss = 46.639, entropy loss = 10.849, time = 1.233
-Epoch 0/16, Iter 360/13549, lr 0.000815, train loss = 9.220, depth loss = 33.320, entropy loss = 9.220, time = 1.245
-Epoch 0/16, Iter 370/13549, lr 0.000828, train loss = 5.496, depth loss = 4.388, entropy loss = 5.496, time = 1.227
-Epoch 0/16, Iter 380/13549, lr 0.000841, train loss = 7.066, depth loss = 36.838, entropy loss = 7.066, time = 1.229
-Epoch 0/16, Iter 390/13549, lr 0.000855, train loss = 7.713, depth loss = 30.358, entropy loss = 7.713, time = 1.242
-Epoch 0/16, Iter 400/13549, lr 0.000868, train loss = 8.238, depth loss = 10.568, entropy loss = 8.238, time = 1.226
-Epoch 0/16, Iter 410/13549, lr 0.000881, train loss = 8.042, depth loss = 13.915, entropy loss = 8.042, time = 1.233
-Epoch 0/16, Iter 420/13549, lr 0.000895, train loss = 5.181, depth loss = 4.979, entropy loss = 5.181, time = 1.224
-current time 20240616_145027
-creating new summary file
-**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
-argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0']
-################################  args  ################################
-mode      	train                         	<class 'str'>       
-model     	mvsnet                        	<class 'str'>       
-device    	cuda                          	<class 'str'>       
-dataset   	dtu_yao                       	<class 'str'>       
-trainpath 	./data/DTU/dtu_training       	<class 'str'>       
-testpath  	./data/DTU/dtu_training       	<class 'str'>       
-trainlist 	lists/dtu/train.txt           	<class 'str'>       
-testlist  	lists/dtu/val.txt             	<class 'str'>       
-epochs    	16                            	<class 'int'>       
-lr        	0.001                         	<class 'float'>     
-lrepochs  	6,8,12:2                      	<class 'str'>       
-wd        	0.0001                        	<class 'float'>     
-nviews    	5                             	<class 'int'>       
-batch_size	1                             	<class 'int'>       
-numdepth  	192                           	<class 'int'>       
-interval_scale	1.06                          	<class 'float'>     
-loadckpt  	None                          	<class 'NoneType'>  
-logdir    	./outputs/dtu_training        	<class 'str'>       
-resume    	False                         	<class 'bool'>      
-summary_freq	10                            	<class 'int'>       
-save_freq 	1                             	<class 'int'>       
-eval_freq 	1                             	<class 'int'>       
-seed      	1                             	<class 'int'>       
-pin_m     	False                         	<class 'bool'>      
-local_rank	0                             	<class 'int'>       
-share_cr  	False                         	<class 'bool'>      
-ndepths   	48,32,8                       	<class 'str'>       
-depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
-dlossw    	1.0,1.0,1.0                   	<class 'str'>       
-cr_base_chs	8,8,8                         	<class 'str'>       
-grad_method	detach                        	<class 'str'>       
-using_apex	False                         	<class 'bool'>      
-sync_bn   	False                         	<class 'bool'>      
-opt_level 	O0                            	<class 'str'>       
-keep_batchnorm_fp32	None                          	<class 'NoneType'>  
-loss_scale	None                          	<class 'NoneType'>  
-use_box   	False                         	<class 'bool'>      
-########################################################################
-**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
-start at epoch 0
-Number of model parameters: 995153
-Let's use 2 GPUs!
-mvsdataset kwargs {}
-Let's use 2 GPUs!
-dataset train metas: 27097
-mvsdataset kwargs {}
-mvsdataset kwargs {}
-dataset test metas: 6174
-dataset train metas: 27097
-mvsdataset kwargs {}
-dataset test metas: 6174
-Epoch 0/16, Iter 0/13549, lr 0.000335, train loss = 19.570, depth loss = 172.892, entropy loss = 19.570, time = 16.466
-current time 20240616_145253
-creating new summary file
-**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
-argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
-################################  args  ################################
-mode      	train                         	<class 'str'>       
-model     	mvsnet                        	<class 'str'>       
-device    	cuda                          	<class 'str'>       
-dataset   	dtu_yao                       	<class 'str'>       
-trainpath 	./data/DTU/dtu_training       	<class 'str'>       
-testpath  	./data/DTU/dtu_training       	<class 'str'>       
-trainlist 	lists/dtu/train.txt           	<class 'str'>       
-testlist  	lists/dtu/val.txt             	<class 'str'>       
-epochs    	16                            	<class 'int'>       
-lr        	0.001                         	<class 'float'>     
-lrepochs  	6,8,12:2                      	<class 'str'>       
-wd        	0.0001                        	<class 'float'>     
-nviews    	5                             	<class 'int'>       
-batch_size	1                             	<class 'int'>       
-numdepth  	192                           	<class 'int'>       
-interval_scale	1.06                          	<class 'float'>     
-loadckpt  	None                          	<class 'NoneType'>  
-logdir    	./outputs/dtu_training        	<class 'str'>       
-resume    	False                         	<class 'bool'>      
-summary_freq	10                            	<class 'int'>       
-save_freq 	1                             	<class 'int'>       
-eval_freq 	1                             	<class 'int'>       
-seed      	1                             	<class 'int'>       
-pin_m     	False                         	<class 'bool'>      
-local_rank	0                             	<class 'int'>       
-share_cr  	False                         	<class 'bool'>      
-ndepths   	48,32,8                       	<class 'str'>       
-depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
-dlossw    	1.0,1.0,1.0                   	<class 'str'>       
-cr_base_chs	8,8,8                         	<class 'str'>       
-grad_method	detach                        	<class 'str'>       
-using_apex	False                         	<class 'bool'>      
-sync_bn   	False                         	<class 'bool'>      
-opt_level 	O0                            	<class 'str'>       
-keep_batchnorm_fp32	None                          	<class 'NoneType'>  
-loss_scale	None                          	<class 'NoneType'>  
-use_box   	True                          	<class 'bool'>      
-########################################################################
-**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
-current time 20240616_145809
-creating new summary file
-**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
-argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
-################################  args  ################################
-mode      	train                         	<class 'str'>       
-model     	mvsnet                        	<class 'str'>       
-device    	cuda                          	<class 'str'>       
-dataset   	dtu_yao                       	<class 'str'>       
-trainpath 	./data/DTU/dtu_training       	<class 'str'>       
-testpath  	./data/DTU/dtu_training       	<class 'str'>       
-trainlist 	lists/dtu/train.txt           	<class 'str'>       
-testlist  	lists/dtu/val.txt             	<class 'str'>       
-epochs    	16                            	<class 'int'>       
-lr        	0.001                         	<class 'float'>     
-lrepochs  	6,8,12:2                      	<class 'str'>       
-wd        	0.0001                        	<class 'float'>     
-nviews    	5                             	<class 'int'>       
-batch_size	1                             	<class 'int'>       
-numdepth  	192                           	<class 'int'>       
-interval_scale	1.06                          	<class 'float'>     
-loadckpt  	None                          	<class 'NoneType'>  
-logdir    	./outputs/dtu_training        	<class 'str'>       
-resume    	False                         	<class 'bool'>      
-summary_freq	10                            	<class 'int'>       
-save_freq 	1                             	<class 'int'>       
-eval_freq 	1                             	<class 'int'>       
-seed      	1                             	<class 'int'>       
-pin_m     	False                         	<class 'bool'>      
-local_rank	0                             	<class 'int'>       
-share_cr  	False                         	<class 'bool'>      
-ndepths   	48,32,8                       	<class 'str'>       
-depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
-dlossw    	1.0,1.0,1.0                   	<class 'str'>       
-cr_base_chs	8,8,8                         	<class 'str'>       
-grad_method	detach                        	<class 'str'>       
-using_apex	False                         	<class 'bool'>      
-sync_bn   	False                         	<class 'bool'>      
-opt_level 	O0                            	<class 'str'>       
-keep_batchnorm_fp32	None                          	<class 'NoneType'>  
-loss_scale	None                          	<class 'NoneType'>  
-use_box   	True                          	<class 'bool'>      
-########################################################################
-**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
-start at epoch 0
-Number of model parameters: 1028945
-Let's use 2 GPUs!
-mvsdataset kwargs {}
-Let's use 2 GPUs!
-dataset train metas: 27097
-mvsdataset kwargs {}
-dataset test metas: 6174
-mvsdataset kwargs {}
-dataset train metas: 27097
-mvsdataset kwargs {}
-dataset test metas: 6174
-current time 20240616_145912
-creating new summary file
-**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
-argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
-################################  args  ################################
-mode      	train                         	<class 'str'>       
-model     	mvsnet                        	<class 'str'>       
-device    	cuda                          	<class 'str'>       
-dataset   	dtu_yao                       	<class 'str'>       
-trainpath 	./data/DTU/dtu_training       	<class 'str'>       
-testpath  	./data/DTU/dtu_training       	<class 'str'>       
-trainlist 	lists/dtu/train.txt           	<class 'str'>       
-testlist  	lists/dtu/val.txt             	<class 'str'>       
-epochs    	16                            	<class 'int'>       
-lr        	0.001                         	<class 'float'>     
-lrepochs  	6,8,12:2                      	<class 'str'>       
-wd        	0.0001                        	<class 'float'>     
-nviews    	5                             	<class 'int'>       
-batch_size	1                             	<class 'int'>       
-numdepth  	192                           	<class 'int'>       
-interval_scale	1.06                          	<class 'float'>     
-loadckpt  	None                          	<class 'NoneType'>  
-logdir    	./outputs/dtu_training        	<class 'str'>       
-resume    	False                         	<class 'bool'>      
-summary_freq	10                            	<class 'int'>       
-save_freq 	1                             	<class 'int'>       
-eval_freq 	1                             	<class 'int'>       
-seed      	1                             	<class 'int'>       
-pin_m     	False                         	<class 'bool'>      
-local_rank	0                             	<class 'int'>       
-share_cr  	False                         	<class 'bool'>      
-ndepths   	48,32,8                       	<class 'str'>       
-depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
-dlossw    	1.0,1.0,1.0                   	<class 'str'>       
-cr_base_chs	8,8,8                         	<class 'str'>       
-grad_method	detach                        	<class 'str'>       
-using_apex	False                         	<class 'bool'>      
-sync_bn   	False                         	<class 'bool'>      
-opt_level 	O0                            	<class 'str'>       
-keep_batchnorm_fp32	None                          	<class 'NoneType'>  
-loss_scale	None                          	<class 'NoneType'>  
-use_box   	True                          	<class 'bool'>      
-########################################################################
-**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
-start at epoch 0
-Number of model parameters: 1028945
-Let's use 2 GPUs!
-mvsdataset kwargs {}
-Let's use 2 GPUs!
-dataset train metas: 27097
-mvsdataset kwargs {}
-dataset test metas: 6174
-mvsdataset kwargs {}
-dataset train metas: 27097
-mvsdataset kwargs {}
-dataset test metas: 6174
-current time 20240616_145946
-creating new summary file
-**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
-argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
-################################  args  ################################
-mode      	train                         	<class 'str'>       
-model     	mvsnet                        	<class 'str'>       
-device    	cuda                          	<class 'str'>       
-dataset   	dtu_yao                       	<class 'str'>       
-trainpath 	./data/DTU/dtu_training       	<class 'str'>       
-testpath  	./data/DTU/dtu_training       	<class 'str'>       
-trainlist 	lists/dtu/train.txt           	<class 'str'>       
-testlist  	lists/dtu/val.txt             	<class 'str'>       
-epochs    	16                            	<class 'int'>       
-lr        	0.001                         	<class 'float'>     
-lrepochs  	6,8,12:2                      	<class 'str'>       
-wd        	0.0001                        	<class 'float'>     
-nviews    	5                             	<class 'int'>       
-batch_size	1                             	<class 'int'>       
-numdepth  	192                           	<class 'int'>       
-interval_scale	1.06                          	<class 'float'>     
-loadckpt  	None                          	<class 'NoneType'>  
-logdir    	./outputs/dtu_training        	<class 'str'>       
-resume    	False                         	<class 'bool'>      
-summary_freq	10                            	<class 'int'>       
-save_freq 	1                             	<class 'int'>       
-eval_freq 	1                             	<class 'int'>       
-seed      	1                             	<class 'int'>       
-pin_m     	False                         	<class 'bool'>      
-local_rank	0                             	<class 'int'>       
-share_cr  	False                         	<class 'bool'>      
-ndepths   	48,32,8                       	<class 'str'>       
-depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
-dlossw    	1.0,1.0,1.0                   	<class 'str'>       
-cr_base_chs	8,8,8                         	<class 'str'>       
-grad_method	detach                        	<class 'str'>       
-using_apex	False                         	<class 'bool'>      
-sync_bn   	False                         	<class 'bool'>      
-opt_level 	O0                            	<class 'str'>       
-keep_batchnorm_fp32	None                          	<class 'NoneType'>  
-loss_scale	None                          	<class 'NoneType'>  
-use_box   	True                          	<class 'bool'>      
-########################################################################
-**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
-start at epoch 0
-Number of model parameters: 1028945
-Let's use 2 GPUs!
-mvsdataset kwargs {}
-Let's use 2 GPUs!
-dataset train metas: 27097
-mvsdataset kwargs {}
-mvsdataset kwargs {}
-dataset test metas: 6174
-dataset train metas: 27097
-mvsdataset kwargs {}
-dataset test metas: 6174
-current time 20240616_150146
-creating new summary file
-**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
-argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
-################################  args  ################################
-mode      	train                         	<class 'str'>       
-model     	mvsnet                        	<class 'str'>       
-device    	cuda                          	<class 'str'>       
-dataset   	dtu_yao                       	<class 'str'>       
-trainpath 	./data/DTU/dtu_training       	<class 'str'>       
-testpath  	./data/DTU/dtu_training       	<class 'str'>       
-trainlist 	lists/dtu/train.txt           	<class 'str'>       
-testlist  	lists/dtu/val.txt             	<class 'str'>       
-epochs    	16                            	<class 'int'>       
-lr        	0.001                         	<class 'float'>     
-lrepochs  	6,8,12:2                      	<class 'str'>       
-wd        	0.0001                        	<class 'float'>     
-nviews    	5                             	<class 'int'>       
-batch_size	1                             	<class 'int'>       
-numdepth  	192                           	<class 'int'>       
-interval_scale	1.06                          	<class 'float'>     
-loadckpt  	None                          	<class 'NoneType'>  
-logdir    	./outputs/dtu_training        	<class 'str'>       
-resume    	False                         	<class 'bool'>      
-summary_freq	10                            	<class 'int'>       
-save_freq 	1                             	<class 'int'>       
-eval_freq 	1                             	<class 'int'>       
-seed      	1                             	<class 'int'>       
-pin_m     	False                         	<class 'bool'>      
-local_rank	0                             	<class 'int'>       
-share_cr  	False                         	<class 'bool'>      
-ndepths   	48,32,8                       	<class 'str'>       
-depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
-dlossw    	1.0,1.0,1.0                   	<class 'str'>       
-cr_base_chs	8,8,8                         	<class 'str'>       
-grad_method	detach                        	<class 'str'>       
-using_apex	False                         	<class 'bool'>      
-sync_bn   	False                         	<class 'bool'>      
-opt_level 	O0                            	<class 'str'>       
-keep_batchnorm_fp32	None                          	<class 'NoneType'>  
-loss_scale	None                          	<class 'NoneType'>  
-use_box   	True                          	<class 'bool'>      
-########################################################################
-**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
-start at epoch 0
-Number of model parameters: 1028945
-Let's use 2 GPUs!
-mvsdataset kwargs {}
-Let's use 2 GPUs!
-dataset train metas: 27097
-mvsdataset kwargs {}
-mvsdataset kwargs {}
-dataset test metas: 6174
-dataset train metas: 27097
-mvsdataset kwargs {}
-dataset test metas: 6174
-current time 20240616_150228
-creating new summary file
-argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
-################################  args  ################################
-mode      	train                         	<class 'str'>       
-model     	mvsnet                        	<class 'str'>       
-device    	cuda                          	<class 'str'>       
-dataset   	dtu_yao                       	<class 'str'>       
-trainpath 	./data/DTU/dtu_training       	<class 'str'>       
-testpath  	./data/DTU/dtu_training       	<class 'str'>       
-trainlist 	lists/dtu/train.txt           	<class 'str'>       
-testlist  	lists/dtu/val.txt             	<class 'str'>       
-epochs    	16                            	<class 'int'>       
-lr        	0.001                         	<class 'float'>     
-lrepochs  	6,8,12:2                      	<class 'str'>       
-wd        	0.0001                        	<class 'float'>     
-nviews    	5                             	<class 'int'>       
-batch_size	1                             	<class 'int'>       
-numdepth  	192                           	<class 'int'>       
-interval_scale	1.06                          	<class 'float'>     
-loadckpt  	None                          	<class 'NoneType'>  
-logdir    	./outputs/dtu_training        	<class 'str'>       
-resume    	False                         	<class 'bool'>      
-summary_freq	10                            	<class 'int'>       
-save_freq 	1                             	<class 'int'>       
-eval_freq 	1                             	<class 'int'>       
-seed      	1                             	<class 'int'>       
-pin_m     	False                         	<class 'bool'>      
-local_rank	0                             	<class 'int'>       
-share_cr  	False                         	<class 'bool'>      
-ndepths   	48,32,8                       	<class 'str'>       
-depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
-dlossw    	1.0,1.0,1.0                   	<class 'str'>       
-cr_base_chs	8,8,8                         	<class 'str'>       
-grad_method	detach                        	<class 'str'>       
-using_apex	False                         	<class 'bool'>      
-sync_bn   	False                         	<class 'bool'>      
-opt_level 	O0                            	<class 'str'>       
-keep_batchnorm_fp32	None                          	<class 'NoneType'>  
-loss_scale	None                          	<class 'NoneType'>  
-use_box   	True                          	<class 'bool'>      
-########################################################################
-**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
-start at epoch 0
-Number of model parameters: 1028945
-Let's use 2 GPUs!
-mvsdataset kwargs {}
-dataset train metas: 27097
-mvsdataset kwargs {}
-dataset test metas: 6174
-1
-current time 20240616_150451
-creating new summary file
-argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
-################################  args  ################################
-mode      	train                         	<class 'str'>       
-model     	mvsnet                        	<class 'str'>       
-device    	cuda                          	<class 'str'>       
-dataset   	dtu_yao                       	<class 'str'>       
-trainpath 	./data/DTU/dtu_training       	<class 'str'>       
-testpath  	./data/DTU/dtu_training       	<class 'str'>       
-trainlist 	lists/dtu/train.txt           	<class 'str'>       
-testlist  	lists/dtu/val.txt             	<class 'str'>       
-epochs    	16                            	<class 'int'>       
-lr        	0.001                         	<class 'float'>     
-lrepochs  	6,8,12:2                      	<class 'str'>       
-wd        	0.0001                        	<class 'float'>     
-nviews    	5                             	<class 'int'>       
-batch_size	1                             	<class 'int'>       
-numdepth  	192                           	<class 'int'>       
-interval_scale	1.06                          	<class 'float'>     
-loadckpt  	None                          	<class 'NoneType'>  
-logdir    	./outputs/dtu_training        	<class 'str'>       
-resume    	False                         	<class 'bool'>      
-summary_freq	10                            	<class 'int'>       
-save_freq 	1                             	<class 'int'>       
-eval_freq 	1                             	<class 'int'>       
-seed      	1                             	<class 'int'>       
-pin_m     	False                         	<class 'bool'>      
-local_rank	0                             	<class 'int'>       
-share_cr  	False                         	<class 'bool'>      
-ndepths   	48,32,8                       	<class 'str'>       
-depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
-dlossw    	1.0,1.0,1.0                   	<class 'str'>       
-cr_base_chs	8,8,8                         	<class 'str'>       
-grad_method	detach                        	<class 'str'>       
-using_apex	False                         	<class 'bool'>      
-sync_bn   	False                         	<class 'bool'>      
-opt_level 	O0                            	<class 'str'>       
-keep_batchnorm_fp32	None                          	<class 'NoneType'>  
-loss_scale	None                          	<class 'NoneType'>  
-use_box   	True                          	<class 'bool'>      
-########################################################################
-**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
-start at epoch 0
-Number of model parameters: 1028945
-Let's use 2 GPUs!
-mvsdataset kwargs {}
-dataset train metas: 27097
-mvsdataset kwargs {}
-dataset test metas: 6174
-1 False
-current time 20240616_150525
-creating new summary file
-argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
-################################  args  ################################
-mode      	train                         	<class 'str'>       
-model     	mvsnet                        	<class 'str'>       
-device    	cuda                          	<class 'str'>       
-dataset   	dtu_yao                       	<class 'str'>       
-trainpath 	./data/DTU/dtu_training       	<class 'str'>       
-testpath  	./data/DTU/dtu_training       	<class 'str'>       
-trainlist 	lists/dtu/train.txt           	<class 'str'>       
-testlist  	lists/dtu/val.txt             	<class 'str'>       
-epochs    	16                            	<class 'int'>       
-lr        	0.001                         	<class 'float'>     
-lrepochs  	6,8,12:2                      	<class 'str'>       
-wd        	0.0001                        	<class 'float'>     
-nviews    	5                             	<class 'int'>       
-batch_size	1                             	<class 'int'>       
-numdepth  	192                           	<class 'int'>       
-interval_scale	1.06                          	<class 'float'>     
-loadckpt  	None                          	<class 'NoneType'>  
-logdir    	./outputs/dtu_training        	<class 'str'>       
-resume    	False                         	<class 'bool'>      
-summary_freq	10                            	<class 'int'>       
-save_freq 	1                             	<class 'int'>       
-eval_freq 	1                             	<class 'int'>       
-seed      	1                             	<class 'int'>       
-pin_m     	False                         	<class 'bool'>      
-local_rank	0                             	<class 'int'>       
-share_cr  	False                         	<class 'bool'>      
-ndepths   	48,32,8                       	<class 'str'>       
-depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
-dlossw    	1.0,1.0,1.0                   	<class 'str'>       
-cr_base_chs	8,8,8                         	<class 'str'>       
-grad_method	detach                        	<class 'str'>       
-using_apex	False                         	<class 'bool'>      
-sync_bn   	False                         	<class 'bool'>      
-opt_level 	O0                            	<class 'str'>       
-keep_batchnorm_fp32	None                          	<class 'NoneType'>  
-loss_scale	None                          	<class 'NoneType'>  
-use_box   	True                          	<class 'bool'>      
-########################################################################
-**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
-start at epoch 0
-Number of model parameters: 1028945
-Let's use 2 GPUs!
-mvsdataset kwargs {}
-dataset train metas: 27097
-mvsdataset kwargs {}
-dataset test metas: 6174
-1 False
-current time 20240616_150726
-creating new summary file
-argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
-################################  args  ################################
-mode      	train                         	<class 'str'>       
-model     	mvsnet                        	<class 'str'>       
-device    	cuda                          	<class 'str'>       
-dataset   	dtu_yao                       	<class 'str'>       
-trainpath 	./data/DTU/dtu_training       	<class 'str'>       
-testpath  	./data/DTU/dtu_training       	<class 'str'>       
-trainlist 	lists/dtu/train.txt           	<class 'str'>       
-testlist  	lists/dtu/val.txt             	<class 'str'>       
-epochs    	16                            	<class 'int'>       
-lr        	0.001                         	<class 'float'>     
-lrepochs  	6,8,12:2                      	<class 'str'>       
-wd        	0.0001                        	<class 'float'>     
-nviews    	5                             	<class 'int'>       
-batch_size	1                             	<class 'int'>       
-numdepth  	192                           	<class 'int'>       
-interval_scale	1.06                          	<class 'float'>     
-loadckpt  	None                          	<class 'NoneType'>  
-logdir    	./outputs/dtu_training        	<class 'str'>       
-resume    	False                         	<class 'bool'>      
-summary_freq	10                            	<class 'int'>       
-save_freq 	1                             	<class 'int'>       
-eval_freq 	1                             	<class 'int'>       
-seed      	1                             	<class 'int'>       
-pin_m     	False                         	<class 'bool'>      
-local_rank	0                             	<class 'int'>       
-share_cr  	False                         	<class 'bool'>      
-ndepths   	48,32,8                       	<class 'str'>       
-depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
-dlossw    	1.0,1.0,1.0                   	<class 'str'>       
-cr_base_chs	8,8,8                         	<class 'str'>       
-grad_method	detach                        	<class 'str'>       
-using_apex	False                         	<class 'bool'>      
-sync_bn   	False                         	<class 'bool'>      
-opt_level 	O0                            	<class 'str'>       
-keep_batchnorm_fp32	None                          	<class 'NoneType'>  
-loss_scale	None                          	<class 'NoneType'>  
-use_box   	True                          	<class 'bool'>      
-########################################################################
-**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
-start at epoch 0
-Number of model parameters: 1028945
-Let's use 2 GPUs!
-mvsdataset kwargs {}
-dataset train metas: 27097
-mvsdataset kwargs {}
-dataset test metas: 6174
-1 False
-current time 20240616_155330
-creating new summary file
-argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
-################################  args  ################################
-mode      	train                         	<class 'str'>       
-model     	mvsnet                        	<class 'str'>       
-device    	cuda                          	<class 'str'>       
-dataset   	dtu_yao                       	<class 'str'>       
-trainpath 	./data/DTU/dtu_training       	<class 'str'>       
-testpath  	./data/DTU/dtu_training       	<class 'str'>       
-trainlist 	lists/dtu/train.txt           	<class 'str'>       
-testlist  	lists/dtu/val.txt             	<class 'str'>       
-epochs    	16                            	<class 'int'>       
-lr        	0.001                         	<class 'float'>     
-lrepochs  	6,8,12:2                      	<class 'str'>       
-wd        	0.0001                        	<class 'float'>     
-nviews    	5                             	<class 'int'>       
-batch_size	1                             	<class 'int'>       
-numdepth  	192                           	<class 'int'>       
-interval_scale	1.06                          	<class 'float'>     
-loadckpt  	None                          	<class 'NoneType'>  
-logdir    	./outputs/dtu_training        	<class 'str'>       
-resume    	False                         	<class 'bool'>      
-summary_freq	10                            	<class 'int'>       
-save_freq 	1                             	<class 'int'>       
-eval_freq 	1                             	<class 'int'>       
-seed      	1                             	<class 'int'>       
-pin_m     	False                         	<class 'bool'>      
-local_rank	0                             	<class 'int'>       
-share_cr  	False                         	<class 'bool'>      
-ndepths   	48,32,8                       	<class 'str'>       
-depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
-dlossw    	1.0,1.0,1.0                   	<class 'str'>       
-cr_base_chs	8,8,8                         	<class 'str'>       
-grad_method	detach                        	<class 'str'>       
-using_apex	False                         	<class 'bool'>      
-sync_bn   	False                         	<class 'bool'>      
-opt_level 	O0                            	<class 'str'>       
-keep_batchnorm_fp32	None                          	<class 'NoneType'>  
-loss_scale	None                          	<class 'NoneType'>  
-use_box   	True                          	<class 'bool'>      
-########################################################################
-**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
-start at epoch 0
-Number of model parameters: 1028945
-Let's use 2 GPUs!
-mvsdataset kwargs {}
-dataset train metas: 27097
-mvsdataset kwargs {}
-dataset test metas: 6174
-1 False
-current time 20240616_155336
-creating new summary file
-argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
-################################  args  ################################
-mode      	train                         	<class 'str'>       
-model     	mvsnet                        	<class 'str'>       
-device    	cuda                          	<class 'str'>       
-dataset   	dtu_yao                       	<class 'str'>       
-trainpath 	./data/DTU/dtu_training       	<class 'str'>       
-testpath  	./data/DTU/dtu_training       	<class 'str'>       
-trainlist 	lists/dtu/train.txt           	<class 'str'>       
-testlist  	lists/dtu/val.txt             	<class 'str'>       
-epochs    	16                            	<class 'int'>       
-lr        	0.001                         	<class 'float'>     
-lrepochs  	6,8,12:2                      	<class 'str'>       
-wd        	0.0001                        	<class 'float'>     
-nviews    	5                             	<class 'int'>       
-batch_size	1                             	<class 'int'>       
-numdepth  	192                           	<class 'int'>       
-interval_scale	1.06                          	<class 'float'>     
-loadckpt  	None                          	<class 'NoneType'>  
-logdir    	./outputs/dtu_training        	<class 'str'>       
-resume    	False                         	<class 'bool'>      
-summary_freq	10                            	<class 'int'>       
-save_freq 	1                             	<class 'int'>       
-eval_freq 	1                             	<class 'int'>       
-seed      	1                             	<class 'int'>       
-pin_m     	False                         	<class 'bool'>      
-local_rank	0                             	<class 'int'>       
-share_cr  	False                         	<class 'bool'>      
-ndepths   	48,32,8                       	<class 'str'>       
-depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
-dlossw    	1.0,1.0,1.0                   	<class 'str'>       
-cr_base_chs	8,8,8                         	<class 'str'>       
-grad_method	detach                        	<class 'str'>       
-using_apex	False                         	<class 'bool'>      
-sync_bn   	False                         	<class 'bool'>      
-opt_level 	O0                            	<class 'str'>       
-keep_batchnorm_fp32	None                          	<class 'NoneType'>  
-loss_scale	None                          	<class 'NoneType'>  
-use_box   	True                          	<class 'bool'>      
-########################################################################
-**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
-start at epoch 0
-Number of model parameters: 1028945
-Let's use 2 GPUs!
-mvsdataset kwargs {}
-dataset train metas: 27097
-mvsdataset kwargs {}
-dataset test metas: 6174
-1 False
-current time 20240616_155431
-creating new summary file
-argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
-################################  args  ################################
-mode      	train                         	<class 'str'>       
-model     	mvsnet                        	<class 'str'>       
-device    	cuda                          	<class 'str'>       
-dataset   	dtu_yao                       	<class 'str'>       
-trainpath 	./data/DTU/dtu_training       	<class 'str'>       
-testpath  	./data/DTU/dtu_training       	<class 'str'>       
-trainlist 	lists/dtu/train.txt           	<class 'str'>       
-testlist  	lists/dtu/val.txt             	<class 'str'>       
-epochs    	16                            	<class 'int'>       
-lr        	0.001                         	<class 'float'>     
-lrepochs  	6,8,12:2                      	<class 'str'>       
-wd        	0.0001                        	<class 'float'>     
-nviews    	5                             	<class 'int'>       
-batch_size	1                             	<class 'int'>       
-numdepth  	192                           	<class 'int'>       
-interval_scale	1.06                          	<class 'float'>     
-loadckpt  	None                          	<class 'NoneType'>  
-logdir    	./outputs/dtu_training        	<class 'str'>       
-resume    	False                         	<class 'bool'>      
-summary_freq	10                            	<class 'int'>       
-save_freq 	1                             	<class 'int'>       
-eval_freq 	1                             	<class 'int'>       
-seed      	1                             	<class 'int'>       
-pin_m     	False                         	<class 'bool'>      
-local_rank	0                             	<class 'int'>       
-share_cr  	False                         	<class 'bool'>      
-ndepths   	48,32,8                       	<class 'str'>       
-depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
-dlossw    	1.0,1.0,1.0                   	<class 'str'>       
-cr_base_chs	8,8,8                         	<class 'str'>       
-grad_method	detach                        	<class 'str'>       
-using_apex	False                         	<class 'bool'>      
-sync_bn   	False                         	<class 'bool'>      
-opt_level 	O0                            	<class 'str'>       
-keep_batchnorm_fp32	None                          	<class 'NoneType'>  
-loss_scale	None                          	<class 'NoneType'>  
-use_box   	True                          	<class 'bool'>      
-########################################################################
-**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
-start at epoch 0
-Number of model parameters: 1028945
-Let's use 2 GPUs!
-mvsdataset kwargs {}
-dataset train metas: 27097
-mvsdataset kwargs {}
-dataset test metas: 6174
-1 False
-current time 20240616_155442
-creating new summary file
-argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
-################################  args  ################################
-mode      	train                         	<class 'str'>       
-model     	mvsnet                        	<class 'str'>       
-device    	cuda                          	<class 'str'>       
-dataset   	dtu_yao                       	<class 'str'>       
-trainpath 	./data/DTU/dtu_training       	<class 'str'>       
-testpath  	./data/DTU/dtu_training       	<class 'str'>       
-trainlist 	lists/dtu/train.txt           	<class 'str'>       
-testlist  	lists/dtu/val.txt             	<class 'str'>       
-epochs    	16                            	<class 'int'>       
-lr        	0.001                         	<class 'float'>     
-lrepochs  	6,8,12:2                      	<class 'str'>       
-wd        	0.0001                        	<class 'float'>     
-nviews    	5                             	<class 'int'>       
-batch_size	1                             	<class 'int'>       
-numdepth  	192                           	<class 'int'>       
-interval_scale	1.06                          	<class 'float'>     
-loadckpt  	None                          	<class 'NoneType'>  
-logdir    	./outputs/dtu_training        	<class 'str'>       
-resume    	False                         	<class 'bool'>      
-summary_freq	10                            	<class 'int'>       
-save_freq 	1                             	<class 'int'>       
-eval_freq 	1                             	<class 'int'>       
-seed      	1                             	<class 'int'>       
-pin_m     	False                         	<class 'bool'>      
-local_rank	0                             	<class 'int'>       
-share_cr  	False                         	<class 'bool'>      
-ndepths   	48,32,8                       	<class 'str'>       
-depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
-dlossw    	1.0,1.0,1.0                   	<class 'str'>       
-cr_base_chs	8,8,8                         	<class 'str'>       
-grad_method	detach                        	<class 'str'>       
-using_apex	False                         	<class 'bool'>      
-sync_bn   	False                         	<class 'bool'>      
-opt_level 	O0                            	<class 'str'>       
-keep_batchnorm_fp32	None                          	<class 'NoneType'>  
-loss_scale	None                          	<class 'NoneType'>  
-use_box   	True                          	<class 'bool'>      
-########################################################################
-**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
-start at epoch 0
-Number of model parameters: 1028945
-Let's use 2 GPUs!
-mvsdataset kwargs {}
-dataset train metas: 27097
-mvsdataset kwargs {}
-dataset test metas: 6174
-1 False
-current time 20240616_160202
-creating new summary file
-argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
-################################  args  ################################
-mode      	train                         	<class 'str'>       
-model     	mvsnet                        	<class 'str'>       
-device    	cuda                          	<class 'str'>       
-dataset   	dtu_yao                       	<class 'str'>       
-trainpath 	./data/DTU/dtu_training       	<class 'str'>       
-testpath  	./data/DTU/dtu_training       	<class 'str'>       
-trainlist 	lists/dtu/train.txt           	<class 'str'>       
-testlist  	lists/dtu/val.txt             	<class 'str'>       
-epochs    	16                            	<class 'int'>       
-lr        	0.001                         	<class 'float'>     
-lrepochs  	6,8,12:2                      	<class 'str'>       
-wd        	0.0001                        	<class 'float'>     
-nviews    	5                             	<class 'int'>       
-batch_size	1                             	<class 'int'>       
-numdepth  	192                           	<class 'int'>       
-interval_scale	1.06                          	<class 'float'>     
-loadckpt  	None                          	<class 'NoneType'>  
-logdir    	./outputs/dtu_training        	<class 'str'>       
-resume    	False                         	<class 'bool'>      
-summary_freq	10                            	<class 'int'>       
-save_freq 	1                             	<class 'int'>       
-eval_freq 	1                             	<class 'int'>       
-seed      	1                             	<class 'int'>       
-pin_m     	False                         	<class 'bool'>      
-local_rank	0                             	<class 'int'>       
-share_cr  	False                         	<class 'bool'>      
-ndepths   	48,32,8                       	<class 'str'>       
-depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
-dlossw    	1.0,1.0,1.0                   	<class 'str'>       
-cr_base_chs	8,8,8                         	<class 'str'>       
-grad_method	detach                        	<class 'str'>       
-using_apex	False                         	<class 'bool'>      
-sync_bn   	False                         	<class 'bool'>      
-opt_level 	O0                            	<class 'str'>       
-keep_batchnorm_fp32	None                          	<class 'NoneType'>  
-loss_scale	None                          	<class 'NoneType'>  
-use_box   	True                          	<class 'bool'>      
-########################################################################
-**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
-start at epoch 0
-Number of model parameters: 1028945
-Let's use 2 GPUs!
-mvsdataset kwargs {}
-dataset train metas: 27097
-mvsdataset kwargs {}
-dataset test metas: 6174
-3 torch.Size([1, 32, 128, 160])
-current time 20240616_160345
-creating new summary file
-argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
-################################  args  ################################
-mode      	train                         	<class 'str'>       
-model     	mvsnet                        	<class 'str'>       
-device    	cuda                          	<class 'str'>       
-dataset   	dtu_yao                       	<class 'str'>       
-trainpath 	./data/DTU/dtu_training       	<class 'str'>       
-testpath  	./data/DTU/dtu_training       	<class 'str'>       
-trainlist 	lists/dtu/train.txt           	<class 'str'>       
-testlist  	lists/dtu/val.txt             	<class 'str'>       
-epochs    	16                            	<class 'int'>       
-lr        	0.001                         	<class 'float'>     
-lrepochs  	6,8,12:2                      	<class 'str'>       
-wd        	0.0001                        	<class 'float'>     
-nviews    	5                             	<class 'int'>       
-batch_size	1                             	<class 'int'>       
-numdepth  	192                           	<class 'int'>       
-interval_scale	1.06                          	<class 'float'>     
-loadckpt  	None                          	<class 'NoneType'>  
-logdir    	./outputs/dtu_training        	<class 'str'>       
-resume    	False                         	<class 'bool'>      
-summary_freq	10                            	<class 'int'>       
-save_freq 	1                             	<class 'int'>       
-eval_freq 	1                             	<class 'int'>       
-seed      	1                             	<class 'int'>       
-pin_m     	False                         	<class 'bool'>      
-local_rank	0                             	<class 'int'>       
-share_cr  	False                         	<class 'bool'>      
-ndepths   	48,32,8                       	<class 'str'>       
-depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
-dlossw    	1.0,1.0,1.0                   	<class 'str'>       
-cr_base_chs	8,8,8                         	<class 'str'>       
-grad_method	detach                        	<class 'str'>       
-using_apex	False                         	<class 'bool'>      
-sync_bn   	False                         	<class 'bool'>      
-opt_level 	O0                            	<class 'str'>       
-keep_batchnorm_fp32	None                          	<class 'NoneType'>  
-loss_scale	None                          	<class 'NoneType'>  
-use_box   	True                          	<class 'bool'>      
-########################################################################
-**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
-start at epoch 0
-Number of model parameters: 1028945
-Let's use 2 GPUs!
-mvsdataset kwargs {}
-dataset train metas: 27097
-mvsdataset kwargs {}
-dataset test metas: 6174
-torch.Size([1, 32, 128, 160]) torch.Size([1, 20480, 32])
-torch.Size([1, 16, 256, 320]) torch.Size([1, 81920, 16])
-torch.Size([1, 8, 512, 640]) torch.Size([1, 327680, 8])
-current time 20240616_185837
-creating new summary file
-**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
 argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
 ################################  args  ################################
 mode      	train                         	<class 'str'>       
@@ -1142,17 +45,1722 @@ start at epoch 0
 Number of model parameters: 1040625
 Let's use 2 GPUs!
 mvsdataset kwargs {}
+dataset train metas: 27097
+mvsdataset kwargs {}
+dataset test metas: 6174
+4 3 1 32
+current time 20240616_222703
+creating new summary file
+argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
+################################  args  ################################
+mode      	train                         	<class 'str'>       
+model     	mvsnet                        	<class 'str'>       
+device    	cuda                          	<class 'str'>       
+dataset   	dtu_yao                       	<class 'str'>       
+trainpath 	./data/DTU/dtu_training       	<class 'str'>       
+testpath  	./data/DTU/dtu_training       	<class 'str'>       
+trainlist 	lists/dtu/train.txt           	<class 'str'>       
+testlist  	lists/dtu/val.txt             	<class 'str'>       
+epochs    	16                            	<class 'int'>       
+lr        	0.001                         	<class 'float'>     
+lrepochs  	6,8,12:2                      	<class 'str'>       
+wd        	0.0001                        	<class 'float'>     
+nviews    	5                             	<class 'int'>       
+batch_size	1                             	<class 'int'>       
+numdepth  	192                           	<class 'int'>       
+interval_scale	1.06                          	<class 'float'>     
+loadckpt  	None                          	<class 'NoneType'>  
+logdir    	./outputs/dtu_training        	<class 'str'>       
+resume    	False                         	<class 'bool'>      
+summary_freq	10                            	<class 'int'>       
+save_freq 	1                             	<class 'int'>       
+eval_freq 	1                             	<class 'int'>       
+seed      	1                             	<class 'int'>       
+pin_m     	False                         	<class 'bool'>      
+local_rank	0                             	<class 'int'>       
+share_cr  	False                         	<class 'bool'>      
+ndepths   	48,32,8                       	<class 'str'>       
+depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
+dlossw    	1.0,1.0,1.0                   	<class 'str'>       
+cr_base_chs	8,8,8                         	<class 'str'>       
+grad_method	detach                        	<class 'str'>       
+using_apex	False                         	<class 'bool'>      
+sync_bn   	False                         	<class 'bool'>      
+opt_level 	O0                            	<class 'str'>       
+keep_batchnorm_fp32	None                          	<class 'NoneType'>  
+loss_scale	None                          	<class 'NoneType'>  
+use_box   	True                          	<class 'bool'>      
+########################################################################
+**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
+start at epoch 0
+Number of model parameters: 1040625
 Let's use 2 GPUs!
-dataset train metas: 27097
-mvsdataset kwargs {}
-dataset test metas: 6174
 mvsdataset kwargs {}
 dataset train metas: 27097
 mvsdataset kwargs {}
 dataset test metas: 6174
-torch.Size([1, 32, 128, 160]) torch.Size([1, 20480, 32])
-torch.Size([1, 32, 128, 160]) torch.Size([1, 32, 256, 320])torch.Size([1, 20480, 32]) torch.Size([1, 81920, 32])
-
-torch.Size([1, 32, 512, 640]) torch.Size([1, 327680, 32])
-torch.Size([1, 32, 256, 320]) torch.Size([1, 81920, 32])
-torch.Size([1, 32, 512, 640]) torch.Size([1, 327680, 32])
+4 3 1 torch.Size([1, 32, 128, 160])
+current time 20240616_222732
+creating new summary file
+argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
+################################  args  ################################
+mode      	train                         	<class 'str'>       
+model     	mvsnet                        	<class 'str'>       
+device    	cuda                          	<class 'str'>       
+dataset   	dtu_yao                       	<class 'str'>       
+trainpath 	./data/DTU/dtu_training       	<class 'str'>       
+testpath  	./data/DTU/dtu_training       	<class 'str'>       
+trainlist 	lists/dtu/train.txt           	<class 'str'>       
+testlist  	lists/dtu/val.txt             	<class 'str'>       
+epochs    	16                            	<class 'int'>       
+lr        	0.001                         	<class 'float'>     
+lrepochs  	6,8,12:2                      	<class 'str'>       
+wd        	0.0001                        	<class 'float'>     
+nviews    	5                             	<class 'int'>       
+batch_size	1                             	<class 'int'>       
+numdepth  	192                           	<class 'int'>       
+interval_scale	1.06                          	<class 'float'>     
+loadckpt  	None                          	<class 'NoneType'>  
+logdir    	./outputs/dtu_training        	<class 'str'>       
+resume    	False                         	<class 'bool'>      
+summary_freq	10                            	<class 'int'>       
+save_freq 	1                             	<class 'int'>       
+eval_freq 	1                             	<class 'int'>       
+seed      	1                             	<class 'int'>       
+pin_m     	False                         	<class 'bool'>      
+local_rank	0                             	<class 'int'>       
+share_cr  	False                         	<class 'bool'>      
+ndepths   	48,32,8                       	<class 'str'>       
+depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
+dlossw    	1.0,1.0,1.0                   	<class 'str'>       
+cr_base_chs	8,8,8                         	<class 'str'>       
+grad_method	detach                        	<class 'str'>       
+using_apex	False                         	<class 'bool'>      
+sync_bn   	False                         	<class 'bool'>      
+opt_level 	O0                            	<class 'str'>       
+keep_batchnorm_fp32	None                          	<class 'NoneType'>  
+loss_scale	None                          	<class 'NoneType'>  
+use_box   	True                          	<class 'bool'>      
+########################################################################
+**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
+start at epoch 0
+Number of model parameters: 1040625
+Let's use 2 GPUs!
+mvsdataset kwargs {}
+dataset train metas: 27097
+mvsdataset kwargs {}
+dataset test metas: 6174
+4 3 1 torch.Size([1, 32, 128, 160])
+current time 20240616_222941
+creating new summary file
+argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
+################################  args  ################################
+mode      	train                         	<class 'str'>       
+model     	mvsnet                        	<class 'str'>       
+device    	cuda                          	<class 'str'>       
+dataset   	dtu_yao                       	<class 'str'>       
+trainpath 	./data/DTU/dtu_training       	<class 'str'>       
+testpath  	./data/DTU/dtu_training       	<class 'str'>       
+trainlist 	lists/dtu/train.txt           	<class 'str'>       
+testlist  	lists/dtu/val.txt             	<class 'str'>       
+epochs    	16                            	<class 'int'>       
+lr        	0.001                         	<class 'float'>     
+lrepochs  	6,8,12:2                      	<class 'str'>       
+wd        	0.0001                        	<class 'float'>     
+nviews    	5                             	<class 'int'>       
+batch_size	1                             	<class 'int'>       
+numdepth  	192                           	<class 'int'>       
+interval_scale	1.06                          	<class 'float'>     
+loadckpt  	None                          	<class 'NoneType'>  
+logdir    	./outputs/dtu_training        	<class 'str'>       
+resume    	False                         	<class 'bool'>      
+summary_freq	10                            	<class 'int'>       
+save_freq 	1                             	<class 'int'>       
+eval_freq 	1                             	<class 'int'>       
+seed      	1                             	<class 'int'>       
+pin_m     	False                         	<class 'bool'>      
+local_rank	0                             	<class 'int'>       
+share_cr  	False                         	<class 'bool'>      
+ndepths   	48,32,8                       	<class 'str'>       
+depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
+dlossw    	1.0,1.0,1.0                   	<class 'str'>       
+cr_base_chs	8,8,8                         	<class 'str'>       
+grad_method	detach                        	<class 'str'>       
+using_apex	False                         	<class 'bool'>      
+sync_bn   	False                         	<class 'bool'>      
+opt_level 	O0                            	<class 'str'>       
+keep_batchnorm_fp32	None                          	<class 'NoneType'>  
+loss_scale	None                          	<class 'NoneType'>  
+use_box   	True                          	<class 'bool'>      
+########################################################################
+**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
+start at epoch 0
+Number of model parameters: 1040625
+Let's use 2 GPUs!
+mvsdataset kwargs {}
+dataset train metas: 27097
+mvsdataset kwargs {}
+dataset test metas: 6174
+4 3 torch.Size([1, 32, 128, 160])
+current time 20240616_223043
+creating new summary file
+argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
+################################  args  ################################
+mode      	train                         	<class 'str'>       
+model     	mvsnet                        	<class 'str'>       
+device    	cuda                          	<class 'str'>       
+dataset   	dtu_yao                       	<class 'str'>       
+trainpath 	./data/DTU/dtu_training       	<class 'str'>       
+testpath  	./data/DTU/dtu_training       	<class 'str'>       
+trainlist 	lists/dtu/train.txt           	<class 'str'>       
+testlist  	lists/dtu/val.txt             	<class 'str'>       
+epochs    	16                            	<class 'int'>       
+lr        	0.001                         	<class 'float'>     
+lrepochs  	6,8,12:2                      	<class 'str'>       
+wd        	0.0001                        	<class 'float'>     
+nviews    	5                             	<class 'int'>       
+batch_size	1                             	<class 'int'>       
+numdepth  	192                           	<class 'int'>       
+interval_scale	1.06                          	<class 'float'>     
+loadckpt  	None                          	<class 'NoneType'>  
+logdir    	./outputs/dtu_training        	<class 'str'>       
+resume    	False                         	<class 'bool'>      
+summary_freq	10                            	<class 'int'>       
+save_freq 	1                             	<class 'int'>       
+eval_freq 	1                             	<class 'int'>       
+seed      	1                             	<class 'int'>       
+pin_m     	False                         	<class 'bool'>      
+local_rank	0                             	<class 'int'>       
+share_cr  	False                         	<class 'bool'>      
+ndepths   	48,32,8                       	<class 'str'>       
+depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
+dlossw    	1.0,1.0,1.0                   	<class 'str'>       
+cr_base_chs	8,8,8                         	<class 'str'>       
+grad_method	detach                        	<class 'str'>       
+using_apex	False                         	<class 'bool'>      
+sync_bn   	False                         	<class 'bool'>      
+opt_level 	O0                            	<class 'str'>       
+keep_batchnorm_fp32	None                          	<class 'NoneType'>  
+loss_scale	None                          	<class 'NoneType'>  
+use_box   	True                          	<class 'bool'>      
+########################################################################
+**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
+start at epoch 0
+Number of model parameters: 1044657
+Let's use 2 GPUs!
+mvsdataset kwargs {}
+dataset train metas: 27097
+mvsdataset kwargs {}
+dataset test metas: 6174
+4 3 torch.Size([1, 32, 128, 160])
+current time 20240616_223105
+creating new summary file
+argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
+################################  args  ################################
+mode      	train                         	<class 'str'>       
+model     	mvsnet                        	<class 'str'>       
+device    	cuda                          	<class 'str'>       
+dataset   	dtu_yao                       	<class 'str'>       
+trainpath 	./data/DTU/dtu_training       	<class 'str'>       
+testpath  	./data/DTU/dtu_training       	<class 'str'>       
+trainlist 	lists/dtu/train.txt           	<class 'str'>       
+testlist  	lists/dtu/val.txt             	<class 'str'>       
+epochs    	16                            	<class 'int'>       
+lr        	0.001                         	<class 'float'>     
+lrepochs  	6,8,12:2                      	<class 'str'>       
+wd        	0.0001                        	<class 'float'>     
+nviews    	5                             	<class 'int'>       
+batch_size	1                             	<class 'int'>       
+numdepth  	192                           	<class 'int'>       
+interval_scale	1.06                          	<class 'float'>     
+loadckpt  	None                          	<class 'NoneType'>  
+logdir    	./outputs/dtu_training        	<class 'str'>       
+resume    	False                         	<class 'bool'>      
+summary_freq	10                            	<class 'int'>       
+save_freq 	1                             	<class 'int'>       
+eval_freq 	1                             	<class 'int'>       
+seed      	1                             	<class 'int'>       
+pin_m     	False                         	<class 'bool'>      
+local_rank	0                             	<class 'int'>       
+share_cr  	False                         	<class 'bool'>      
+ndepths   	48,32,8                       	<class 'str'>       
+depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
+dlossw    	1.0,1.0,1.0                   	<class 'str'>       
+cr_base_chs	8,8,8                         	<class 'str'>       
+grad_method	detach                        	<class 'str'>       
+using_apex	False                         	<class 'bool'>      
+sync_bn   	False                         	<class 'bool'>      
+opt_level 	O0                            	<class 'str'>       
+keep_batchnorm_fp32	None                          	<class 'NoneType'>  
+loss_scale	None                          	<class 'NoneType'>  
+use_box   	True                          	<class 'bool'>      
+########################################################################
+**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
+start at epoch 0
+Number of model parameters: 1043505
+Let's use 2 GPUs!
+mvsdataset kwargs {}
+dataset train metas: 27097
+mvsdataset kwargs {}
+dataset test metas: 6174
+4 3 torch.Size([1, 32, 128, 160])
+current time 20240616_223306
+creating new summary file
+argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
+################################  args  ################################
+mode      	train                         	<class 'str'>       
+model     	mvsnet                        	<class 'str'>       
+device    	cuda                          	<class 'str'>       
+dataset   	dtu_yao                       	<class 'str'>       
+trainpath 	./data/DTU/dtu_training       	<class 'str'>       
+testpath  	./data/DTU/dtu_training       	<class 'str'>       
+trainlist 	lists/dtu/train.txt           	<class 'str'>       
+testlist  	lists/dtu/val.txt             	<class 'str'>       
+epochs    	16                            	<class 'int'>       
+lr        	0.001                         	<class 'float'>     
+lrepochs  	6,8,12:2                      	<class 'str'>       
+wd        	0.0001                        	<class 'float'>     
+nviews    	5                             	<class 'int'>       
+batch_size	1                             	<class 'int'>       
+numdepth  	192                           	<class 'int'>       
+interval_scale	1.06                          	<class 'float'>     
+loadckpt  	None                          	<class 'NoneType'>  
+logdir    	./outputs/dtu_training        	<class 'str'>       
+resume    	False                         	<class 'bool'>      
+summary_freq	10                            	<class 'int'>       
+save_freq 	1                             	<class 'int'>       
+eval_freq 	1                             	<class 'int'>       
+seed      	1                             	<class 'int'>       
+pin_m     	False                         	<class 'bool'>      
+local_rank	0                             	<class 'int'>       
+share_cr  	False                         	<class 'bool'>      
+ndepths   	48,32,8                       	<class 'str'>       
+depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
+dlossw    	1.0,1.0,1.0                   	<class 'str'>       
+cr_base_chs	8,8,8                         	<class 'str'>       
+grad_method	detach                        	<class 'str'>       
+using_apex	False                         	<class 'bool'>      
+sync_bn   	False                         	<class 'bool'>      
+opt_level 	O0                            	<class 'str'>       
+keep_batchnorm_fp32	None                          	<class 'NoneType'>  
+loss_scale	None                          	<class 'NoneType'>  
+use_box   	True                          	<class 'bool'>      
+########################################################################
+**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
+start at epoch 0
+Number of model parameters: 1043505
+Let's use 2 GPUs!
+mvsdataset kwargs {}
+dataset train metas: 27097
+mvsdataset kwargs {}
+dataset test metas: 6174
+4 3 torch.Size([1, 32, 128, 160])
+current time 20240616_223333
+creating new summary file
+argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
+################################  args  ################################
+mode      	train                         	<class 'str'>       
+model     	mvsnet                        	<class 'str'>       
+device    	cuda                          	<class 'str'>       
+dataset   	dtu_yao                       	<class 'str'>       
+trainpath 	./data/DTU/dtu_training       	<class 'str'>       
+testpath  	./data/DTU/dtu_training       	<class 'str'>       
+trainlist 	lists/dtu/train.txt           	<class 'str'>       
+testlist  	lists/dtu/val.txt             	<class 'str'>       
+epochs    	16                            	<class 'int'>       
+lr        	0.001                         	<class 'float'>     
+lrepochs  	6,8,12:2                      	<class 'str'>       
+wd        	0.0001                        	<class 'float'>     
+nviews    	5                             	<class 'int'>       
+batch_size	1                             	<class 'int'>       
+numdepth  	192                           	<class 'int'>       
+interval_scale	1.06                          	<class 'float'>     
+loadckpt  	None                          	<class 'NoneType'>  
+logdir    	./outputs/dtu_training        	<class 'str'>       
+resume    	False                         	<class 'bool'>      
+summary_freq	10                            	<class 'int'>       
+save_freq 	1                             	<class 'int'>       
+eval_freq 	1                             	<class 'int'>       
+seed      	1                             	<class 'int'>       
+pin_m     	False                         	<class 'bool'>      
+local_rank	0                             	<class 'int'>       
+share_cr  	False                         	<class 'bool'>      
+ndepths   	48,32,8                       	<class 'str'>       
+depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
+dlossw    	1.0,1.0,1.0                   	<class 'str'>       
+cr_base_chs	8,8,8                         	<class 'str'>       
+grad_method	detach                        	<class 'str'>       
+using_apex	False                         	<class 'bool'>      
+sync_bn   	False                         	<class 'bool'>      
+opt_level 	O0                            	<class 'str'>       
+keep_batchnorm_fp32	None                          	<class 'NoneType'>  
+loss_scale	None                          	<class 'NoneType'>  
+use_box   	True                          	<class 'bool'>      
+########################################################################
+**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
+start at epoch 0
+Number of model parameters: 1043505
+Let's use 2 GPUs!
+mvsdataset kwargs {}
+dataset train metas: 27097
+mvsdataset kwargs {}
+dataset test metas: 6174
+4 3 torch.Size([1, 32, 128, 160])
+current time 20240616_223830
+creating new summary file
+argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
+################################  args  ################################
+mode      	train                         	<class 'str'>       
+model     	mvsnet                        	<class 'str'>       
+device    	cuda                          	<class 'str'>       
+dataset   	dtu_yao                       	<class 'str'>       
+trainpath 	./data/DTU/dtu_training       	<class 'str'>       
+testpath  	./data/DTU/dtu_training       	<class 'str'>       
+trainlist 	lists/dtu/train.txt           	<class 'str'>       
+testlist  	lists/dtu/val.txt             	<class 'str'>       
+epochs    	16                            	<class 'int'>       
+lr        	0.001                         	<class 'float'>     
+lrepochs  	6,8,12:2                      	<class 'str'>       
+wd        	0.0001                        	<class 'float'>     
+nviews    	5                             	<class 'int'>       
+batch_size	1                             	<class 'int'>       
+numdepth  	192                           	<class 'int'>       
+interval_scale	1.06                          	<class 'float'>     
+loadckpt  	None                          	<class 'NoneType'>  
+logdir    	./outputs/dtu_training        	<class 'str'>       
+resume    	False                         	<class 'bool'>      
+summary_freq	10                            	<class 'int'>       
+save_freq 	1                             	<class 'int'>       
+eval_freq 	1                             	<class 'int'>       
+seed      	1                             	<class 'int'>       
+pin_m     	False                         	<class 'bool'>      
+local_rank	0                             	<class 'int'>       
+share_cr  	False                         	<class 'bool'>      
+ndepths   	48,32,8                       	<class 'str'>       
+depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
+dlossw    	1.0,1.0,1.0                   	<class 'str'>       
+cr_base_chs	8,8,8                         	<class 'str'>       
+grad_method	detach                        	<class 'str'>       
+using_apex	False                         	<class 'bool'>      
+sync_bn   	False                         	<class 'bool'>      
+opt_level 	O0                            	<class 'str'>       
+keep_batchnorm_fp32	None                          	<class 'NoneType'>  
+loss_scale	None                          	<class 'NoneType'>  
+use_box   	True                          	<class 'bool'>      
+########################################################################
+**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
+start at epoch 0
+Number of model parameters: 1043505
+Let's use 2 GPUs!
+mvsdataset kwargs {}
+dataset train metas: 27097
+mvsdataset kwargs {}
+dataset test metas: 6174
+4 3 torch.Size([1, 32, 128, 160])
+current time 20240616_223840
+creating new summary file
+argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
+################################  args  ################################
+mode      	train                         	<class 'str'>       
+model     	mvsnet                        	<class 'str'>       
+device    	cuda                          	<class 'str'>       
+dataset   	dtu_yao                       	<class 'str'>       
+trainpath 	./data/DTU/dtu_training       	<class 'str'>       
+testpath  	./data/DTU/dtu_training       	<class 'str'>       
+trainlist 	lists/dtu/train.txt           	<class 'str'>       
+testlist  	lists/dtu/val.txt             	<class 'str'>       
+epochs    	16                            	<class 'int'>       
+lr        	0.001                         	<class 'float'>     
+lrepochs  	6,8,12:2                      	<class 'str'>       
+wd        	0.0001                        	<class 'float'>     
+nviews    	5                             	<class 'int'>       
+batch_size	1                             	<class 'int'>       
+numdepth  	192                           	<class 'int'>       
+interval_scale	1.06                          	<class 'float'>     
+loadckpt  	None                          	<class 'NoneType'>  
+logdir    	./outputs/dtu_training        	<class 'str'>       
+resume    	False                         	<class 'bool'>      
+summary_freq	10                            	<class 'int'>       
+save_freq 	1                             	<class 'int'>       
+eval_freq 	1                             	<class 'int'>       
+seed      	1                             	<class 'int'>       
+pin_m     	False                         	<class 'bool'>      
+local_rank	0                             	<class 'int'>       
+share_cr  	False                         	<class 'bool'>      
+ndepths   	48,32,8                       	<class 'str'>       
+depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
+dlossw    	1.0,1.0,1.0                   	<class 'str'>       
+cr_base_chs	8,8,8                         	<class 'str'>       
+grad_method	detach                        	<class 'str'>       
+using_apex	False                         	<class 'bool'>      
+sync_bn   	False                         	<class 'bool'>      
+opt_level 	O0                            	<class 'str'>       
+keep_batchnorm_fp32	None                          	<class 'NoneType'>  
+loss_scale	None                          	<class 'NoneType'>  
+use_box   	True                          	<class 'bool'>      
+########################################################################
+**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
+start at epoch 0
+Number of model parameters: 1043505
+Let's use 2 GPUs!
+mvsdataset kwargs {}
+dataset train metas: 27097
+mvsdataset kwargs {}
+dataset test metas: 6174
+4 3 torch.Size([1, 32, 128, 160])
+current time 20240616_223936
+creating new summary file
+argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
+################################  args  ################################
+mode      	train                         	<class 'str'>       
+model     	mvsnet                        	<class 'str'>       
+device    	cuda                          	<class 'str'>       
+dataset   	dtu_yao                       	<class 'str'>       
+trainpath 	./data/DTU/dtu_training       	<class 'str'>       
+testpath  	./data/DTU/dtu_training       	<class 'str'>       
+trainlist 	lists/dtu/train.txt           	<class 'str'>       
+testlist  	lists/dtu/val.txt             	<class 'str'>       
+epochs    	16                            	<class 'int'>       
+lr        	0.001                         	<class 'float'>     
+lrepochs  	6,8,12:2                      	<class 'str'>       
+wd        	0.0001                        	<class 'float'>     
+nviews    	5                             	<class 'int'>       
+batch_size	1                             	<class 'int'>       
+numdepth  	192                           	<class 'int'>       
+interval_scale	1.06                          	<class 'float'>     
+loadckpt  	None                          	<class 'NoneType'>  
+logdir    	./outputs/dtu_training        	<class 'str'>       
+resume    	False                         	<class 'bool'>      
+summary_freq	10                            	<class 'int'>       
+save_freq 	1                             	<class 'int'>       
+eval_freq 	1                             	<class 'int'>       
+seed      	1                             	<class 'int'>       
+pin_m     	False                         	<class 'bool'>      
+local_rank	0                             	<class 'int'>       
+share_cr  	False                         	<class 'bool'>      
+ndepths   	48,32,8                       	<class 'str'>       
+depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
+dlossw    	1.0,1.0,1.0                   	<class 'str'>       
+cr_base_chs	8,8,8                         	<class 'str'>       
+grad_method	detach                        	<class 'str'>       
+using_apex	False                         	<class 'bool'>      
+sync_bn   	False                         	<class 'bool'>      
+opt_level 	O0                            	<class 'str'>       
+keep_batchnorm_fp32	None                          	<class 'NoneType'>  
+loss_scale	None                          	<class 'NoneType'>  
+use_box   	True                          	<class 'bool'>      
+########################################################################
+**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
+start at epoch 0
+Number of model parameters: 1043505
+Let's use 2 GPUs!
+mvsdataset kwargs {}
+dataset train metas: 27097
+mvsdataset kwargs {}
+dataset test metas: 6174
+4 3 torch.Size([1, 32, 128, 160])
+current time 20240616_224005
+creating new summary file
+argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
+################################  args  ################################
+mode      	train                         	<class 'str'>       
+model     	mvsnet                        	<class 'str'>       
+device    	cuda                          	<class 'str'>       
+dataset   	dtu_yao                       	<class 'str'>       
+trainpath 	./data/DTU/dtu_training       	<class 'str'>       
+testpath  	./data/DTU/dtu_training       	<class 'str'>       
+trainlist 	lists/dtu/train.txt           	<class 'str'>       
+testlist  	lists/dtu/val.txt             	<class 'str'>       
+epochs    	16                            	<class 'int'>       
+lr        	0.001                         	<class 'float'>     
+lrepochs  	6,8,12:2                      	<class 'str'>       
+wd        	0.0001                        	<class 'float'>     
+nviews    	5                             	<class 'int'>       
+batch_size	1                             	<class 'int'>       
+numdepth  	192                           	<class 'int'>       
+interval_scale	1.06                          	<class 'float'>     
+loadckpt  	None                          	<class 'NoneType'>  
+logdir    	./outputs/dtu_training        	<class 'str'>       
+resume    	False                         	<class 'bool'>      
+summary_freq	10                            	<class 'int'>       
+save_freq 	1                             	<class 'int'>       
+eval_freq 	1                             	<class 'int'>       
+seed      	1                             	<class 'int'>       
+pin_m     	False                         	<class 'bool'>      
+local_rank	0                             	<class 'int'>       
+share_cr  	False                         	<class 'bool'>      
+ndepths   	48,32,8                       	<class 'str'>       
+depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
+dlossw    	1.0,1.0,1.0                   	<class 'str'>       
+cr_base_chs	8,8,8                         	<class 'str'>       
+grad_method	detach                        	<class 'str'>       
+using_apex	False                         	<class 'bool'>      
+sync_bn   	False                         	<class 'bool'>      
+opt_level 	O0                            	<class 'str'>       
+keep_batchnorm_fp32	None                          	<class 'NoneType'>  
+loss_scale	None                          	<class 'NoneType'>  
+use_box   	True                          	<class 'bool'>      
+########################################################################
+**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
+start at epoch 0
+Number of model parameters: 1043505
+Let's use 2 GPUs!
+mvsdataset kwargs {}
+dataset train metas: 27097
+mvsdataset kwargs {}
+dataset test metas: 6174
+4 3 torch.Size([1, 32, 128, 160])
+current time 20240616_224446
+creating new summary file
+argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
+################################  args  ################################
+mode      	train                         	<class 'str'>       
+model     	mvsnet                        	<class 'str'>       
+device    	cuda                          	<class 'str'>       
+dataset   	dtu_yao                       	<class 'str'>       
+trainpath 	./data/DTU/dtu_training       	<class 'str'>       
+testpath  	./data/DTU/dtu_training       	<class 'str'>       
+trainlist 	lists/dtu/train.txt           	<class 'str'>       
+testlist  	lists/dtu/val.txt             	<class 'str'>       
+epochs    	16                            	<class 'int'>       
+lr        	0.001                         	<class 'float'>     
+lrepochs  	6,8,12:2                      	<class 'str'>       
+wd        	0.0001                        	<class 'float'>     
+nviews    	5                             	<class 'int'>       
+batch_size	1                             	<class 'int'>       
+numdepth  	192                           	<class 'int'>       
+interval_scale	1.06                          	<class 'float'>     
+loadckpt  	None                          	<class 'NoneType'>  
+logdir    	./outputs/dtu_training        	<class 'str'>       
+resume    	False                         	<class 'bool'>      
+summary_freq	10                            	<class 'int'>       
+save_freq 	1                             	<class 'int'>       
+eval_freq 	1                             	<class 'int'>       
+seed      	1                             	<class 'int'>       
+pin_m     	False                         	<class 'bool'>      
+local_rank	0                             	<class 'int'>       
+share_cr  	False                         	<class 'bool'>      
+ndepths   	48,32,8                       	<class 'str'>       
+depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
+dlossw    	1.0,1.0,1.0                   	<class 'str'>       
+cr_base_chs	8,8,8                         	<class 'str'>       
+grad_method	detach                        	<class 'str'>       
+using_apex	False                         	<class 'bool'>      
+sync_bn   	False                         	<class 'bool'>      
+opt_level 	O0                            	<class 'str'>       
+keep_batchnorm_fp32	None                          	<class 'NoneType'>  
+loss_scale	None                          	<class 'NoneType'>  
+use_box   	True                          	<class 'bool'>      
+########################################################################
+**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
+start at epoch 0
+Number of model parameters: 1043505
+Let's use 2 GPUs!
+mvsdataset kwargs {}
+dataset train metas: 27097
+mvsdataset kwargs {}
+dataset test metas: 6174
+4 3 torch.Size([1, 32, 128, 160])
+current time 20240616_224540
+creating new summary file
+argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
+################################  args  ################################
+mode      	train                         	<class 'str'>       
+model     	mvsnet                        	<class 'str'>       
+device    	cuda                          	<class 'str'>       
+dataset   	dtu_yao                       	<class 'str'>       
+trainpath 	./data/DTU/dtu_training       	<class 'str'>       
+testpath  	./data/DTU/dtu_training       	<class 'str'>       
+trainlist 	lists/dtu/train.txt           	<class 'str'>       
+testlist  	lists/dtu/val.txt             	<class 'str'>       
+epochs    	16                            	<class 'int'>       
+lr        	0.001                         	<class 'float'>     
+lrepochs  	6,8,12:2                      	<class 'str'>       
+wd        	0.0001                        	<class 'float'>     
+nviews    	5                             	<class 'int'>       
+batch_size	1                             	<class 'int'>       
+numdepth  	192                           	<class 'int'>       
+interval_scale	1.06                          	<class 'float'>     
+loadckpt  	None                          	<class 'NoneType'>  
+logdir    	./outputs/dtu_training        	<class 'str'>       
+resume    	False                         	<class 'bool'>      
+summary_freq	10                            	<class 'int'>       
+save_freq 	1                             	<class 'int'>       
+eval_freq 	1                             	<class 'int'>       
+seed      	1                             	<class 'int'>       
+pin_m     	False                         	<class 'bool'>      
+local_rank	0                             	<class 'int'>       
+share_cr  	False                         	<class 'bool'>      
+ndepths   	48,32,8                       	<class 'str'>       
+depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
+dlossw    	1.0,1.0,1.0                   	<class 'str'>       
+cr_base_chs	8,8,8                         	<class 'str'>       
+grad_method	detach                        	<class 'str'>       
+using_apex	False                         	<class 'bool'>      
+sync_bn   	False                         	<class 'bool'>      
+opt_level 	O0                            	<class 'str'>       
+keep_batchnorm_fp32	None                          	<class 'NoneType'>  
+loss_scale	None                          	<class 'NoneType'>  
+use_box   	True                          	<class 'bool'>      
+########################################################################
+**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
+start at epoch 0
+Number of model parameters: 1043505
+Let's use 2 GPUs!
+mvsdataset kwargs {}
+dataset train metas: 27097
+mvsdataset kwargs {}
+dataset test metas: 6174
+4 3 torch.Size([1, 32, 128, 160])
+current time 20240616_224721
+creating new summary file
+argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
+################################  args  ################################
+mode      	train                         	<class 'str'>       
+model     	mvsnet                        	<class 'str'>       
+device    	cuda                          	<class 'str'>       
+dataset   	dtu_yao                       	<class 'str'>       
+trainpath 	./data/DTU/dtu_training       	<class 'str'>       
+testpath  	./data/DTU/dtu_training       	<class 'str'>       
+trainlist 	lists/dtu/train.txt           	<class 'str'>       
+testlist  	lists/dtu/val.txt             	<class 'str'>       
+epochs    	16                            	<class 'int'>       
+lr        	0.001                         	<class 'float'>     
+lrepochs  	6,8,12:2                      	<class 'str'>       
+wd        	0.0001                        	<class 'float'>     
+nviews    	5                             	<class 'int'>       
+batch_size	1                             	<class 'int'>       
+numdepth  	192                           	<class 'int'>       
+interval_scale	1.06                          	<class 'float'>     
+loadckpt  	None                          	<class 'NoneType'>  
+logdir    	./outputs/dtu_training        	<class 'str'>       
+resume    	False                         	<class 'bool'>      
+summary_freq	10                            	<class 'int'>       
+save_freq 	1                             	<class 'int'>       
+eval_freq 	1                             	<class 'int'>       
+seed      	1                             	<class 'int'>       
+pin_m     	False                         	<class 'bool'>      
+local_rank	0                             	<class 'int'>       
+share_cr  	False                         	<class 'bool'>      
+ndepths   	48,32,8                       	<class 'str'>       
+depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
+dlossw    	1.0,1.0,1.0                   	<class 'str'>       
+cr_base_chs	8,8,8                         	<class 'str'>       
+grad_method	detach                        	<class 'str'>       
+using_apex	False                         	<class 'bool'>      
+sync_bn   	False                         	<class 'bool'>      
+opt_level 	O0                            	<class 'str'>       
+keep_batchnorm_fp32	None                          	<class 'NoneType'>  
+loss_scale	None                          	<class 'NoneType'>  
+use_box   	True                          	<class 'bool'>      
+########################################################################
+**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
+start at epoch 0
+Number of model parameters: 1043505
+Let's use 2 GPUs!
+mvsdataset kwargs {}
+dataset train metas: 27097
+mvsdataset kwargs {}
+dataset test metas: 6174
+4 1 torch.Size([1, 32, 128, 160])
+current time 20240616_225102
+creating new summary file
+argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
+################################  args  ################################
+mode      	train                         	<class 'str'>       
+model     	mvsnet                        	<class 'str'>       
+device    	cuda                          	<class 'str'>       
+dataset   	dtu_yao                       	<class 'str'>       
+trainpath 	./data/DTU/dtu_training       	<class 'str'>       
+testpath  	./data/DTU/dtu_training       	<class 'str'>       
+trainlist 	lists/dtu/train.txt           	<class 'str'>       
+testlist  	lists/dtu/val.txt             	<class 'str'>       
+epochs    	16                            	<class 'int'>       
+lr        	0.001                         	<class 'float'>     
+lrepochs  	6,8,12:2                      	<class 'str'>       
+wd        	0.0001                        	<class 'float'>     
+nviews    	5                             	<class 'int'>       
+batch_size	1                             	<class 'int'>       
+numdepth  	192                           	<class 'int'>       
+interval_scale	1.06                          	<class 'float'>     
+loadckpt  	None                          	<class 'NoneType'>  
+logdir    	./outputs/dtu_training        	<class 'str'>       
+resume    	False                         	<class 'bool'>      
+summary_freq	10                            	<class 'int'>       
+save_freq 	1                             	<class 'int'>       
+eval_freq 	1                             	<class 'int'>       
+seed      	1                             	<class 'int'>       
+pin_m     	False                         	<class 'bool'>      
+local_rank	0                             	<class 'int'>       
+share_cr  	False                         	<class 'bool'>      
+ndepths   	48,32,8                       	<class 'str'>       
+depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
+dlossw    	1.0,1.0,1.0                   	<class 'str'>       
+cr_base_chs	8,8,8                         	<class 'str'>       
+grad_method	detach                        	<class 'str'>       
+using_apex	False                         	<class 'bool'>      
+sync_bn   	False                         	<class 'bool'>      
+opt_level 	O0                            	<class 'str'>       
+keep_batchnorm_fp32	None                          	<class 'NoneType'>  
+loss_scale	None                          	<class 'NoneType'>  
+use_box   	True                          	<class 'bool'>      
+########################################################################
+**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
+start at epoch 0
+Number of model parameters: 1043505
+Let's use 2 GPUs!
+mvsdataset kwargs {}
+dataset train metas: 27097
+mvsdataset kwargs {}
+dataset test metas: 6174
+current time 20240616_225157
+creating new summary file
+argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
+################################  args  ################################
+mode      	train                         	<class 'str'>       
+model     	mvsnet                        	<class 'str'>       
+device    	cuda                          	<class 'str'>       
+dataset   	dtu_yao                       	<class 'str'>       
+trainpath 	./data/DTU/dtu_training       	<class 'str'>       
+testpath  	./data/DTU/dtu_training       	<class 'str'>       
+trainlist 	lists/dtu/train.txt           	<class 'str'>       
+testlist  	lists/dtu/val.txt             	<class 'str'>       
+epochs    	16                            	<class 'int'>       
+lr        	0.001                         	<class 'float'>     
+lrepochs  	6,8,12:2                      	<class 'str'>       
+wd        	0.0001                        	<class 'float'>     
+nviews    	5                             	<class 'int'>       
+batch_size	1                             	<class 'int'>       
+numdepth  	192                           	<class 'int'>       
+interval_scale	1.06                          	<class 'float'>     
+loadckpt  	None                          	<class 'NoneType'>  
+logdir    	./outputs/dtu_training        	<class 'str'>       
+resume    	False                         	<class 'bool'>      
+summary_freq	10                            	<class 'int'>       
+save_freq 	1                             	<class 'int'>       
+eval_freq 	1                             	<class 'int'>       
+seed      	1                             	<class 'int'>       
+pin_m     	False                         	<class 'bool'>      
+local_rank	0                             	<class 'int'>       
+share_cr  	False                         	<class 'bool'>      
+ndepths   	48,32,8                       	<class 'str'>       
+depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
+dlossw    	1.0,1.0,1.0                   	<class 'str'>       
+cr_base_chs	8,8,8                         	<class 'str'>       
+grad_method	detach                        	<class 'str'>       
+using_apex	False                         	<class 'bool'>      
+sync_bn   	False                         	<class 'bool'>      
+opt_level 	O0                            	<class 'str'>       
+keep_batchnorm_fp32	None                          	<class 'NoneType'>  
+loss_scale	None                          	<class 'NoneType'>  
+use_box   	True                          	<class 'bool'>      
+########################################################################
+**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
+start at epoch 0
+Number of model parameters: 1043505
+Let's use 2 GPUs!
+mvsdataset kwargs {}
+dataset train metas: 27097
+mvsdataset kwargs {}
+dataset test metas: 6174
+32 1 128
+current time 20240616_225339
+creating new summary file
+argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
+################################  args  ################################
+mode      	train                         	<class 'str'>       
+model     	mvsnet                        	<class 'str'>       
+device    	cuda                          	<class 'str'>       
+dataset   	dtu_yao                       	<class 'str'>       
+trainpath 	./data/DTU/dtu_training       	<class 'str'>       
+testpath  	./data/DTU/dtu_training       	<class 'str'>       
+trainlist 	lists/dtu/train.txt           	<class 'str'>       
+testlist  	lists/dtu/val.txt             	<class 'str'>       
+epochs    	16                            	<class 'int'>       
+lr        	0.001                         	<class 'float'>     
+lrepochs  	6,8,12:2                      	<class 'str'>       
+wd        	0.0001                        	<class 'float'>     
+nviews    	5                             	<class 'int'>       
+batch_size	1                             	<class 'int'>       
+numdepth  	192                           	<class 'int'>       
+interval_scale	1.06                          	<class 'float'>     
+loadckpt  	None                          	<class 'NoneType'>  
+logdir    	./outputs/dtu_training        	<class 'str'>       
+resume    	False                         	<class 'bool'>      
+summary_freq	10                            	<class 'int'>       
+save_freq 	1                             	<class 'int'>       
+eval_freq 	1                             	<class 'int'>       
+seed      	1                             	<class 'int'>       
+pin_m     	False                         	<class 'bool'>      
+local_rank	0                             	<class 'int'>       
+share_cr  	False                         	<class 'bool'>      
+ndepths   	48,32,8                       	<class 'str'>       
+depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
+dlossw    	1.0,1.0,1.0                   	<class 'str'>       
+cr_base_chs	8,8,8                         	<class 'str'>       
+grad_method	detach                        	<class 'str'>       
+using_apex	False                         	<class 'bool'>      
+sync_bn   	False                         	<class 'bool'>      
+opt_level 	O0                            	<class 'str'>       
+keep_batchnorm_fp32	None                          	<class 'NoneType'>  
+loss_scale	None                          	<class 'NoneType'>  
+use_box   	True                          	<class 'bool'>      
+########################################################################
+**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
+start at epoch 0
+Number of model parameters: 1043505
+Let's use 2 GPUs!
+mvsdataset kwargs {}
+dataset train metas: 27097
+mvsdataset kwargs {}
+dataset test metas: 6174
+32 1 torch.Size([32, 128, 160])
+current time 20240616_225429
+creating new summary file
+argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
+################################  args  ################################
+mode      	train                         	<class 'str'>       
+model     	mvsnet                        	<class 'str'>       
+device    	cuda                          	<class 'str'>       
+dataset   	dtu_yao                       	<class 'str'>       
+trainpath 	./data/DTU/dtu_training       	<class 'str'>       
+testpath  	./data/DTU/dtu_training       	<class 'str'>       
+trainlist 	lists/dtu/train.txt           	<class 'str'>       
+testlist  	lists/dtu/val.txt             	<class 'str'>       
+epochs    	16                            	<class 'int'>       
+lr        	0.001                         	<class 'float'>     
+lrepochs  	6,8,12:2                      	<class 'str'>       
+wd        	0.0001                        	<class 'float'>     
+nviews    	5                             	<class 'int'>       
+batch_size	1                             	<class 'int'>       
+numdepth  	192                           	<class 'int'>       
+interval_scale	1.06                          	<class 'float'>     
+loadckpt  	None                          	<class 'NoneType'>  
+logdir    	./outputs/dtu_training        	<class 'str'>       
+resume    	False                         	<class 'bool'>      
+summary_freq	10                            	<class 'int'>       
+save_freq 	1                             	<class 'int'>       
+eval_freq 	1                             	<class 'int'>       
+seed      	1                             	<class 'int'>       
+pin_m     	False                         	<class 'bool'>      
+local_rank	0                             	<class 'int'>       
+share_cr  	False                         	<class 'bool'>      
+ndepths   	48,32,8                       	<class 'str'>       
+depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
+dlossw    	1.0,1.0,1.0                   	<class 'str'>       
+cr_base_chs	8,8,8                         	<class 'str'>       
+grad_method	detach                        	<class 'str'>       
+using_apex	False                         	<class 'bool'>      
+sync_bn   	False                         	<class 'bool'>      
+opt_level 	O0                            	<class 'str'>       
+keep_batchnorm_fp32	None                          	<class 'NoneType'>  
+loss_scale	None                          	<class 'NoneType'>  
+use_box   	True                          	<class 'bool'>      
+########################################################################
+**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
+start at epoch 0
+Number of model parameters: 1043505
+Let's use 2 GPUs!
+mvsdataset kwargs {}
+dataset train metas: 27097
+mvsdataset kwargs {}
+dataset test metas: 6174
+32 1 torch.Size([1, 32, 128, 160])
+current time 20240616_225531
+creating new summary file
+argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
+################################  args  ################################
+mode      	train                         	<class 'str'>       
+model     	mvsnet                        	<class 'str'>       
+device    	cuda                          	<class 'str'>       
+dataset   	dtu_yao                       	<class 'str'>       
+trainpath 	./data/DTU/dtu_training       	<class 'str'>       
+testpath  	./data/DTU/dtu_training       	<class 'str'>       
+trainlist 	lists/dtu/train.txt           	<class 'str'>       
+testlist  	lists/dtu/val.txt             	<class 'str'>       
+epochs    	16                            	<class 'int'>       
+lr        	0.001                         	<class 'float'>     
+lrepochs  	6,8,12:2                      	<class 'str'>       
+wd        	0.0001                        	<class 'float'>     
+nviews    	5                             	<class 'int'>       
+batch_size	1                             	<class 'int'>       
+numdepth  	192                           	<class 'int'>       
+interval_scale	1.06                          	<class 'float'>     
+loadckpt  	None                          	<class 'NoneType'>  
+logdir    	./outputs/dtu_training        	<class 'str'>       
+resume    	False                         	<class 'bool'>      
+summary_freq	10                            	<class 'int'>       
+save_freq 	1                             	<class 'int'>       
+eval_freq 	1                             	<class 'int'>       
+seed      	1                             	<class 'int'>       
+pin_m     	False                         	<class 'bool'>      
+local_rank	0                             	<class 'int'>       
+share_cr  	False                         	<class 'bool'>      
+ndepths   	48,32,8                       	<class 'str'>       
+depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
+dlossw    	1.0,1.0,1.0                   	<class 'str'>       
+cr_base_chs	8,8,8                         	<class 'str'>       
+grad_method	detach                        	<class 'str'>       
+using_apex	False                         	<class 'bool'>      
+sync_bn   	False                         	<class 'bool'>      
+opt_level 	O0                            	<class 'str'>       
+keep_batchnorm_fp32	None                          	<class 'NoneType'>  
+loss_scale	None                          	<class 'NoneType'>  
+use_box   	True                          	<class 'bool'>      
+########################################################################
+**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
+start at epoch 0
+Number of model parameters: 1043505
+Let's use 2 GPUs!
+mvsdataset kwargs {}
+dataset train metas: 27097
+mvsdataset kwargs {}
+dataset test metas: 6174
+32 1 torch.Size([1, 32, 128, 160])
+current time 20240616_225750
+creating new summary file
+argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
+################################  args  ################################
+mode      	train                         	<class 'str'>       
+model     	mvsnet                        	<class 'str'>       
+device    	cuda                          	<class 'str'>       
+dataset   	dtu_yao                       	<class 'str'>       
+trainpath 	./data/DTU/dtu_training       	<class 'str'>       
+testpath  	./data/DTU/dtu_training       	<class 'str'>       
+trainlist 	lists/dtu/train.txt           	<class 'str'>       
+testlist  	lists/dtu/val.txt             	<class 'str'>       
+epochs    	16                            	<class 'int'>       
+lr        	0.001                         	<class 'float'>     
+lrepochs  	6,8,12:2                      	<class 'str'>       
+wd        	0.0001                        	<class 'float'>     
+nviews    	5                             	<class 'int'>       
+batch_size	1                             	<class 'int'>       
+numdepth  	192                           	<class 'int'>       
+interval_scale	1.06                          	<class 'float'>     
+loadckpt  	None                          	<class 'NoneType'>  
+logdir    	./outputs/dtu_training        	<class 'str'>       
+resume    	False                         	<class 'bool'>      
+summary_freq	10                            	<class 'int'>       
+save_freq 	1                             	<class 'int'>       
+eval_freq 	1                             	<class 'int'>       
+seed      	1                             	<class 'int'>       
+pin_m     	False                         	<class 'bool'>      
+local_rank	0                             	<class 'int'>       
+share_cr  	False                         	<class 'bool'>      
+ndepths   	48,32,8                       	<class 'str'>       
+depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
+dlossw    	1.0,1.0,1.0                   	<class 'str'>       
+cr_base_chs	8,8,8                         	<class 'str'>       
+grad_method	detach                        	<class 'str'>       
+using_apex	False                         	<class 'bool'>      
+sync_bn   	False                         	<class 'bool'>      
+opt_level 	O0                            	<class 'str'>       
+keep_batchnorm_fp32	None                          	<class 'NoneType'>  
+loss_scale	None                          	<class 'NoneType'>  
+use_box   	True                          	<class 'bool'>      
+########################################################################
+**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
+start at epoch 0
+Number of model parameters: 1043505
+Let's use 2 GPUs!
+mvsdataset kwargs {}
+dataset train metas: 27097
+mvsdataset kwargs {}
+dataset test metas: 6174
+32 1 torch.Size([1, 32, 128, 160])
+4 1 torch.Size([1, 32, 128, 160])
+current time 20240616_225845
+creating new summary file
+argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
+################################  args  ################################
+mode      	train                         	<class 'str'>       
+model     	mvsnet                        	<class 'str'>       
+device    	cuda                          	<class 'str'>       
+dataset   	dtu_yao                       	<class 'str'>       
+trainpath 	./data/DTU/dtu_training       	<class 'str'>       
+testpath  	./data/DTU/dtu_training       	<class 'str'>       
+trainlist 	lists/dtu/train.txt           	<class 'str'>       
+testlist  	lists/dtu/val.txt             	<class 'str'>       
+epochs    	16                            	<class 'int'>       
+lr        	0.001                         	<class 'float'>     
+lrepochs  	6,8,12:2                      	<class 'str'>       
+wd        	0.0001                        	<class 'float'>     
+nviews    	5                             	<class 'int'>       
+batch_size	1                             	<class 'int'>       
+numdepth  	192                           	<class 'int'>       
+interval_scale	1.06                          	<class 'float'>     
+loadckpt  	None                          	<class 'NoneType'>  
+logdir    	./outputs/dtu_training        	<class 'str'>       
+resume    	False                         	<class 'bool'>      
+summary_freq	10                            	<class 'int'>       
+save_freq 	1                             	<class 'int'>       
+eval_freq 	1                             	<class 'int'>       
+seed      	1                             	<class 'int'>       
+pin_m     	False                         	<class 'bool'>      
+local_rank	0                             	<class 'int'>       
+share_cr  	False                         	<class 'bool'>      
+ndepths   	48,32,8                       	<class 'str'>       
+depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
+dlossw    	1.0,1.0,1.0                   	<class 'str'>       
+cr_base_chs	8,8,8                         	<class 'str'>       
+grad_method	detach                        	<class 'str'>       
+using_apex	False                         	<class 'bool'>      
+sync_bn   	False                         	<class 'bool'>      
+opt_level 	O0                            	<class 'str'>       
+keep_batchnorm_fp32	None                          	<class 'NoneType'>  
+loss_scale	None                          	<class 'NoneType'>  
+use_box   	True                          	<class 'bool'>      
+########################################################################
+**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
+start at epoch 0
+Number of model parameters: 1043505
+Let's use 2 GPUs!
+mvsdataset kwargs {}
+dataset train metas: 27097
+mvsdataset kwargs {}
+dataset test metas: 6174
+32 1 torch.Size([1, 32, 128, 160])
+4 1 torch.Size([1, 32, 128, 160])
+current time 20240616_225950
+creating new summary file
+argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
+################################  args  ################################
+mode      	train                         	<class 'str'>       
+model     	mvsnet                        	<class 'str'>       
+device    	cuda                          	<class 'str'>       
+dataset   	dtu_yao                       	<class 'str'>       
+trainpath 	./data/DTU/dtu_training       	<class 'str'>       
+testpath  	./data/DTU/dtu_training       	<class 'str'>       
+trainlist 	lists/dtu/train.txt           	<class 'str'>       
+testlist  	lists/dtu/val.txt             	<class 'str'>       
+epochs    	16                            	<class 'int'>       
+lr        	0.001                         	<class 'float'>     
+lrepochs  	6,8,12:2                      	<class 'str'>       
+wd        	0.0001                        	<class 'float'>     
+nviews    	5                             	<class 'int'>       
+batch_size	1                             	<class 'int'>       
+numdepth  	192                           	<class 'int'>       
+interval_scale	1.06                          	<class 'float'>     
+loadckpt  	None                          	<class 'NoneType'>  
+logdir    	./outputs/dtu_training        	<class 'str'>       
+resume    	False                         	<class 'bool'>      
+summary_freq	10                            	<class 'int'>       
+save_freq 	1                             	<class 'int'>       
+eval_freq 	1                             	<class 'int'>       
+seed      	1                             	<class 'int'>       
+pin_m     	False                         	<class 'bool'>      
+local_rank	0                             	<class 'int'>       
+share_cr  	False                         	<class 'bool'>      
+ndepths   	48,32,8                       	<class 'str'>       
+depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
+dlossw    	1.0,1.0,1.0                   	<class 'str'>       
+cr_base_chs	8,8,8                         	<class 'str'>       
+grad_method	detach                        	<class 'str'>       
+using_apex	False                         	<class 'bool'>      
+sync_bn   	False                         	<class 'bool'>      
+opt_level 	O0                            	<class 'str'>       
+keep_batchnorm_fp32	None                          	<class 'NoneType'>  
+loss_scale	None                          	<class 'NoneType'>  
+use_box   	True                          	<class 'bool'>      
+########################################################################
+**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
+start at epoch 0
+Number of model parameters: 1043505
+Let's use 2 GPUs!
+mvsdataset kwargs {}
+dataset train metas: 27097
+mvsdataset kwargs {}
+dataset test metas: 6174
+32 1 torch.Size([1, 32, 128, 160])
+4 1 torch.Size([1, 32, 128, 160])
+current time 20240616_230004
+creating new summary file
+argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
+################################  args  ################################
+mode      	train                         	<class 'str'>       
+model     	mvsnet                        	<class 'str'>       
+device    	cuda                          	<class 'str'>       
+dataset   	dtu_yao                       	<class 'str'>       
+trainpath 	./data/DTU/dtu_training       	<class 'str'>       
+testpath  	./data/DTU/dtu_training       	<class 'str'>       
+trainlist 	lists/dtu/train.txt           	<class 'str'>       
+testlist  	lists/dtu/val.txt             	<class 'str'>       
+epochs    	16                            	<class 'int'>       
+lr        	0.001                         	<class 'float'>     
+lrepochs  	6,8,12:2                      	<class 'str'>       
+wd        	0.0001                        	<class 'float'>     
+nviews    	5                             	<class 'int'>       
+batch_size	1                             	<class 'int'>       
+numdepth  	192                           	<class 'int'>       
+interval_scale	1.06                          	<class 'float'>     
+loadckpt  	None                          	<class 'NoneType'>  
+logdir    	./outputs/dtu_training        	<class 'str'>       
+resume    	False                         	<class 'bool'>      
+summary_freq	10                            	<class 'int'>       
+save_freq 	1                             	<class 'int'>       
+eval_freq 	1                             	<class 'int'>       
+seed      	1                             	<class 'int'>       
+pin_m     	False                         	<class 'bool'>      
+local_rank	0                             	<class 'int'>       
+share_cr  	False                         	<class 'bool'>      
+ndepths   	48,32,8                       	<class 'str'>       
+depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
+dlossw    	1.0,1.0,1.0                   	<class 'str'>       
+cr_base_chs	8,8,8                         	<class 'str'>       
+grad_method	detach                        	<class 'str'>       
+using_apex	False                         	<class 'bool'>      
+sync_bn   	False                         	<class 'bool'>      
+opt_level 	O0                            	<class 'str'>       
+keep_batchnorm_fp32	None                          	<class 'NoneType'>  
+loss_scale	None                          	<class 'NoneType'>  
+use_box   	True                          	<class 'bool'>      
+########################################################################
+**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
+start at epoch 0
+Number of model parameters: 1043505
+Let's use 2 GPUs!
+mvsdataset kwargs {}
+dataset train metas: 27097
+mvsdataset kwargs {}
+dataset test metas: 6174
+32 1 torch.Size([1, 32, 32, 40])
+4 1 torch.Size([1, 32, 32, 40])
+torch.Size([1, 1280, 32])
+current time 20240616_230230
+creating new summary file
+argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
+################################  args  ################################
+mode      	train                         	<class 'str'>       
+model     	mvsnet                        	<class 'str'>       
+device    	cuda                          	<class 'str'>       
+dataset   	dtu_yao                       	<class 'str'>       
+trainpath 	./data/DTU/dtu_training       	<class 'str'>       
+testpath  	./data/DTU/dtu_training       	<class 'str'>       
+trainlist 	lists/dtu/train.txt           	<class 'str'>       
+testlist  	lists/dtu/val.txt             	<class 'str'>       
+epochs    	16                            	<class 'int'>       
+lr        	0.001                         	<class 'float'>     
+lrepochs  	6,8,12:2                      	<class 'str'>       
+wd        	0.0001                        	<class 'float'>     
+nviews    	5                             	<class 'int'>       
+batch_size	1                             	<class 'int'>       
+numdepth  	192                           	<class 'int'>       
+interval_scale	1.06                          	<class 'float'>     
+loadckpt  	None                          	<class 'NoneType'>  
+logdir    	./outputs/dtu_training        	<class 'str'>       
+resume    	False                         	<class 'bool'>      
+summary_freq	10                            	<class 'int'>       
+save_freq 	1                             	<class 'int'>       
+eval_freq 	1                             	<class 'int'>       
+seed      	1                             	<class 'int'>       
+pin_m     	False                         	<class 'bool'>      
+local_rank	0                             	<class 'int'>       
+share_cr  	False                         	<class 'bool'>      
+ndepths   	48,32,8                       	<class 'str'>       
+depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
+dlossw    	1.0,1.0,1.0                   	<class 'str'>       
+cr_base_chs	8,8,8                         	<class 'str'>       
+grad_method	detach                        	<class 'str'>       
+using_apex	False                         	<class 'bool'>      
+sync_bn   	False                         	<class 'bool'>      
+opt_level 	O0                            	<class 'str'>       
+keep_batchnorm_fp32	None                          	<class 'NoneType'>  
+loss_scale	None                          	<class 'NoneType'>  
+use_box   	True                          	<class 'bool'>      
+########################################################################
+**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
+start at epoch 0
+Number of model parameters: 1043505
+Let's use 2 GPUs!
+mvsdataset kwargs {}
+dataset train metas: 27097
+mvsdataset kwargs {}
+dataset test metas: 6174
+32 1 torch.Size([1, 32, 32, 40])
+4 1 torch.Size([1, 32, 32, 40])
+current time 20240616_230314
+creating new summary file
+argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
+################################  args  ################################
+mode      	train                         	<class 'str'>       
+model     	mvsnet                        	<class 'str'>       
+device    	cuda                          	<class 'str'>       
+dataset   	dtu_yao                       	<class 'str'>       
+trainpath 	./data/DTU/dtu_training       	<class 'str'>       
+testpath  	./data/DTU/dtu_training       	<class 'str'>       
+trainlist 	lists/dtu/train.txt           	<class 'str'>       
+testlist  	lists/dtu/val.txt             	<class 'str'>       
+epochs    	16                            	<class 'int'>       
+lr        	0.001                         	<class 'float'>     
+lrepochs  	6,8,12:2                      	<class 'str'>       
+wd        	0.0001                        	<class 'float'>     
+nviews    	5                             	<class 'int'>       
+batch_size	1                             	<class 'int'>       
+numdepth  	192                           	<class 'int'>       
+interval_scale	1.06                          	<class 'float'>     
+loadckpt  	None                          	<class 'NoneType'>  
+logdir    	./outputs/dtu_training        	<class 'str'>       
+resume    	False                         	<class 'bool'>      
+summary_freq	10                            	<class 'int'>       
+save_freq 	1                             	<class 'int'>       
+eval_freq 	1                             	<class 'int'>       
+seed      	1                             	<class 'int'>       
+pin_m     	False                         	<class 'bool'>      
+local_rank	0                             	<class 'int'>       
+share_cr  	False                         	<class 'bool'>      
+ndepths   	48,32,8                       	<class 'str'>       
+depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
+dlossw    	1.0,1.0,1.0                   	<class 'str'>       
+cr_base_chs	8,8,8                         	<class 'str'>       
+grad_method	detach                        	<class 'str'>       
+using_apex	False                         	<class 'bool'>      
+sync_bn   	False                         	<class 'bool'>      
+opt_level 	O0                            	<class 'str'>       
+keep_batchnorm_fp32	None                          	<class 'NoneType'>  
+loss_scale	None                          	<class 'NoneType'>  
+use_box   	True                          	<class 'bool'>      
+########################################################################
+**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
+start at epoch 0
+Number of model parameters: 1043505
+Let's use 2 GPUs!
+mvsdataset kwargs {}
+dataset train metas: 27097
+mvsdataset kwargs {}
+dataset test metas: 6174
+32 1 torch.Size([1, 32, 32, 40])
+4 1 torch.Size([1, 32, 32, 40])
+current time 20240616_230325
+creating new summary file
+argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
+################################  args  ################################
+mode      	train                         	<class 'str'>       
+model     	mvsnet                        	<class 'str'>       
+device    	cuda                          	<class 'str'>       
+dataset   	dtu_yao                       	<class 'str'>       
+trainpath 	./data/DTU/dtu_training       	<class 'str'>       
+testpath  	./data/DTU/dtu_training       	<class 'str'>       
+trainlist 	lists/dtu/train.txt           	<class 'str'>       
+testlist  	lists/dtu/val.txt             	<class 'str'>       
+epochs    	16                            	<class 'int'>       
+lr        	0.001                         	<class 'float'>     
+lrepochs  	6,8,12:2                      	<class 'str'>       
+wd        	0.0001                        	<class 'float'>     
+nviews    	5                             	<class 'int'>       
+batch_size	1                             	<class 'int'>       
+numdepth  	192                           	<class 'int'>       
+interval_scale	1.06                          	<class 'float'>     
+loadckpt  	None                          	<class 'NoneType'>  
+logdir    	./outputs/dtu_training        	<class 'str'>       
+resume    	False                         	<class 'bool'>      
+summary_freq	10                            	<class 'int'>       
+save_freq 	1                             	<class 'int'>       
+eval_freq 	1                             	<class 'int'>       
+seed      	1                             	<class 'int'>       
+pin_m     	False                         	<class 'bool'>      
+local_rank	0                             	<class 'int'>       
+share_cr  	False                         	<class 'bool'>      
+ndepths   	48,32,8                       	<class 'str'>       
+depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
+dlossw    	1.0,1.0,1.0                   	<class 'str'>       
+cr_base_chs	8,8,8                         	<class 'str'>       
+grad_method	detach                        	<class 'str'>       
+using_apex	False                         	<class 'bool'>      
+sync_bn   	False                         	<class 'bool'>      
+opt_level 	O0                            	<class 'str'>       
+keep_batchnorm_fp32	None                          	<class 'NoneType'>  
+loss_scale	None                          	<class 'NoneType'>  
+use_box   	True                          	<class 'bool'>      
+########################################################################
+**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
+start at epoch 0
+Number of model parameters: 1043505
+Let's use 2 GPUs!
+mvsdataset kwargs {}
+dataset train metas: 27097
+mvsdataset kwargs {}
+dataset test metas: 6174
+32 1 torch.Size([1, 32, 32, 40])
+4 1 torch.Size([1, 32, 32, 40])
+current time 20240616_230406
+creating new summary file
+argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
+################################  args  ################################
+mode      	train                         	<class 'str'>       
+model     	mvsnet                        	<class 'str'>       
+device    	cuda                          	<class 'str'>       
+dataset   	dtu_yao                       	<class 'str'>       
+trainpath 	./data/DTU/dtu_training       	<class 'str'>       
+testpath  	./data/DTU/dtu_training       	<class 'str'>       
+trainlist 	lists/dtu/train.txt           	<class 'str'>       
+testlist  	lists/dtu/val.txt             	<class 'str'>       
+epochs    	16                            	<class 'int'>       
+lr        	0.001                         	<class 'float'>     
+lrepochs  	6,8,12:2                      	<class 'str'>       
+wd        	0.0001                        	<class 'float'>     
+nviews    	5                             	<class 'int'>       
+batch_size	1                             	<class 'int'>       
+numdepth  	192                           	<class 'int'>       
+interval_scale	1.06                          	<class 'float'>     
+loadckpt  	None                          	<class 'NoneType'>  
+logdir    	./outputs/dtu_training        	<class 'str'>       
+resume    	False                         	<class 'bool'>      
+summary_freq	10                            	<class 'int'>       
+save_freq 	1                             	<class 'int'>       
+eval_freq 	1                             	<class 'int'>       
+seed      	1                             	<class 'int'>       
+pin_m     	False                         	<class 'bool'>      
+local_rank	0                             	<class 'int'>       
+share_cr  	False                         	<class 'bool'>      
+ndepths   	48,32,8                       	<class 'str'>       
+depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
+dlossw    	1.0,1.0,1.0                   	<class 'str'>       
+cr_base_chs	8,8,8                         	<class 'str'>       
+grad_method	detach                        	<class 'str'>       
+using_apex	False                         	<class 'bool'>      
+sync_bn   	False                         	<class 'bool'>      
+opt_level 	O0                            	<class 'str'>       
+keep_batchnorm_fp32	None                          	<class 'NoneType'>  
+loss_scale	None                          	<class 'NoneType'>  
+use_box   	True                          	<class 'bool'>      
+########################################################################
+**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
+start at epoch 0
+Number of model parameters: 1043505
+Let's use 2 GPUs!
+mvsdataset kwargs {}
+dataset train metas: 27097
+mvsdataset kwargs {}
+dataset test metas: 6174
+32 1 torch.Size([1, 32, 32, 40])
+4 1 torch.Size([1, 32, 32, 40])
+current time 20240616_230444
+creating new summary file
+argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
+################################  args  ################################
+mode      	train                         	<class 'str'>       
+model     	mvsnet                        	<class 'str'>       
+device    	cuda                          	<class 'str'>       
+dataset   	dtu_yao                       	<class 'str'>       
+trainpath 	./data/DTU/dtu_training       	<class 'str'>       
+testpath  	./data/DTU/dtu_training       	<class 'str'>       
+trainlist 	lists/dtu/train.txt           	<class 'str'>       
+testlist  	lists/dtu/val.txt             	<class 'str'>       
+epochs    	16                            	<class 'int'>       
+lr        	0.001                         	<class 'float'>     
+lrepochs  	6,8,12:2                      	<class 'str'>       
+wd        	0.0001                        	<class 'float'>     
+nviews    	5                             	<class 'int'>       
+batch_size	1                             	<class 'int'>       
+numdepth  	192                           	<class 'int'>       
+interval_scale	1.06                          	<class 'float'>     
+loadckpt  	None                          	<class 'NoneType'>  
+logdir    	./outputs/dtu_training        	<class 'str'>       
+resume    	False                         	<class 'bool'>      
+summary_freq	10                            	<class 'int'>       
+save_freq 	1                             	<class 'int'>       
+eval_freq 	1                             	<class 'int'>       
+seed      	1                             	<class 'int'>       
+pin_m     	False                         	<class 'bool'>      
+local_rank	0                             	<class 'int'>       
+share_cr  	False                         	<class 'bool'>      
+ndepths   	48,32,8                       	<class 'str'>       
+depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
+dlossw    	1.0,1.0,1.0                   	<class 'str'>       
+cr_base_chs	8,8,8                         	<class 'str'>       
+grad_method	detach                        	<class 'str'>       
+using_apex	False                         	<class 'bool'>      
+sync_bn   	False                         	<class 'bool'>      
+opt_level 	O0                            	<class 'str'>       
+keep_batchnorm_fp32	None                          	<class 'NoneType'>  
+loss_scale	None                          	<class 'NoneType'>  
+use_box   	True                          	<class 'bool'>      
+########################################################################
+**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
+start at epoch 0
+Number of model parameters: 1043505
+Let's use 2 GPUs!
+mvsdataset kwargs {}
+dataset train metas: 27097
+mvsdataset kwargs {}
+dataset test metas: 6174
+32 1 torch.Size([1, 32, 32, 40])
+4 1 torch.Size([1, 32, 32, 40])
+current time 20240616_230604
+creating new summary file
+argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
+################################  args  ################################
+mode      	train                         	<class 'str'>       
+model     	mvsnet                        	<class 'str'>       
+device    	cuda                          	<class 'str'>       
+dataset   	dtu_yao                       	<class 'str'>       
+trainpath 	./data/DTU/dtu_training       	<class 'str'>       
+testpath  	./data/DTU/dtu_training       	<class 'str'>       
+trainlist 	lists/dtu/train.txt           	<class 'str'>       
+testlist  	lists/dtu/val.txt             	<class 'str'>       
+epochs    	16                            	<class 'int'>       
+lr        	0.001                         	<class 'float'>     
+lrepochs  	6,8,12:2                      	<class 'str'>       
+wd        	0.0001                        	<class 'float'>     
+nviews    	5                             	<class 'int'>       
+batch_size	1                             	<class 'int'>       
+numdepth  	192                           	<class 'int'>       
+interval_scale	1.06                          	<class 'float'>     
+loadckpt  	None                          	<class 'NoneType'>  
+logdir    	./outputs/dtu_training        	<class 'str'>       
+resume    	False                         	<class 'bool'>      
+summary_freq	10                            	<class 'int'>       
+save_freq 	1                             	<class 'int'>       
+eval_freq 	1                             	<class 'int'>       
+seed      	1                             	<class 'int'>       
+pin_m     	False                         	<class 'bool'>      
+local_rank	0                             	<class 'int'>       
+share_cr  	False                         	<class 'bool'>      
+ndepths   	48,32,8                       	<class 'str'>       
+depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
+dlossw    	1.0,1.0,1.0                   	<class 'str'>       
+cr_base_chs	8,8,8                         	<class 'str'>       
+grad_method	detach                        	<class 'str'>       
+using_apex	False                         	<class 'bool'>      
+sync_bn   	False                         	<class 'bool'>      
+opt_level 	O0                            	<class 'str'>       
+keep_batchnorm_fp32	None                          	<class 'NoneType'>  
+loss_scale	None                          	<class 'NoneType'>  
+use_box   	True                          	<class 'bool'>      
+########################################################################
+**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
+start at epoch 0
+Number of model parameters: 1043505
+Let's use 2 GPUs!
+mvsdataset kwargs {}
+dataset train metas: 27097
+mvsdataset kwargs {}
+dataset test metas: 6174
+32 1 torch.Size([1, 32, 32, 40])
+4 1 torch.Size([1, 32, 32, 40])
+current time 20240616_231144
+creating new summary file
+argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
+################################  args  ################################
+mode      	train                         	<class 'str'>       
+model     	mvsnet                        	<class 'str'>       
+device    	cuda                          	<class 'str'>       
+dataset   	dtu_yao                       	<class 'str'>       
+trainpath 	./data/DTU/dtu_training       	<class 'str'>       
+testpath  	./data/DTU/dtu_training       	<class 'str'>       
+trainlist 	lists/dtu/train.txt           	<class 'str'>       
+testlist  	lists/dtu/val.txt             	<class 'str'>       
+epochs    	16                            	<class 'int'>       
+lr        	0.001                         	<class 'float'>     
+lrepochs  	6,8,12:2                      	<class 'str'>       
+wd        	0.0001                        	<class 'float'>     
+nviews    	5                             	<class 'int'>       
+batch_size	1                             	<class 'int'>       
+numdepth  	192                           	<class 'int'>       
+interval_scale	1.06                          	<class 'float'>     
+loadckpt  	None                          	<class 'NoneType'>  
+logdir    	./outputs/dtu_training        	<class 'str'>       
+resume    	False                         	<class 'bool'>      
+summary_freq	10                            	<class 'int'>       
+save_freq 	1                             	<class 'int'>       
+eval_freq 	1                             	<class 'int'>       
+seed      	1                             	<class 'int'>       
+pin_m     	False                         	<class 'bool'>      
+local_rank	0                             	<class 'int'>       
+share_cr  	False                         	<class 'bool'>      
+ndepths   	48,32,8                       	<class 'str'>       
+depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
+dlossw    	1.0,1.0,1.0                   	<class 'str'>       
+cr_base_chs	8,8,8                         	<class 'str'>       
+grad_method	detach                        	<class 'str'>       
+using_apex	False                         	<class 'bool'>      
+sync_bn   	False                         	<class 'bool'>      
+opt_level 	O0                            	<class 'str'>       
+keep_batchnorm_fp32	None                          	<class 'NoneType'>  
+loss_scale	None                          	<class 'NoneType'>  
+use_box   	True                          	<class 'bool'>      
+########################################################################
+**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
+start at epoch 0
+Number of model parameters: 1043505
+Let's use 2 GPUs!
+mvsdataset kwargs {}
+dataset train metas: 27097
+mvsdataset kwargs {}
+dataset test metas: 6174
+32 1 torch.Size([1, 32, 32, 40])
+[1, 512, 640]
+current time 20240616_231344
+creating new summary file
+argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
+################################  args  ################################
+mode      	train                         	<class 'str'>       
+model     	mvsnet                        	<class 'str'>       
+device    	cuda                          	<class 'str'>       
+dataset   	dtu_yao                       	<class 'str'>       
+trainpath 	./data/DTU/dtu_training       	<class 'str'>       
+testpath  	./data/DTU/dtu_training       	<class 'str'>       
+trainlist 	lists/dtu/train.txt           	<class 'str'>       
+testlist  	lists/dtu/val.txt             	<class 'str'>       
+epochs    	16                            	<class 'int'>       
+lr        	0.001                         	<class 'float'>     
+lrepochs  	6,8,12:2                      	<class 'str'>       
+wd        	0.0001                        	<class 'float'>     
+nviews    	5                             	<class 'int'>       
+batch_size	1                             	<class 'int'>       
+numdepth  	192                           	<class 'int'>       
+interval_scale	1.06                          	<class 'float'>     
+loadckpt  	None                          	<class 'NoneType'>  
+logdir    	./outputs/dtu_training        	<class 'str'>       
+resume    	False                         	<class 'bool'>      
+summary_freq	10                            	<class 'int'>       
+save_freq 	1                             	<class 'int'>       
+eval_freq 	1                             	<class 'int'>       
+seed      	1                             	<class 'int'>       
+pin_m     	False                         	<class 'bool'>      
+local_rank	0                             	<class 'int'>       
+share_cr  	False                         	<class 'bool'>      
+ndepths   	48,32,8                       	<class 'str'>       
+depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
+dlossw    	1.0,1.0,1.0                   	<class 'str'>       
+cr_base_chs	8,8,8                         	<class 'str'>       
+grad_method	detach                        	<class 'str'>       
+using_apex	False                         	<class 'bool'>      
+sync_bn   	False                         	<class 'bool'>      
+opt_level 	O0                            	<class 'str'>       
+keep_batchnorm_fp32	None                          	<class 'NoneType'>  
+loss_scale	None                          	<class 'NoneType'>  
+use_box   	True                          	<class 'bool'>      
+########################################################################
+**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
+start at epoch 0
+Number of model parameters: 1043505
+Let's use 2 GPUs!
+mvsdataset kwargs {}
+dataset train metas: 27097
+mvsdataset kwargs {}
+dataset test metas: 6174
+32 1 torch.Size([1, 32, 32, 40])
+Epoch 0/16, Iter 0/27097, lr 0.000335, train loss = 19.365, depth loss = 91.627, entropy loss = 19.365, time = 10.347
+32 1 torch.Size([1, 32, 32, 40])
+32 1 torch.Size([1, 32, 32, 40])
+32 1 torch.Size([1, 32, 32, 40])
+32 1 torch.Size([1, 32, 32, 40])
+32 1 torch.Size([1, 32, 32, 40])
+32 1 torch.Size([1, 32, 32, 40])
+32 1 torch.Size([1, 32, 32, 40])
+32 1 torch.Size([1, 32, 32, 40])
+32 1 torch.Size([1, 32, 32, 40])
+32 1 torch.Size([1, 32, 32, 40])
+Epoch 0/16, Iter 10/27097, lr 0.000348, train loss = 17.274, depth loss = 102.353, entropy loss = 17.274, time = 1.171
+32 1 torch.Size([1, 32, 32, 40])
+32 1 torch.Size([1, 32, 32, 40])
+32 1 torch.Size([1, 32, 32, 40])
+current time 20240616_231421
+creating new summary file
+argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
+################################  args  ################################
+mode      	train                         	<class 'str'>       
+model     	mvsnet                        	<class 'str'>       
+device    	cuda                          	<class 'str'>       
+dataset   	dtu_yao                       	<class 'str'>       
+trainpath 	./data/DTU/dtu_training       	<class 'str'>       
+testpath  	./data/DTU/dtu_training       	<class 'str'>       
+trainlist 	lists/dtu/train.txt           	<class 'str'>       
+testlist  	lists/dtu/val.txt             	<class 'str'>       
+epochs    	16                            	<class 'int'>       
+lr        	0.001                         	<class 'float'>     
+lrepochs  	6,8,12:2                      	<class 'str'>       
+wd        	0.0001                        	<class 'float'>     
+nviews    	5                             	<class 'int'>       
+batch_size	1                             	<class 'int'>       
+numdepth  	192                           	<class 'int'>       
+interval_scale	1.06                          	<class 'float'>     
+loadckpt  	None                          	<class 'NoneType'>  
+logdir    	./outputs/dtu_training        	<class 'str'>       
+resume    	False                         	<class 'bool'>      
+summary_freq	10                            	<class 'int'>       
+save_freq 	1                             	<class 'int'>       
+eval_freq 	1                             	<class 'int'>       
+seed      	1                             	<class 'int'>       
+pin_m     	False                         	<class 'bool'>      
+local_rank	0                             	<class 'int'>       
+share_cr  	False                         	<class 'bool'>      
+ndepths   	48,32,8                       	<class 'str'>       
+depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
+dlossw    	1.0,1.0,1.0                   	<class 'str'>       
+cr_base_chs	8,8,8                         	<class 'str'>       
+grad_method	detach                        	<class 'str'>       
+using_apex	False                         	<class 'bool'>      
+sync_bn   	False                         	<class 'bool'>      
+opt_level 	O0                            	<class 'str'>       
+keep_batchnorm_fp32	None                          	<class 'NoneType'>  
+loss_scale	None                          	<class 'NoneType'>  
+use_box   	True                          	<class 'bool'>      
+########################################################################
+**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
+start at epoch 0
+Number of model parameters: 1043505
+Let's use 2 GPUs!
+mvsdataset kwargs {}
+dataset train metas: 27097
+mvsdataset kwargs {}
+dataset test metas: 6174
+Epoch 0/16, Iter 0/27097, lr 0.000335, train loss = 19.365, depth loss = 91.626, entropy loss = 19.365, time = 6.377
+current time 20240616_231433
+creating new summary file
+**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
+argv: ['--logdir=./outputs/dtu_training', '--dataset=dtu_yao', '--batch_size=1', '--epochs=16', '--trainpath=./data/DTU/dtu_training', '--trainlist=lists/dtu/train.txt', '--testlist=lists/dtu/val.txt', '--numdepth=192', '--ndepths=48,32,8', '--nviews=5', '--wd=0.0001', '--depth_inter_r=4.0,1.0,0.5', '--lrepochs=6,8,12:2', '--dlossw=1.0,1.0,1.0', '--use_box']
+################################  args  ################################
+mode      	train                         	<class 'str'>       
+model     	mvsnet                        	<class 'str'>       
+device    	cuda                          	<class 'str'>       
+dataset   	dtu_yao                       	<class 'str'>       
+trainpath 	./data/DTU/dtu_training       	<class 'str'>       
+testpath  	./data/DTU/dtu_training       	<class 'str'>       
+trainlist 	lists/dtu/train.txt           	<class 'str'>       
+testlist  	lists/dtu/val.txt             	<class 'str'>       
+epochs    	16                            	<class 'int'>       
+lr        	0.001                         	<class 'float'>     
+lrepochs  	6,8,12:2                      	<class 'str'>       
+wd        	0.0001                        	<class 'float'>     
+nviews    	5                             	<class 'int'>       
+batch_size	1                             	<class 'int'>       
+numdepth  	192                           	<class 'int'>       
+interval_scale	1.06                          	<class 'float'>     
+loadckpt  	None                          	<class 'NoneType'>  
+logdir    	./outputs/dtu_training        	<class 'str'>       
+resume    	False                         	<class 'bool'>      
+summary_freq	10                            	<class 'int'>       
+save_freq 	1                             	<class 'int'>       
+eval_freq 	1                             	<class 'int'>       
+seed      	1                             	<class 'int'>       
+pin_m     	False                         	<class 'bool'>      
+local_rank	0                             	<class 'int'>       
+share_cr  	False                         	<class 'bool'>      
+ndepths   	48,32,8                       	<class 'str'>       
+depth_inter_r	4.0,1.0,0.5                   	<class 'str'>       
+dlossw    	1.0,1.0,1.0                   	<class 'str'>       
+cr_base_chs	8,8,8                         	<class 'str'>       
+grad_method	detach                        	<class 'str'>       
+using_apex	False                         	<class 'bool'>      
+sync_bn   	False                         	<class 'bool'>      
+opt_level 	O0                            	<class 'str'>       
+keep_batchnorm_fp32	None                          	<class 'NoneType'>  
+loss_scale	None                          	<class 'NoneType'>  
+use_box   	True                          	<class 'bool'>      
+########################################################################
+**********netphs:[48, 32, 8], depth_intervals_ratio:[4.0, 1.0, 0.5],  grad:detach, chs:[8, 8, 8]************
+start at epoch 0
+Number of model parameters: 1043505
+Let's use 2 GPUs!
+Let's use 2 GPUs!
+mvsdataset kwargs {}
+mvsdataset kwargs {}
+dataset train metas: 27097
+mvsdataset kwargs {}
+dataset train metas: 27097
+mvsdataset kwargs {}
+dataset test metas: 6174
+dataset test metas: 6174
+Epoch 0/16, Iter 0/13549, lr 0.000335, train loss = 19.232, depth loss = 176.663, entropy loss = 19.232, time = 6.187

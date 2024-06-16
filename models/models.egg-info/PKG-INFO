@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: models
+Version: 0.1
+Summary: Implementation for end-to-end architectures.
+Author: VisLab
+Requires-Python: >=3.6
+Requires-Dist: Pillow>=7.1
+Requires-Dist: omegaconf>=2.1
+Requires-Dist: pycocotools
+Requires-Dist: numpy<1.27
+Requires-Dist: matplotlib
+Requires-Dist: numba>=0.56.4
+Requires-Dist: scipy
+Requires-Dist: opencv-python

@@ -25,7 +25,7 @@ def flatten_with_shape(tensor_list, mask_list):
 
     for i, tensor in enumerate(tensor_list):
         new_tensor = tensor.flatten(2).permute(0, 2, 1)
-        print(tensor.shape, new_tensor.shape)
+        # print(tensor.shape, new_tensor.shape)
         tensor_flatten.append(new_tensor)
 
         if mask_list is not None:

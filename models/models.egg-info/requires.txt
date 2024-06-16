@@ -1,0 +1,8 @@
+Pillow>=7.1
+omegaconf>=2.1
+pycocotools
+numpy<1.27
+matplotlib
+numba>=0.56.4
+scipy
+opencv-python

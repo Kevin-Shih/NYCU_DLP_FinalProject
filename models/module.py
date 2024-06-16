@@ -297,7 +297,7 @@ def homo_warping(src_fea, src_proj, ref_proj, depth_values):
         trans = proj[:, :3, 3:4]  # [B,3,1]
 
         y, x = torch.meshgrid([torch.arange(0, height, dtype=torch.float32, device=src_fea.device),
-                               torch.arange(0, width, dtype=torch.float32, device=src_fea.device)])
+                               torch.arange(0, width, dtype=torch.float32, device=src_fea.device)], indexing="ij")
         y, x = y.contiguous(), x.contiguous()
         y, x = y.view(height * width), x.view(height * width)
         xyz = torch.stack((x, y, torch.ones_like(x)))  # [3, H*W]
@@ -413,13 +413,17 @@ class FeatureNet(nn.Module):
         intra_feat = conv2
         outputs = {}
         out = self.out1(intra_feat)
+        out = F.interpolate(out, scale_factor=0.25, mode='nearest')
         outputs["stage1"] = out
+
         intra_feat = F.interpolate(intra_feat, scale_factor=2, mode="nearest") + self.inner1(conv1)
         out = self.out2(intra_feat)
+        out = F.interpolate(out, scale_factor=0.25, mode='nearest')
         outputs["stage2"] = out
 
         intra_feat = F.interpolate(intra_feat, scale_factor=2, mode="nearest") + self.inner2(conv0)
         out = self.out3(intra_feat)
+        out = F.interpolate(out, scale_factor=0.25, mode='nearest')
         outputs["stage3"] = out
 
         return outputs
