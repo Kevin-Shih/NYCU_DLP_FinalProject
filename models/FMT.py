@@ -4,7 +4,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import einops
-from ..utils import flatten_with_shape
+from .utils import flatten_with_shape
 
 '''
 - We provide two different positional encoding methods as shown below.
@@ -79,7 +79,9 @@ class BoxAttentionLayer(nn.Module):
             end_idx = (kernel_size - 1) // 2
 
             indices = torch.linspace(start_idx, end_idx, kernel_size)
-        i, j = torch.meshgrid(indices, indices, indexing="ij")
+        # i, j = torch.meshgrid(indices, indices, indexing="ij")
+        # omit indexing to suit torch 1.9.1
+        i, j = torch.meshgrid(indices, indices)
         kernel_indices = torch.stack([j, i], dim=-1).view(-1, 2) / self.kernel_size
         self.register_buffer(module_name, kernel_indices)
 
@@ -226,7 +228,8 @@ class BoxEncoderLayer(nn.Module):
         self.dropout = nn.Dropout(dropout)
         self.activation = getattr(F, activation)
 
-    # x: include pos encoding
+    # x(query): w/ pos encoding
+    # source: w/o pos encoding
     def forward(self, x, source, src_shape, src_start_index, ref_windows):
         # Normalize the masks
         N = x.shape[0]
@@ -236,7 +239,7 @@ class BoxEncoderLayer(nn.Module):
         # query, value, v_shape, v_mask, v_start_index, v_valid_ratios, ref_windows
         x = x + self.dropout(self.attention(
             x, source, src_shape, None, src_start_index, None, ref_windows
-        ))
+        )[0])
 
         # Run the fully connected part of the layer
         y = x = self.norm1(x)
@@ -308,7 +311,7 @@ class FMT(nn.Module):
             raise ValueError("Wrong feature name")
 
 class BoxFMT(nn.Module):
-    def __init__(self, config):
+    def __init__(self, config, ):
         super(BoxFMT, self).__init__()
 
         self.d_model = config['d_model']
@@ -317,6 +320,10 @@ class BoxFMT(nn.Module):
         encoder_layer = BoxEncoderLayer(config['d_model'], config['nhead'])
         self.layers = nn.ModuleList([copy.deepcopy(encoder_layer) for _ in range(len(self.layer_names))])
         self._reset_parameters()
+        self.ref_size = config['ref_size']
+        self.ref_shape = None
+        self.ref_start_index = None
+        self.ref_windows = None
 
         # self.pos_encoding = PositionEncodingSuperGule(config['d_model'])
         # self.pos_encoding = PositionEncodingSine(config['d_model'])
@@ -346,7 +353,9 @@ class BoxFMT(nn.Module):
                 x_embed = torch.arange(
                     1, size_w + 1, dtype=tensor.dtype, device=tensor.device
                 )
-                y_embed, x_embed = torch.meshgrid(y_embed, x_embed, indexing="ij")
+                # y_embed, x_embed = torch.meshgrid(y_embed, x_embed, indexing="ij")
+                # omit indexing to suit torch 1.9.1
+                y_embed, x_embed = torch.meshgrid(y_embed, x_embed)
                 x_embed = x_embed.unsqueeze(0).repeat(tensor.shape[0], 1, 1)
                 y_embed = y_embed.unsqueeze(0).repeat(tensor.shape[0], 1, 1)
 
@@ -374,47 +383,57 @@ class BoxFMT(nn.Module):
 
         return ref_windows
 
-    def forward(self, ref_feature=None, src_feature=None, feat="ref"):
+    def forward(self, ref_feature=None, src_feature=None, pos= None, feat="ref"):
         """
         Args:
-            ref_feature(torch.Tensor): [N, C, H, W]
+            ref_feature(torch.Tensor): [N, C, H, W] 
             src_feature(torch.Tensor): [N, C, H, W]
         """
-        # input: multi_stage_features: should be [stages, C, H, W]
         
         assert ref_feature is not None       
         
         # the shape of ref. and src. views images should be same, so ref_windows can share
-        ref_windows = self._create_ref_windows(ref_feature, None)
+        # ref_windows = self._create_ref_windows(ref_feature, None)
 
         # pre-processing for ref. image in box-attention
-        ref, _, ref_shape = flatten_with_shape(ref_feature, None)
-        ref_start_index = torch.cat([ref_shape.new_zeros(1), ref_shape.prod(1).cumsum(0)[:-1]])
+        # should be "ref_feature" instead of "ref" to forward through 4 layers
+        # ref_feature: [(B, L_1, C), ..., (B, L_T, C)] Note. L_1~L_T is  the flatten length of that level(stage) i.e. L_1 = H_1*W_1
+        
+        # ref, _, ref_shape = flatten_with_shape(ref_feature, None)
+        
 
         if feat == "ref": # only self attention layer
-            assert self.d_model == ref_feature.size(1)
+            assert self.d_model == ref_feature[0].size(1)
             # _, _, H, _ = ref_feature.shape
             # ref_feature = einops.rearrange(ref_feature, 'n c h w -> n (h w) c')
+            self.ref_windows = self._create_ref_windows(ref_feature, None)
+            ref_feature, _, self.ref_shape = flatten_with_shape(ref_feature, None)
+            self.ref_start_index = torch.cat([self.ref_shape.new_zeros(1), self.ref_shape.prod(1).cumsum(0)[:-1]])
 
+            
             ref_feature_list = []
-            for layer, name in zip(self.layers, self.layer_names): # every self attention layer
+            for layer, name in zip(self.layers, self.layer_names):  # every self attention layer
+                layer:BoxEncoderLayer
                 if name == 'self':
-                    ref_feature = layer( ref,               # flatten feature
-                                         ref,
-                                         ref_shape,
-                                         ref_start_index,
-                                         ref_windows,
-                                         ) # (x, source, src_shape, src_start_index, ref_windows)
-                    ref_feature_list.append(ref_feature)
+                    ref_feature = layer(ref_feature + pos,          # x(query): (flatten ref_feature/last layer output) + pos encoding
+                                        ref_feature,                # source(value): ref_feature as value w/o pos encoding
+                                        self.ref_shape,                  # key: defined by ref. windows and value i.e. values from box of interest 
+                                        self.ref_start_index,
+                                        self.ref_windows
+                                        ) # (x, source, src_shape, src_start_index, ref_windows)
+                    ref_feature_list.append(ref_feature) # ref_feature_list: [Layer, Level_t(stage_t), (B, L_t, C)]
                     # ref_feature_list.append(einops.rearrange(ref_feature, 'n (h w) c -> n c h w', h=H))
             return ref_feature_list
 
         elif feat == "src":
             # pre-processing for box-attention
             #### not sure how to define q, k, v ####
-            src, _, _ = flatten_with_shape(src_feature, None)
+            # should be "src_feature" instead of "src" to forward through 4 layers
+            # src_feature: [(B, L_1, C), ..., (B, L_T, C)] Note. L_1~L_T is  the flatten length of that level(stage) i.e. L_1 = H_1*W_1
+            src_feature, _, src_shape = flatten_with_shape(src_feature, None)
+            src_start_index = torch.cat([src_shape.new_zeros(1), src_shape.prod(1).cumsum(0)[:-1]])
 
-            assert self.d_model == ref_feature[0].size(1)
+            assert self.d_model == ref_feature[0, 0].size(1)
             _, _, H, _ = ref_feature[0].shape
 
             # ref_feature = [einops.rearrange(_, 'n c h w -> n (h w) c') for _ in ref_feature]
@@ -422,18 +441,18 @@ class BoxFMT(nn.Module):
 
             for i, (layer, name) in enumerate(zip(self.layers, self.layer_names)):
                 if name == 'self':
-                    src_feature = layer(src, 
-                                        src,
-                                        ref_shape,
-                                        ref_start_index,
-                                        ref_windows
+                    src_feature = layer(src_feature + pos,      # x(query): (flatten src_feature/last layer output) + pos encoding
+                                        src_feature,            # source(value): src_feature as value w/o pos encoding
+                                        src_shape,              # key: defined by ref. windows and value i.e. values from box of interest 
+                                        src_start_index,
+                                        self.ref_windows
                                         ) # (x, source, src_shape, src_start_index, ref_windows)
                 elif name == 'cross':
-                    src_feature = layer(src, 
-                                        ref[i // 2],
-                                        ref_shape,
-                                        ref_start_index,
-                                        ref_windows
+                    src_feature = layer(src_feature + pos,      # x(query): (flatten src_feature/last layer output) + pos encoding
+                                        ref_feature[i // 2],    # source(value): ref_feature_list[stage_t] as value w/o pos encoding, [stages_t, (B, L_t, C)]
+                                        self.ref_shape,              # key: defined by ref. windows and value i.e. values from box of interest 
+                                        self.ref_start_index,
+                                        self.ref_windows
                                         ) # (x, source, src_shape, src_start_index, ref_windows
                 else:
                     raise KeyError
@@ -467,7 +486,7 @@ class FMT_with_pathway(nn.Module):
         """
 
         _, _, H, W = y.size()
-        return F.interpolate(x, size=(H, W), mode='bilinear') + y
+        return F.interpolate(x, size=(H, W), mode='bilinear', align_corners=True) + y
 
 
     def forward(self, features):
@@ -497,12 +516,12 @@ class BoxFMT_with_pathway(nn.Module):
             FMT_config={
                 'd_model': 32,
                 'nhead': 8,
-                'layer_names': ['self', 'cross'] * 4,}, 
-            ref_size = 4):
-
+                'layer_names': ['self', 'cross'] * 4,
+                'ref_size': 4}, 
+            ):
         super(BoxFMT_with_pathway, self).__init__()
 
-        self.FMT = BoxFMT(FMT_config)
+        self.BoxFMT = BoxFMT(FMT_config, )
 
         self.dim_reduction_1 = nn.Conv2d(base_channels * 4, base_channels * 2, 1, bias=False)
         self.dim_reduction_2 = nn.Conv2d(base_channels * 2, base_channels * 1, 1, bias=False)
@@ -510,7 +529,7 @@ class BoxFMT_with_pathway(nn.Module):
         self.smooth_1 = nn.Conv2d(base_channels * 2, base_channels * 2, 3, padding=1, bias=False)
         self.smooth_2 = nn.Conv2d(base_channels * 1, base_channels * 1, 3, padding=1, bias=False)
         self.pos_encoding = FixedBoxEmbedding(FMT_config['d_model'], normalize=True)
-        self.ref_size = ref_size
+        self.ref_size = FMT_config['ref_size']
 
     def _upsample_add(self, x, y):
         """_upsample_add. Upsample and add two feature maps.
@@ -520,7 +539,7 @@ class BoxFMT_with_pathway(nn.Module):
         """
 
         _, _, H, W = y.size()
-        return F.interpolate(x, size=(H, W), mode='bilinear') + y
+        return F.interpolate(x, size=(H, W), mode='bilinear', align_corners=True) + y
 
 
     def forward(self, features):
@@ -534,18 +553,23 @@ class BoxFMT_with_pathway(nn.Module):
             Mask will be ignored
             """
             multi_stage_features = []
-            # masks = []
-            # pos_encodings = []
+            pos_encodings = []
+            # dict -> list
             for _, (_, feature) in enumerate(feature_multi_stages.items()):
-                # directly add pos_encoding to each stage feature
-                multi_stage_features.append(feature.clone() + self.pos_encoding(feature.clone(), None, self.ref_size).type_as(feature))
-                # pos_encodings.append(self.pos_encoding(feature, None, self.ref_size).type_as(feature))
-                # masks.append(None)
+                multi_stage_features.append(feature.clone())
+                pos_encodings.append(self.pos_encoding(feature, None, self.ref_size).type_as(feature))
+            src_pos = []
+            if pos_encodings[0] is not None:
+                for pe in pos_encodings:
+                    b, c = pe.shape[:2]
+                    pe = pe.view(b, c, -1).transpose(1, 2)
+                    src_pos.append(pe)
+                src_pos = torch.cat(src_pos, dim=1)
 
-            # multi_stage_features: should be [stages, ...]
+            # multi_stage_features: should be [stages, (B, C, H, W)]
             # multi_stage_ref_feat_list: should be [4 layers attention, stages, ...]
             if nview_idx == 0: # ref view
-                multi_stage_ref_feat_list = self.FMT(multi_stage_features, feat="ref") # expect output is multi stage
+                multi_stage_ref_feat_list = self.BoxFMT(multi_stage_features, pos=src_pos, feat="ref") # expect output is multi stage
                 feature_multi_stages["stage1"] = multi_stage_ref_feat_list[-1, 0] # get last layer, stage1
                 feature_multi_stages["stage2"] = self.smooth_1(self._upsample_add(self.dim_reduction_1(feature_multi_stages["stage1"]), multi_stage_ref_feat_list[-1, 1])) # upsample get last layer, stage2
                 feature_multi_stages["stage3"] = self.smooth_2(self._upsample_add(self.dim_reduction_2(feature_multi_stages["stage2"]), multi_stage_ref_feat_list[-1, 2])) # upsample get last layer, stage3
@@ -553,7 +577,7 @@ class BoxFMT_with_pathway(nn.Module):
             else: # src view
                 # _ enumerate through 4 layers i.e. _: [stages, ...]
                 # [_.clone() for _ in multi_stage_ref_feat_list]: [(layer1)[stages, ...], (layer2)[stages, ...], (layer3)[stages, ...], (layer4)[stages, ...]]
-                feature_multi_stages["stage1"] = self.FMT([_.clone() for _ in multi_stage_ref_feat_list], multi_stage_features, feat="src")
+                feature_multi_stages["stage1"] = self.BoxFMT([_.clone() for _ in multi_stage_ref_feat_list], multi_stage_features, pos=src_pos, feat="src")
                 feature_multi_stages["stage2"] = self.smooth_1(self._upsample_add(self.dim_reduction_1(feature_multi_stages["stage1"]), multi_stage_ref_feat_list[-1, 1])) # upsample get last layer, stage2
                 feature_multi_stages["stage3"] = self.smooth_2(self._upsample_add(self.dim_reduction_2(feature_multi_stages["stage2"]), multi_stage_ref_feat_list[-1, 2])) # upsample get last layer, stage3
 

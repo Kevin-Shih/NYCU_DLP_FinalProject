@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from .module import *
-from .FMT import FMT_with_pathway
+from .FMT import FMT_with_pathway, BoxFMT_with_pathway
 
 Align_Corners_Range = False
 
@@ -108,7 +108,7 @@ class DepthNet(nn.Module):
 
 class TransMVSNet(nn.Module):
     def __init__(self, refine=False, ndepths=[48, 32, 8], depth_interals_ratio=[4, 2, 1], share_cr=False,
-            grad_method="detach", arch_mode="fpn", cr_base_chs=[8, 8, 8]):
+            grad_method="detach", arch_mode="fpn", cr_base_chs=[8, 8, 8], use_box_attn= False):
         super(TransMVSNet, self).__init__()
         self.refine = refine
         self.share_cr = share_cr
@@ -137,7 +137,10 @@ class TransMVSNet(nn.Module):
 
         self.feature = FeatureNet(base_channels=8)
 
-        self.FMT_with_pathway = FMT_with_pathway()
+        if use_box_attn:
+            self.FMT_with_pathway = BoxFMT_with_pathway()
+        else:
+            self.FMT_with_pathway = FMT_with_pathway()
 
         if self.share_cr:
             self.cost_regularization = CostRegNet(in_channels=1, base_channels=8)

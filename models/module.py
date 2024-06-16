@@ -361,7 +361,7 @@ class FeatureNet(nn.Module):
 
         self.out1 = nn.Sequential(
                 Conv2d(base_channels * 4, base_channels * 4, 1),
-                nn.GroupNorm(32, base_channels * 4),
+                nn.GroupNorm(8, base_channels * 4),
                 # DCN(in_channels=base_channels * 4, out_channels=base_channels * 4, kernel_size=3, stride=1, padding=1),
                 # nn.BatchNorm2d(base_channels * 4),
                 # nn.ReLU(inplace=True),
@@ -376,8 +376,8 @@ class FeatureNet(nn.Module):
         self.inner2 = nn.Conv2d(base_channels * 1, final_chs, 1, bias=True)
 
         self.out2 = nn.Sequential(
-                Conv2d(final_chs, base_channels * 2, 3,1,padding=1),
-                nn.GroupNorm(32, base_channels * 2),
+                Conv2d(final_chs, final_chs, 3, 1, padding=1),
+                nn.GroupNorm(4, final_chs),
                 # DCN(in_channels=final_chs, out_channels=final_chs,kernel_size=3, stride=1, padding=1),
                 # nn.BatchNorm2d(final_chs),
                 # nn.ReLU(inplace=True),
@@ -387,8 +387,8 @@ class FeatureNet(nn.Module):
                 # DCN(in_channels=final_chs, out_channels=base_channels * 2,kernel_size=3, stride=1, padding=1),
                 )
         self.out3 = nn.Sequential(
-                Conv2d(final_chs, base_channels, 3, 1, padding=1),
-                nn.GroupNorm(32, base_channels),
+                Conv2d(final_chs, final_chs, 3, 1, padding=1),
+                nn.GroupNorm(2, final_chs),
                 # DCN(in_channels=final_chs, out_channels=final_chs, kernel_size=3, stride=1,padding=1),
                 # nn.BatchNorm2d(final_chs),
                 # nn.ReLU(inplace=True),
@@ -404,7 +404,7 @@ class FeatureNet(nn.Module):
         """forward.
 
         :param x: [B, C, H, W]
-        :return outputs: stage1 [B, 32， 128， 160], stage2 [B, 16, 256, 320], stage3 [B, 8, 512, 640]
+        :return outputs: stage1 [B, 32, 128, 160], stage2 [B, 16, 256, 320], stage3 [B, 8, 512, 640]
         """
         conv0 = self.conv0(x)
         conv1 = self.conv1(conv0)

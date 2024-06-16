@@ -139,7 +139,9 @@ class FixedBoxEmbedding(nn.Module):
             size_h, size_w = x.shape[-2:]
             y_embed = torch.arange(1, size_h + 1, dtype=x.dtype, device=x.device)
             x_embed = torch.arange(1, size_w + 1, dtype=x.dtype, device=x.device)
-            y_embed, x_embed = torch.meshgrid(y_embed, x_embed, indexing="ij")
+            # y_embed, x_embed = torch.meshgrid(y_embed, x_embed, indexing="ij")
+            # omit indexing to suit torch 1.9.1
+            y_embed, x_embed = torch.meshgrid(y_embed, x_embed)
             x_embed = x_embed.unsqueeze(0).repeat(x.shape[0], 1, 1)
             y_embed = y_embed.unsqueeze(0).repeat(x.shape[0], 1, 1)
 

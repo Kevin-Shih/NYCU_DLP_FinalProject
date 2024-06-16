@@ -3,7 +3,7 @@ from torch.autograd import Function
 from torch.autograd.function import once_differentiable
 from torch.cuda.amp import custom_fwd, custom_bwd
 
-from e2edet import ops
+from models import ops
 
 
 class BoxAttnFunction(Function):

@@ -1,5 +1,6 @@
 import argparse, os, sys, time, gc, datetime
 import torch
+import torch.distributed
 import torch.nn as nn
 import torch.nn.parallel
 import torch.backends.cudnn as cudnn
@@ -50,6 +51,9 @@ parser.add_argument('--sync_bn', action='store_true',help='enabling apex sync BN
 parser.add_argument('--opt-level', type=str, default="O0")
 parser.add_argument('--keep-batchnorm-fp32', type=str, default=None)
 parser.add_argument('--loss-scale', type=str, default=None)
+
+# for BoxFMT
+parser.add_argument('--use_box', action='store_true')
 
 
 num_gpus = int(os.environ["WORLD_SIZE"]) if "WORLD_SIZE" in os.environ else 1
@@ -282,6 +286,7 @@ def profile():
 if __name__ == '__main__':
     # parse arguments and check
     args = parser.parse_args()
+    # print(num_gpus, is_distributed)
 
     # using sync_bn by using nvidia-apex, need to install apex.
     if args.sync_bn:
@@ -302,15 +307,19 @@ if __name__ == '__main__':
         args.testpath = args.trainpath
 
     if is_distributed:
-        torch.cuda.set_device(args.local_rank)
-        torch.distributed.init_process_group(
+        # args.local_rank -> int(os.environ['LOCAL_RANK'])
+        torch.cuda.set_device(int(os.environ['LOCAL_RANK']))
+        # torch.cuda.set_device(args.local_rank)
+        dist.init_process_group(
             backend="nccl", init_method="env://"
         )
+        # dist.barrier(device_ids=int(args.local_rank))
+        dist.barrier(device_ids=[int(os.environ["LOCAL_RANK"])])
         synchronize()
 
     set_random_seed(args.seed)
     # device = torch.device(args.device)
-    device = torch.device(args.local_rank)
+    device = torch.device(int(os.environ['LOCAL_RANK']))
 
     if (not is_distributed) or (dist.get_rank() == 0):
         # create logger for mode "train" and "testall"
@@ -329,7 +338,8 @@ if __name__ == '__main__':
                           depth_interals_ratio=[float(d_i) for d_i in args.depth_inter_r.split(",") if d_i],
                           share_cr=args.share_cr,
                           cr_base_chs=[int(ch) for ch in args.cr_base_chs.split(",") if ch],
-                          grad_method=args.grad_method)
+                          grad_method=args.grad_method,
+                          use_box_attn=args.use_box)
     model.to(device)
     model_loss = trans_mvsnet_loss
 
@@ -374,7 +384,7 @@ if __name__ == '__main__':
         print("Let's use", torch.cuda.device_count(), "GPUs!")
         model = nn.SyncBatchNorm.convert_sync_batchnorm(model)
         model = torch.nn.parallel.DistributedDataParallel(
-            model, device_ids=[args.local_rank], output_device=args.local_rank,
+            model, device_ids=[int(os.environ['LOCAL_RANK'])], output_device=int(os.environ['LOCAL_RANK']),
         )
     else:
         if torch.cuda.is_available():
