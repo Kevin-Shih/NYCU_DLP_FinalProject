@@ -588,9 +588,9 @@ class BoxFMT_with_pathway(nn.Module):
                 # feature_multi_stages["stage3"] = self.smooth_2(self._upsample_add(feature_multi_stages["stage2"], self.dim_reduction_1(multi_stage_ref_feat_list[-1][2]))) # upsample get last layer, stage3
                 feature_multi_stages["stage3"] = self.smooth_2(self._upsample_add(feature_multi_stages["stage2"], self.dim_reduction_1(multi_stage_features[2]))) # upsample get last layer, stage3
                 
-                feature_multi_stages["stage1"] = F.interpolate(feature_multi_stages["stage1"], scale_factor=4, mode='nearest')
-                feature_multi_stages["stage2"] = F.interpolate(feature_multi_stages["stage2"], scale_factor=4, mode='nearest')
-                feature_multi_stages["stage3"] = F.interpolate(feature_multi_stages["stage3"], scale_factor=4, mode='nearest')
+                # feature_multi_stages["stage1"] = F.interpolate(feature_multi_stages["stage1"], scale_factor=4, mode='nearest')
+                # feature_multi_stages["stage2"] = F.interpolate(feature_multi_stages["stage2"], scale_factor=4, mode='nearest')
+                # feature_multi_stages["stage3"] = F.interpolate(feature_multi_stages["stage3"], scale_factor=4, mode='nearest')
 
             else: # src view
                 # _ enumerate through 4 layers i.e. _: [stages, ...]
@@ -603,7 +603,8 @@ class BoxFMT_with_pathway(nn.Module):
                 feature_multi_stages["stage2"] = self.smooth_1(self._upsample_add(feature_multi_stages["stage1"], multi_stage_features[1])) # upsample get last layer, stage2
                 feature_multi_stages["stage3"] = self.smooth_2(self._upsample_add(feature_multi_stages["stage2"], self.dim_reduction_1(multi_stage_features[2]))) # upsample get last layer, stage3
 
-                feature_multi_stages["stage1"] = F.interpolate(feature_multi_stages["stage1"], scale_factor=4, mode='nearest')
-                feature_multi_stages["stage2"] = F.interpolate(feature_multi_stages["stage2"], scale_factor=4, mode='nearest')
-                feature_multi_stages["stage3"] = F.interpolate(feature_multi_stages["stage3"], scale_factor=4, mode='nearest')
+                # feature_multi_stages["stage1"] = F.interpolate(feature_multi_stages["stage1"], scale_factor=4, mode='nearest')
+                # feature_multi_stages["stage2"] = F.interpolate(feature_multi_stages["stage2"], scale_factor=4, mode='nearest')
+                # feature_multi_stages["stage3"] = F.interpolate(feature_multi_stages["stage3"], scale_factor=4, mode='nearest')
+
         return features

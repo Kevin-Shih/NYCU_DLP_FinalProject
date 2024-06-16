@@ -290,6 +290,7 @@ def homo_warping(src_fea, src_proj, ref_proj, depth_values):
     batch, channels = src_fea.shape[0], src_fea.shape[1]
     num_depth = depth_values.shape[1]
     height, width = src_fea.shape[2], src_fea.shape[3]
+    # print(height, width)
 
     with torch.no_grad():
         proj = torch.matmul(src_proj, torch.inverse(ref_proj))
@@ -413,17 +414,17 @@ class FeatureNet(nn.Module):
         intra_feat = conv2
         outputs = {}
         out = self.out1(intra_feat)
-        out = F.interpolate(out, scale_factor=0.25, mode='nearest')
+        # out = F.interpolate(out, scale_factor=0.25, mode='nearest')
         outputs["stage1"] = out
 
         intra_feat = F.interpolate(intra_feat, scale_factor=2, mode="nearest") + self.inner1(conv1)
         out = self.out2(intra_feat)
-        out = F.interpolate(out, scale_factor=0.25, mode='nearest')
+        # out = F.interpolate(out, scale_factor=0.25, mode='nearest')
         outputs["stage2"] = out
 
         intra_feat = F.interpolate(intra_feat, scale_factor=2, mode="nearest") + self.inner2(conv0)
         out = self.out3(intra_feat)
-        out = F.interpolate(out, scale_factor=0.25, mode='nearest')
+        # out = F.interpolate(out, scale_factor=0.25, mode='nearest')
         outputs["stage3"] = out
 
         return outputs
@@ -507,6 +508,7 @@ def entropy_loss(prob_volume, depth_gt, mask, depth_value, return_prob_map=False
         depth_value_mat = depth_value.repeat(shape[1], shape[2], 1, 1).permute(2,3,0,1)     # B,N,H,W
     else:
         depth_value_mat = depth_value
+    # print(depth_value.shape, depth_gt.shape)
 
     gt_index_image = torch.argmin(torch.abs(depth_value_mat-depth_gt.unsqueeze(1)), dim=1)
 

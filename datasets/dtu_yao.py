@@ -75,7 +75,7 @@ class MVSDataset(Dataset):
         target_h, target_w = 512, 640
         start_h, start_w = (h - target_h)//2, (w - target_w)//2
         hr_img_crop = hr_img_ds[start_h: start_h + target_h, start_w: start_w + target_w]
-
+        hr_img_crop = cv2.resize(hr_img_crop, (160, 128), interpolation=cv2.INTER_NEAREST)
         return hr_img_crop
 
     def read_mask_hr(self, filename):
@@ -85,6 +85,7 @@ class MVSDataset(Dataset):
         np_img = self.prepare_img(np_img)
 
         h, w = np_img.shape
+        
         np_img_ms = {
             "stage1": cv2.resize(np_img, (w//4, h//4), interpolation=cv2.INTER_NEAREST),
             "stage2": cv2.resize(np_img, (w//2, h//2), interpolation=cv2.INTER_NEAREST),
@@ -132,6 +133,7 @@ class MVSDataset(Dataset):
 
 
             img = self.read_img(img_filename)
+            img = cv2.resize(img, (160, 128), interpolation=cv2.INTER_NEAREST)
 
             intrinsics, extrinsics, depth_min, depth_interval = self.read_cam_file(proj_mat_filename)
 

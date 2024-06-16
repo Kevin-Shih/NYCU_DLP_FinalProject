@@ -7,8 +7,8 @@ if [ ! -d $LOG_DIR ]; then
 fi
 
 NUM_THREADS=1
-NGPUS=2
-BATCH_SIZE=1
+NGPUS=1
+BATCH_SIZE=8
 # OMP_NUM_THREADS=$NUM_THREADS python -m torch.distributed.launch --nproc_per_node=$NGPUS train.py \
 OMP_NUM_THREADS=$NUM_THREADS python -m torch.distributed.run --nproc_per_node=$NGPUS train.py \
 	--logdir=$LOG_DIR \
