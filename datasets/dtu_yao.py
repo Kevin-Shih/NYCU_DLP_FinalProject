@@ -3,7 +3,7 @@ import numpy as np
 import os, cv2, time, math
 from PIL import Image
 from datasets.data_io import *
-
+my_scale = 2
 # the DTU dataset preprocessed by Yao Yao (only for training)
 class MVSDataset(Dataset):
     def __init__(self, datapath, listfile, mode, nviews, ndepths=192, interval_scale=1.06, **kwargs):
@@ -75,7 +75,7 @@ class MVSDataset(Dataset):
         target_h, target_w = 512, 640
         start_h, start_w = (h - target_h)//2, (w - target_w)//2
         hr_img_crop = hr_img_ds[start_h: start_h + target_h, start_w: start_w + target_w]
-        hr_img_crop = cv2.resize(hr_img_crop, (160, 128), interpolation=cv2.INTER_NEAREST)
+        hr_img_crop = cv2.resize(hr_img_crop, (160*my_scale, 128*my_scale), interpolation=cv2.INTER_NEAREST)
         return hr_img_crop
 
     def read_mask_hr(self, filename):
@@ -133,7 +133,7 @@ class MVSDataset(Dataset):
 
 
             img = self.read_img(img_filename)
-            img = cv2.resize(img, (160, 128), interpolation=cv2.INTER_NEAREST)
+            img = cv2.resize(img, (160*my_scale, 128*my_scale), interpolation=cv2.INTER_NEAREST)
 
             intrinsics, extrinsics, depth_min, depth_interval = self.read_cam_file(proj_mat_filename)
 

@@ -73,8 +73,8 @@ def train(model, model_loss, optimizer, TrainImgLoader, TestImgLoader, start_epo
         # training
         if is_distributed:
             TrainImgLoader.sampler.set_epoch(epoch_idx)
+        start_time = time.time()
         for batch_idx, sample in enumerate(TrainImgLoader):
-            start_time = time.time()
             global_step = len(TrainImgLoader) * epoch_idx + batch_idx
             do_summary = global_step % args.summary_freq == 0
             loss, scalar_outputs, image_outputs = train_sample(model, model_loss, optimizer, sample, args)
@@ -90,6 +90,7 @@ def train(model, model_loss, optimizer, TrainImgLoader, TestImgLoader, start_epo
                            scalar_outputs['depth_loss'],
                            scalar_outputs['entropy_loss'],
                            time.time() - start_time))
+                    start_time = time.time()
                 del scalar_outputs, image_outputs
 
         # checkpoint
@@ -105,15 +106,15 @@ def train(model, model_loss, optimizer, TrainImgLoader, TestImgLoader, start_epo
         # testing
         if (epoch_idx % args.eval_freq == 0) or (epoch_idx == args.epochs - 1):
             avg_test_scalars = DictAverageMeter()
+            start_time = time.time()
             for batch_idx, sample in enumerate(TestImgLoader):
-                start_time = time.time()
                 global_step = len(TrainImgLoader) * epoch_idx + batch_idx
                 do_summary = global_step % args.summary_freq == 0
                 loss, scalar_outputs, image_outputs = test_sample_depth(model, model_loss, sample, args)
                 if (not is_distributed) or (dist.get_rank() == 0):
                     if do_summary:
                         save_scalars(logger, 'test', scalar_outputs, global_step)
-                        # save_images(logger, 'test', image_outputs, global_step)
+                        save_images(logger, 'test', image_outputs, global_step)
                         print("Epoch {}/{}, Iter {}/{}, test loss = {:.3f}, depth loss = {:.3f}, entropy loss = {:.3f}, time = {:3f}".format(
                                                                             epoch_idx, args.epochs,
                                                                             batch_idx,
@@ -121,6 +122,7 @@ def train(model, model_loss, optimizer, TrainImgLoader, TestImgLoader, start_epo
                                                                             scalar_outputs["depth_loss"],
                                                                             scalar_outputs['entropy_loss'],
                                                                             time.time() - start_time))
+                        start_time = time.time()
                     avg_test_scalars.update(scalar_outputs)
                     del scalar_outputs, image_outputs
 
@@ -183,9 +185,10 @@ def train_sample(model, model_loss, optimizer, sample, args):
                       "depth_loss": depth_loss,
                       "entropy_loss": entropy_loss,
                       "abs_depth_error": AbsDepthError_metrics(depth_est, depth_gt, mask > 0.5),
-                      "thres2mm_error": Thres_metrics(depth_est, depth_gt, mask > 0.5, 2),
+                    #   "thres2mm_error": Thres_metrics(depth_est, depth_gt, mask > 0.5, 2),
                       "thres4mm_error": Thres_metrics(depth_est, depth_gt, mask > 0.5, 4),
-                      "thres8mm_error": Thres_metrics(depth_est, depth_gt, mask > 0.5, 8),}
+                      "thres8mm_error": Thres_metrics(depth_est, depth_gt, mask > 0.5, 8),
+                      "thres14mm_error": Thres_metrics(depth_est, depth_gt, mask > 0.5, 14),}
 
     image_outputs = {"depth_est": depth_est * mask,
                      "depth_est_nomask": depth_est,
