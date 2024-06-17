@@ -108,7 +108,7 @@ class DepthNet(nn.Module):
 
 class TransMVSNet(nn.Module):
     def __init__(self, refine=False, ndepths=[48, 32, 8], depth_interals_ratio=[4, 2, 1], share_cr=False,
-            grad_method="detach", arch_mode="fpn", cr_base_chs=[8, 8, 8], use_box_attn= False):
+            grad_method="detach", arch_mode="fpn", cr_base_chs=[8, 8, 8], use_box_attn= False, use_mscale= False):
         super(TransMVSNet, self).__init__()
         self.refine = refine
         self.share_cr = share_cr
@@ -134,11 +134,10 @@ class TransMVSNet(nn.Module):
                     "scale": 1.0,
                     }
                 }
-
-        self.feature = FeatureNet(base_channels=8)
+        self.feature = FeatureNet(base_channels=8, for_box=use_box_attn)
 
         if use_box_attn:
-            self.FMT_with_pathway = BoxFMT_with_pathway()
+            self.FMT_with_pathway = BoxFMT_with_pathway(use_mstage= use_mscale)
         else:
             self.FMT_with_pathway = FMT_with_pathway()
 

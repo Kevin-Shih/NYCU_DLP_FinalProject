@@ -54,7 +54,7 @@ parser.add_argument('--loss-scale', type=str, default=None)
 
 # for BoxFMT
 parser.add_argument('--use_box', action='store_true')
-
+parser.add_argument('--use_mscale', action='store_true')
 
 num_gpus = int(os.environ["WORLD_SIZE"]) if "WORLD_SIZE" in os.environ else 1
 is_distributed = num_gpus > 1
@@ -82,7 +82,7 @@ def train(model, model_loss, optimizer, TrainImgLoader, TestImgLoader, start_epo
             if (not is_distributed) or (dist.get_rank() == 0):
                 if do_summary:
                     save_scalars(logger, 'train', scalar_outputs, global_step)
-                    # save_images(logger, 'train', image_outputs, global_step)
+                    save_images(logger, 'train', image_outputs, global_step)
                     print(
                        "Epoch {}/{}, Iter {}/{}, lr {:.6f}, train loss = {:.3f}, depth loss = {:.3f}, entropy loss = {:.3f}, time = {:.3f}".format(
                            epoch_idx, args.epochs, batch_idx, len(TrainImgLoader),
@@ -342,7 +342,8 @@ if __name__ == '__main__':
                           share_cr=args.share_cr,
                           cr_base_chs=[int(ch) for ch in args.cr_base_chs.split(",") if ch],
                           grad_method=args.grad_method,
-                          use_box_attn=args.use_box)
+                          use_box_attn=args.use_box,
+                          use_mscale=args.use_mscale)
     model.to(device)
     model_loss = trans_mvsnet_loss
 

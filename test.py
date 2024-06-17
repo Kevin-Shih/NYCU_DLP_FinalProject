@@ -50,6 +50,11 @@ parser.add_argument('--fusibile_exe_path', type=str, default='../fusibile/fusibi
 parser.add_argument('--prob_threshold', type=float, default='0.01')
 parser.add_argument('--disp_threshold', type=float, default='0.25')
 parser.add_argument('--num_consistent', type=float, default='3')
+
+# for BoxFMT
+parser.add_argument('--use_box', action='store_true')
+parser.add_argument('--use_mscale', action='store_true')
+
 # parse arguments and check
 args = parser.parse_args()
 print("argv:", sys.argv[1:])
@@ -145,7 +150,9 @@ def save_scene_depth(testlist):
                           depth_interals_ratio=[float(d_i) for d_i in args.depth_inter_r.split(",") if d_i],
                           share_cr=args.share_cr,
                           cr_base_chs=[int(ch) for ch in args.cr_base_chs.split(",") if ch],
-                          grad_method=args.grad_method)
+                          grad_method=args.grad_method,
+                          use_box_attn=args.use_box,
+                          use_mscale=args.use_mscale)
 
     # load checkpoint file specified by args.loadckpt
     print("loading model {}".format(args.loadckpt))

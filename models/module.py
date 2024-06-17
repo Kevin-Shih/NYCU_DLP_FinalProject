@@ -342,7 +342,7 @@ class DeConv2dFuse(nn.Module):
 
 
 class FeatureNet(nn.Module):
-    def __init__(self, base_channels):
+    def __init__(self, base_channels, for_box=False):
         super(FeatureNet, self).__init__()
         self.base_channels = base_channels
 
@@ -360,44 +360,54 @@ class FeatureNet(nn.Module):
                 Conv2d(base_channels * 4, base_channels * 4, 3, 1, padding=1),
                 Conv2d(base_channels * 4, base_channels * 4, 3, 1, padding=1))
 
-        self.out1 = nn.Sequential(
-                Conv2d(base_channels * 4, base_channels * 4, 1),
-                nn.GroupNorm(8, base_channels * 4),
-                # DCN(in_channels=base_channels * 4, out_channels=base_channels * 4, kernel_size=3, stride=1, padding=1),
-                # nn.BatchNorm2d(base_channels * 4),
-                # nn.ReLU(inplace=True),
-                # DCN(in_channels=base_channels * 4, out_channels=base_channels * 4, kernel_size=3,stride=1, padding=1),
-                # nn.BatchNorm2d(base_channels * 4),
-                # nn.ReLU(inplace=True),
-                # DCN(in_channels=base_channels * 4, out_channels=base_channels * 4, kernel_size=3,stride=1, padding=1)
-                )
-
         final_chs = base_channels * 4
         self.inner1 = nn.Conv2d(base_channels * 2, final_chs, 1, bias=True)
         self.inner2 = nn.Conv2d(base_channels * 1, final_chs, 1, bias=True)
 
-        self.out2 = nn.Sequential(
-                Conv2d(final_chs, final_chs, 3, 1, padding=1),
-                nn.GroupNorm(4, final_chs),
-                # DCN(in_channels=final_chs, out_channels=final_chs,kernel_size=3, stride=1, padding=1),
-                # nn.BatchNorm2d(final_chs),
-                # nn.ReLU(inplace=True),
-                # DCN(in_channels=final_chs, out_channels=final_chs,kernel_size=3, stride=1, padding=1),
-                # nn.BatchNorm2d(final_chs),
-                # nn.ReLU(inplace=True),
-                # DCN(in_channels=final_chs, out_channels=base_channels * 2,kernel_size=3, stride=1, padding=1),
-                )
-        self.out3 = nn.Sequential(
-                Conv2d(final_chs, final_chs, 3, 1, padding=1),
-                nn.GroupNorm(2, final_chs),
-                # DCN(in_channels=final_chs, out_channels=final_chs, kernel_size=3, stride=1,padding=1),
-                # nn.BatchNorm2d(final_chs),
-                # nn.ReLU(inplace=True),
-                # DCN(in_channels=final_chs, out_channels=final_chs, kernel_size=3, stride=1,padding=1),
-                # nn.BatchNorm2d(final_chs),
-                # nn.ReLU(inplace=True),
-                # DCN(in_channels=final_chs, out_channels=base_channels, kernel_size=3,stride=1, padding=1)
-                )
+        if for_box:
+            self.out1 = nn.Sequential(
+                        Conv2d(base_channels * 4, base_channels * 4, 1),
+                        nn.GroupNorm(8, base_channels * 4),
+                    )
+            self.out2 = nn.Sequential(
+                        Conv2d(final_chs, final_chs, 3, 1, padding=1),
+                        nn.GroupNorm(4, final_chs),
+                    )
+            self.out3 = nn.Sequential(
+                        Conv2d(final_chs, final_chs, 3, 1, padding=1),
+                        nn.GroupNorm(2, final_chs),
+                    )
+        else:
+            self.out1 = nn.Sequential(
+                        Conv2d(base_channels * 4, base_channels * 4, 1),
+                        DCN(in_channels=base_channels * 4, out_channels=base_channels * 4, kernel_size=3, stride=1, padding=1),
+                        nn.BatchNorm2d(base_channels * 4),
+                        nn.ReLU(inplace=True),
+                        DCN(in_channels=base_channels * 4, out_channels=base_channels * 4, kernel_size=3,stride=1, padding=1),
+                        nn.BatchNorm2d(base_channels * 4),
+                        nn.ReLU(inplace=True),
+                        DCN(in_channels=base_channels * 4, out_channels=base_channels * 4, kernel_size=3,stride=1, padding=1)
+                    )
+            self.out2 = nn.Sequential(
+                        Conv2d(final_chs, final_chs, 3, 1, padding=1),
+                        DCN(in_channels=final_chs, out_channels=final_chs,kernel_size=3, stride=1, padding=1),
+                        nn.BatchNorm2d(final_chs),
+                        nn.ReLU(inplace=True),
+                        DCN(in_channels=final_chs, out_channels=final_chs,kernel_size=3, stride=1, padding=1),
+                        nn.BatchNorm2d(final_chs),
+                        nn.ReLU(inplace=True),
+                        DCN(in_channels=final_chs, out_channels=base_channels * 2,kernel_size=3, stride=1, padding=1),
+                    )
+            self.out3 = nn.Sequential(
+                        Conv2d(final_chs, final_chs, 3, 1, padding=1),
+                        DCN(in_channels=final_chs, out_channels=final_chs, kernel_size=3, stride=1,padding=1),
+                        nn.BatchNorm2d(final_chs),
+                        nn.ReLU(inplace=True),
+                        DCN(in_channels=final_chs, out_channels=final_chs, kernel_size=3, stride=1,padding=1),
+                        nn.BatchNorm2d(final_chs),
+                        nn.ReLU(inplace=True),
+                        DCN(in_channels=final_chs, out_channels=base_channels, kernel_size=3,stride=1, padding=1)
+                    )
 
         self.out_channels = [4 * base_channels, base_channels * 2, base_channels]
 

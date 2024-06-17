@@ -393,21 +393,14 @@ class BoxFMT(nn.Module):
         assert ref_feature is not None       
         
         # the shape of ref. and src. views images should be same, so ref_windows can share
-        # ref_windows = self._create_ref_windows(ref_feature, None)
-
         # pre-processing for ref. image in box-attention
         # should be "ref_feature" instead of "ref" to forward through 4 layers
         # ref_feature: [(B, L_1, C), ..., (B, L_T, C)] Note. L_1~L_T is  the flatten length of that level(stage) i.e. L_1 = H_1*W_1
         # ->(B, L_1 ... L_T, C),  (B, C)
-        
-        # ref, _, ref_shape = flatten_with_shape(ref_feature, None)
-        
 
         if feat == "ref": # only self attention layer
-            # print(self.d_model, len(ref_feature), ref_feature[0].size())
             assert self.d_model == ref_feature[0].size(1)
             _, _, H, _ = ref_feature[0].shape
-            # ref_feature = einops.rearrange(ref_feature, 'n c h w -> n (h w) c')
             self.ref_windows = self._create_ref_windows(ref_feature, None)
             ref_feature, _, self.ref_shape = flatten_with_shape(ref_feature, None)
             self.ref_start_index = torch.cat([self.ref_shape.new_zeros(1), self.ref_shape.prod(1).cumsum(0)[:-1]])
@@ -428,7 +421,6 @@ class BoxFMT(nn.Module):
                         ref_feature[i] = einops.rearrange(ref_feature[i], 'n (h w) c -> n c h w', h=H<<i)
                     ref_feature_list.append(ref_feature) # ref_feature_list: [Layer, Level_t(stage_t), (B, C, H, W)]
                     ref_feature, _, _ = flatten_with_shape(ref_feature, None)
-                    # ref_feature_list.append(einops.rearrange(ref_feature, 'n (h w) c -> n c h w', h=H))
             return ref_feature_list
 
         elif feat == "src":
@@ -437,13 +429,11 @@ class BoxFMT(nn.Module):
             # should be "src_feature" instead of "src" to forward through 4 layers
             # src_feature: [(B, L_1, C), ..., (B, L_T, C)] Note. L_1~L_T is  the flatten length of that level(stage) i.e. L_1 = H_1*W_1
             _, _, H, _ = src_feature[0].shape
-            # _, _, H, _ = ref_feature[0][0].shape
             src_feature, _, src_shape = flatten_with_shape(src_feature, None)
             src_start_index = torch.cat([src_shape.new_zeros(1), src_shape.prod(1).cumsum(0)[:-1]])
             
             assert self.d_model == ref_feature[0][0].size(1)
-            # ref_feature = [einops.rearrange(_, 'n c h w -> n (h w) c') for _ in ref_feature]
-            # src_feature = einops.rearrange(self.pos_encoding(src_feature), 'n c h w -> n (h w) c')
+
 
             for i, (layer, name) in enumerate(zip(self.layers, self.layer_names)):
                 if name == 'self':
@@ -529,7 +519,7 @@ class BoxFMT_with_pathway(nn.Module):
                 'nhead': 8,
                 'layer_names': ['self', 'cross'] * 4,
                 'ref_size': 4}, 
-            ):
+            use_mstage= False):
         super(BoxFMT_with_pathway, self).__init__()
 
         self.BoxFMT = BoxFMT(FMT_config, )
@@ -541,6 +531,7 @@ class BoxFMT_with_pathway(nn.Module):
         self.smooth_2 = nn.Conv2d(base_channels * 2, base_channels * 1, 3, padding=1, bias=False)
         self.pos_encoding = FixedBoxEmbedding(FMT_config['d_model'], normalize=True)
         self.ref_size = FMT_config['ref_size']
+        self.use_mstage = use_mstage
 
     def _upsample_add(self, x, y):
         """_upsample_add. Upsample and add two feature maps.
@@ -567,7 +558,7 @@ class BoxFMT_with_pathway(nn.Module):
             pos_encodings = []
             # dict -> list
             for i, (_, feature) in enumerate(feature_multi_stages.items()):
-                multi_stage_features.append(feature.clone())
+                multi_stage_features.append(feature)
                 pos_encodings.append(self.pos_encoding(feature, None, self.ref_size).type_as(feature))
             src_pos = []
             if pos_encodings[0] is not None:
@@ -579,32 +570,34 @@ class BoxFMT_with_pathway(nn.Module):
 
             # multi_stage_features: should be [stages, (B, C, H, W)]
             # multi_stage_ref_feat_list: should be [4 layers attention, stages, ...]
-            if nview_idx == 0: # ref view
-                multi_stage_ref_feat_list = self.BoxFMT(multi_stage_features[0:1], pos=src_pos[0:1], feat="ref") # expect output is multi stage
-                # print(len(multi_stage_ref_feat_list), len(multi_stage_ref_feat_list[0]), multi_stage_ref_feat_list[0][0].shape)
-                feature_multi_stages["stage1"] = multi_stage_ref_feat_list[-1][0] # get last layer, stage1
-                # feature_multi_stages["stage2"] = self.smooth_1(self._upsample_add(feature_multi_stages["stage1"], multi_stage_ref_feat_list[-1][1])) # upsample get last layer, stage2
-                feature_multi_stages["stage2"] = self.smooth_1(self._upsample_add(feature_multi_stages["stage1"], multi_stage_features[1])) # upsample get last layer, stage2
-                # feature_multi_stages["stage3"] = self.smooth_2(self._upsample_add(feature_multi_stages["stage2"], self.dim_reduction_1(multi_stage_ref_feat_list[-1][2]))) # upsample get last layer, stage3
-                feature_multi_stages["stage3"] = self.smooth_2(self._upsample_add(feature_multi_stages["stage2"], self.dim_reduction_1(multi_stage_features[2]))) # upsample get last layer, stage3
-                
-                # feature_multi_stages["stage1"] = F.interpolate(feature_multi_stages["stage1"], scale_factor=4, mode='nearest')
-                # feature_multi_stages["stage2"] = F.interpolate(feature_multi_stages["stage2"], scale_factor=4, mode='nearest')
-                # feature_multi_stages["stage3"] = F.interpolate(feature_multi_stages["stage3"], scale_factor=4, mode='nearest')
+            if self.use_mstage:
+                if nview_idx == 0: # ref view
+                    multi_stage_ref_feat_list = self.BoxFMT(multi_stage_features, pos=src_pos, feat="ref") # expect output is multi stage
+                    feature_multi_stages["stage1"] = multi_stage_ref_feat_list[-1][0]
+                    feature_multi_stages["stage2"] = self.smooth_1(self._upsample_add(feature_multi_stages["stage1"], multi_stage_ref_feat_list[-1][1]))
+                    feature_multi_stages["stage3"] = self.smooth_2(self._upsample_add(feature_multi_stages["stage2"], self.dim_reduction_1(multi_stage_ref_feat_list[-1][2])))
+                else: # src view
+                    # _ enumerate through 4 layers i.e. _: [stages, ...]
+                    # [_.clone() for _ in multi_stage_ref_feat_list]: [(layer1)[stages, ...], (layer2)[stages, ...], (layer3)[stages, ...], (layer4)[stages, ...]]
+                    clone_multi_stage_ref_feat_list=[[_.clone() for _ in layer_feat] for layer_feat in multi_stage_ref_feat_list]                        
+                    multi_stage_src_feat_list = self.BoxFMT(clone_multi_stage_ref_feat_list, multi_stage_features, pos=src_pos, feat="src")
 
-            else: # src view
-                # _ enumerate through 4 layers i.e. _: [stages, ...]
-                # [_.clone() for _ in multi_stage_ref_feat_list]: [(layer1)[stages, ...], (layer2)[stages, ...], (layer3)[stages, ...], (layer4)[stages, ...]]
-                clone_multi_stage_ref_feat_list=[]
-                for layer_feat in multi_stage_ref_feat_list:
-                    temp = [_.clone() for _ in layer_feat]
-                    clone_multi_stage_ref_feat_list.append(temp)
-                feature_multi_stages["stage1"] = self.BoxFMT(clone_multi_stage_ref_feat_list, multi_stage_features[0:1], pos=src_pos[0:1], feat="src")
-                feature_multi_stages["stage2"] = self.smooth_1(self._upsample_add(feature_multi_stages["stage1"], multi_stage_features[1])) # upsample get last layer, stage2
-                feature_multi_stages["stage3"] = self.smooth_2(self._upsample_add(feature_multi_stages["stage2"], self.dim_reduction_1(multi_stage_features[2]))) # upsample get last layer, stage3
+                    feature_multi_stages["stage1"] = multi_stage_src_feat_list[0]
+                    feature_multi_stages["stage2"] = self.smooth_1(self._upsample_add(feature_multi_stages["stage1"], multi_stage_src_feat_list[1])) # upsample get last layer, stage2
+                    feature_multi_stages["stage3"] = self.smooth_2(self._upsample_add(feature_multi_stages["stage2"], self.dim_reduction_1(multi_stage_src_feat_list[2]))) # upsample get last layer, stage3
+            else:
+                if nview_idx == 0: # ref view
+                    multi_stage_ref_feat_list = self.BoxFMT(multi_stage_features[0:1], pos=src_pos[0:1], feat="ref") # expect output is multi stage
+                    feature_multi_stages["stage1"] = multi_stage_ref_feat_list[-1][0] # get last layer, stage1
+                    feature_multi_stages["stage2"] = self.smooth_1(self._upsample_add(feature_multi_stages["stage1"], multi_stage_features[1])) # upsample get last layer, stage2
+                    feature_multi_stages["stage3"] = self.smooth_2(self._upsample_add(feature_multi_stages["stage2"], self.dim_reduction_1(multi_stage_features[2]))) # upsample get last layer, stage3
 
-                # feature_multi_stages["stage1"] = F.interpolate(feature_multi_stages["stage1"], scale_factor=4, mode='nearest')
-                # feature_multi_stages["stage2"] = F.interpolate(feature_multi_stages["stage2"], scale_factor=4, mode='nearest')
-                # feature_multi_stages["stage3"] = F.interpolate(feature_multi_stages["stage3"], scale_factor=4, mode='nearest')
+                else: # src view
+                    # _ enumerate through 4 layers i.e. _: [stages, ...]
+                    # [_.clone() for _ in multi_stage_ref_feat_list]: [(layer1)[stages, ...], (layer2)[stages, ...], (layer3)[stages, ...], (layer4)[stages, ...]]
+                    clone_multi_stage_ref_feat_list=[[_.clone() for _ in layer_feat] for layer_feat in multi_stage_ref_feat_list]
 
+                    feature_multi_stages["stage1"] = self.BoxFMT(clone_multi_stage_ref_feat_list, multi_stage_features[0:1], pos=src_pos[0:1], feat="src")
+                    feature_multi_stages["stage2"] = self.smooth_1(self._upsample_add(feature_multi_stages["stage1"], multi_stage_features[1])) # upsample get last layer, stage2
+                    feature_multi_stages["stage3"] = self.smooth_2(self._upsample_add(feature_multi_stages["stage2"], self.dim_reduction_1(multi_stage_features[2]))) # upsample get last layer, stage3
         return features

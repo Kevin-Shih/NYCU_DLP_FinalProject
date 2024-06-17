@@ -20,10 +20,12 @@ OMP_NUM_THREADS=$NUM_THREADS python -m torch.distributed.run --nproc_per_node=$N
 	--testlist=lists/dtu/val.txt \
 	--numdepth=192 \
 	--ndepths="48,32,8" \
-	--nviews=5 \
+	--nviews=3 \
 	--wd=0.0001 \
 	--depth_inter_r="4.0,1.0,0.5" \
 	--lrepochs="6,8,12:2" \
 	--dlossw="1.0,1.0,1.0"\
     --summary_freq 20\
     --use_box | tee -a $LOG_DIR/log.txt\
+    
+    
