@@ -52,6 +52,9 @@ parser.add_argument('--opt-level', type=str, default="O0")
 parser.add_argument('--keep-batchnorm-fp32', type=str, default=None)
 parser.add_argument('--loss-scale', type=str, default=None)
 
+# for BoxFMT
+parser.add_argument('--use_box', action='store_true')
+parser.add_argument('--use_mscale', action='store_true')
 
 num_gpus = int(os.environ["WORLD_SIZE"]) if "WORLD_SIZE" in os.environ else 1
 is_distributed = num_gpus > 1
@@ -321,7 +324,9 @@ if __name__ == '__main__':
                           depth_interals_ratio=[float(d_i) for d_i in args.depth_inter_r.split(",") if d_i],
                           share_cr=args.share_cr,
                           cr_base_chs=[int(ch) for ch in args.cr_base_chs.split(",") if ch],
-                          grad_method=args.grad_method)
+                          grad_method=args.grad_method,
+                          use_box_attn=args.use_box,
+                          use_mscale=args.use_mscale)
     model.to(device)
     model_loss = focal_loss_bld
 
