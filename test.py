@@ -188,7 +188,7 @@ def save_scene_depth(testlist):
                 depth_filename = os.path.join(args.outdir, filename.format('depth_est', '.pfm'))
                 confidence_filename = os.path.join(args.outdir, filename.format('confidence', '.pfm'))
                 cam_filename = os.path.join(args.outdir, filename.format('cams', '_cam.txt'))
-                img_filename = os.path.join(args.outdir, filename.format('images', '.jpg'))
+                img_filename = os.path.join(args.outdir, filename.format('images', '.png'))
                 ply_filename = os.path.join(args.outdir, filename.format('ply_local', '.ply'))
                 os.makedirs(depth_filename.rsplit('/', 1)[0], exist_ok=True)
                 os.makedirs(confidence_filename.rsplit('/', 1)[0], exist_ok=True)
