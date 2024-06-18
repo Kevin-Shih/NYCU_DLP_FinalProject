@@ -5,11 +5,11 @@ clc
 
 % script to calculate distances have been measured for all included scans (UsedSets)
 % DTU dataset pcd path
-dataPath='/0_workspace/MVS/DTU_MATLAB_eval';
+dataPath='../data/DTU/SampleSet/MVS Data/';
 % my result path
-plyPath='/0_workspace/MVS/DTU_MATLAB_eval/test_train_syncbn_4src_1021';
+plyPath='../outputs/dtu_testing_BoxAtten';
 % eval result path
-resultsPath='/0_workspace/MVS/DTU_MATLAB_eval/test_train_syncbn_4src_1021_result';
+resultsPath='../results';
 
 method_string='mvsnet';
 light_string=''; % l3 is the setting with all lights on, l7 is randomly sampled between the 7 settings (index 0-6)
@@ -31,7 +31,8 @@ for cIdx=1:length(UsedSets)
     cSet = UsedSets(cIdx)
     %input data name
     %DataInName=[plyPath sprintf('/%sscan%d%s%s.ply',lower(method_string),cSet,light_string,settings_string)]
-    DataInName=[plyPath sprintf('/mvsnet%03d_l3.ply',cSet)]
+    %DataInName=[plyPath sprintf('/mvsnet%03d_l3.ply',cSet)]
+    DataInName=[plyPath sprintf('/scan%d/points_mvsnet/consistencyCheckPly/final3d_model.ply',cSet)]
     
     %results name
     EvalName=[resultsPath method_string eval_string num2str(cSet) '.mat']

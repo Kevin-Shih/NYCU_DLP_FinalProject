@@ -31,7 +31,7 @@ parser.add_argument('--outdir', default='./outputs', help='output dir')
 parser.add_argument('--display', action='store_true', help='display depth images and masks')
 parser.add_argument('--share_cr', action='store_true', help='whether share the cost volume regularization')
 parser.add_argument('--ndepths', type=str, default="48,32,8", help='ndepths')
-parser.add_argument('--depth_inter_r', type=str, default="4,2,1", help='depth_intervals_ratio')
+parser.add_argument('--depth_inter_r', type=str, default="4,1,0.5", help='depth_intervals_ratio')
 parser.add_argument('--cr_base_chs', type=str, default="8,8,8", help='cost regularization base channels')
 parser.add_argument('--grad_method', type=str, default="detach", choices=["detach", "undetach"], help='grad method')
 parser.add_argument('--interval_scale', type=float, required=True, help='the depth interval scale')
@@ -39,7 +39,7 @@ parser.add_argument('--num_view', type=int, default=5, help='num of view')
 parser.add_argument('--max_h', type=int, default=864, help='testing max h')
 parser.add_argument('--max_w', type=int, default=1152, help='testing max w')
 parser.add_argument('--fix_res', action='store_true', help='scene all using same res')
-parser.add_argument('--num_worker', type=int, default=4, help='depth_filer worker')
+parser.add_argument('--num_worker', type=int, default=8, help='depth_filer worker')
 parser.add_argument('--save_freq', type=int, default=20, help='save freq of local pcd')
 parser.add_argument('--filter_method', type=str, default='normal', choices=["gipuma", "normal", "dynamic"], help="filter method")
 #filter
@@ -49,7 +49,7 @@ parser.add_argument('--thres_view', type=int, default=5, help='threshold of num 
 parser.add_argument('--fusibile_exe_path', type=str, default='../fusibile/fusibile')
 parser.add_argument('--prob_threshold', type=float, default='0.01')
 parser.add_argument('--disp_threshold', type=float, default='0.25')
-parser.add_argument('--num_consistent', type=float, default='3')
+parser.add_argument('--num_consistent', type=float, default='2')
 
 # for BoxFMT
 parser.add_argument('--use_box', action='store_true')
@@ -211,6 +211,7 @@ def save_scene_depth(testlist):
                 img_bgr = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
                 cv2.imwrite(img_filename, img_bgr)
 
+                # save raw ply
                 # if num_stage == 1:
                 #     downsample_img = cv2.resize(img, (int(img.shape[1] * 0.25), int(img.shape[0] * 0.25)))
                 # elif num_stage == 2:
@@ -437,7 +438,7 @@ if __name__ == '__main__':
             if not args.testpath_single_scene else [os.path.basename(args.testpath_single_scene)]
 
     # step1. save all the depth maps and the masks in outputs directory
-    save_depth(testlist)
+    # save_depth(testlist)
 
     # step2. filter saved depth maps with photometric confidence maps and geometric constraints
     if args.filter_method == "normal":
